@@ -1,0 +1,51 @@
+@import "src/assets/scss/mixins/typography.scss";
+@import "src/assets/scss/media-queries.scss";
+
+.addCompanyForm {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 75vh;
+    width: 100%;
+    position: relative;
+    @include for-mobile {
+        height: calc(100vh - 96px);
+    }
+
+    .stepperDisabled {
+        ::ng-deep .mat-horizontal-stepper-header {
+            pointer-events: none !important;
+        }
+    }
+
+    .stepContent {
+        height: 300px;
+    }
+
+    .companyFormHeading {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .backButton,
+    .closeButton {
+        margin-top: 15px;
+        padding-right: 10px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        padding-left: 0;
+        outline: none;
+        .mat-icon {
+            width: 20px;
+        }
+    }
+
+    .closeButton {
+        position: absolute;
+        margin-top: 0;
+        padding-right: 0;
+        right: 0;
+        top: 0;
+    }
+}

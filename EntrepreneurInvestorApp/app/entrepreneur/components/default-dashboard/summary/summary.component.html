@@ -1,0 +1,67 @@
+<tgt-full-width-card>
+    <div class="noCompanyContent" *ngIf="companyList.length === 0">
+        <span class="contentLabel">Let's get started by creating a company! </span>
+        <div class="actionContainer">
+            <button  mat-raised-button color="primary" (click)="openDialog('COMPANY')" >Add company</button>
+            <button  mat-raised-button color="primary" (click)="openDialog('IDEA')" >Add idea</button>
+        </div>
+    </div>
+    <div class="companyListContent" *ngIf="companyList.length > 0">
+        <div class="header">
+            <tgt-heading headingLevel="H2" headingStyle="headingRegular" content="My Companies and Ideas"></tgt-heading>
+            <div class="actionsContainer">
+                <button mat-stroked-button color="primary" class="small" (click)="openDialog('COMPANY')"> Add
+                    company</button>
+                <button mat-stroked-button color="primary" class="small" (click)="openDialog('IDEA')" > Add
+                    idea</button>
+            </div>
+        </div>
+        <ul class="companyList">
+            <div *ngFor="let company of companyList" class="companyItem">
+                <tgt-li withAvatar="true" [avatarImageUrl]="company?.logoUrl || '../assets/images/companyDefaultImage.png'">
+                    <div class="companyItemContent">
+                        <div class="contentItem primaryDescription">
+                            <tgt-heading class="comapanyTitle" headingLevel="H2" headingStyle="headingRegular" *ngIf="company.isCompleted"
+                                (click)="goToProfileDashboard(company)" [content]="company.name" [tooltip]="company.name" placement="top" noMargin=true>
+                            </tgt-heading>
+                            <tgt-heading class="comapanyTitle" headingLevel="H2" headingStyle="headingRegular" [tooltip]="company.name" placement="top" *ngIf="!company.isCompleted"
+                                 content="{{company.name}}" noMargin=true> 
+                            </tgt-heading>
+                            <div class="subtitle" *ngIf="company.incorporationYear"> Founded in
+                                {{company?.incorporationYear}}</div>
+                        </div>
+                        <div class="numberStepper completeCompanyProfile" *ngIf="!company.isCompleted">
+                            <a color="primary" (click)="openEditCompanyDialog(company)">
+                                Complete company profile
+                            </a>
+                        </div>
+                        <ng-container *ngIf="company.isCompleted">
+                            <div class="contentItem invOpportunities">
+                                <label>Collaborations</label>
+                                <span class="value">{{company?.collaborations}}</span>
+                            </div>
+                            <div class="companiesProgressBar contentItem timeline">
+                                <tgt-horizontal-timeline [milestones]="getGrowthStageData(company)">
+                                </tgt-horizontal-timeline>
+                                <div class="subtitle" *ngIf="company.growthStage">  
+                                    Current Stage : {{company?.growthStage}}
+                                </div>
+                            </div>
+                            <div class=" contentItem  upcomingTask">
+                                <div class="company?.goal?.description ? 'title' : ''">{{company?.goal?.description || 'No Upcoming Goal'}}</div>
+                                <div class="date" *ngIf="company?.goal?.description">
+                                    <span *ngIf="company?.goal?.dueDate">
+                                        {{company?.goal?.dueDate | date: "dd MMM yyyy"}}
+                                    </span>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="contentItem companyIcon">
+                            <mat-icon [svgIcon]="company.isIncorporated ?'tgt_company':'tgt_idea'"></mat-icon>
+                        </div>
+                    </div>
+                </tgt-li>
+            </div>
+        </ul>
+    </div>
+</tgt-full-width-card>

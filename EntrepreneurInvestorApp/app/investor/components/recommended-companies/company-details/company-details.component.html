@@ -1,0 +1,84 @@
+<div class="companyDetails">
+    <div class="title">
+        <div class="companyLogo">
+            <img [src]="company.logoKey || '../assets/images/companyDefaultImage.png'" />
+        </div>
+        <div class="companyDetail">
+            <span class="companyCode">{{company.companyCode}}</span>
+            <tgt-star-rating [rating]="company.rating"></tgt-star-rating>
+            <span class="foundingYear">Founded in {{company.foundingYear}}</span>
+        </div> 
+    </div>
+    <div class="cards">
+        <tgt-card withProgress=true progressColor="TEAL" noTitle="true">
+            <div class="cardContent">
+                <span *ngIf="company.revenue" class="value">{{company.revenue | currencyTransform: company.revenueCurrency?.symbol}} </span>
+                <span *ngIf="!company.revenue">NA</span>
+                <span class="subText">Revenue</span>
+            </div>
+        </tgt-card>
+        <tgt-card withProgress=true progressColor="BLUE" noTitle="true">
+            <div class="cardContent">
+                <span *ngIf="company.expectedInvestment" class="value">{{company.expectedInvestment | currencyTransform: company.expectedInvestmentCurrency?.symbol}} </span>
+                <span *ngIf="!company.expectedInvestment">NA</span>
+                <span class="subText">Amt. required</span>
+            </div>
+        </tgt-card>
+        <tgt-card withProgress=true progressColor="ORANGE" noTitle="true">
+            <div class="cardContent">
+                <span *ngIf="company.equity" class="value">{{company.equity}}% </span>
+                <span *ngIf="!company.equity">NA</span>
+                <span class="subText">Equity</span>
+            </div>
+        </tgt-card>
+        <tgt-card withProgress=true progressColor="VIOLET" noTitle="true">
+            <div class="cardContent">
+                <span *ngIf="company.employees" class="value">{{company.employees}}</span>
+                <span *ngIf="!company.employees">NA</span>
+                <span class="subText">Employees</span>
+            </div>
+        </tgt-card>
+    </div>
+    <div class="aboutCompany">
+        <mat-accordion class="example-headers-align" multi>
+            <div [@.disabled]="disableAnimation">
+              <mat-expansion-panel #aboutPanel hideToggle="true" [expanded]="false">
+                <mat-expansion-panel-header>
+                  <mat-icon *ngIf="!aboutPanel.expanded"  svgIcon="tgt_accordion_closed"></mat-icon>
+                  <mat-icon *ngIf="aboutPanel.expanded" svgIcon="tgt_accordion_opened"></mat-icon>
+                  <mat-panel-title>
+                    About
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="panelDescription">
+                  <span *ngIf="company.description">{{company.description}}</span>
+                  <span *ngIf="!company.description" class="noData">No description available</span>
+                </div>
+              </mat-expansion-panel>
+              <mat-expansion-panel #focusPanel hideToggle="true" [expanded]="false">
+                <mat-expansion-panel-header>
+                  <mat-icon *ngIf="!focusPanel.expanded"  svgIcon="tgt_accordion_closed"></mat-icon>
+                  <mat-icon *ngIf="focusPanel.expanded" svgIcon="tgt_accordion_opened"></mat-icon>
+                  <mat-panel-title>
+                    Sector
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="panelDescription">
+                  <span *ngIf="company.companySectors?.length">{{getSectors()}}</span>
+                  <span *ngIf="!company.companySectors?.length" class="noData">No focus area defined</span>
+                </div>
+              </mat-expansion-panel>
+            </div>
+          </mat-accordion>
+    </div>
+    <div class="actions">
+      <app-connect-link [requestStatus]="company?.requestStatus"
+                        [requestSentByMe]="company?.requestSentByMe"
+                        showConnectLinkAsButton="true"
+                        (onConnect)="connect()" 
+                        (onWithdraw)="withdraw()"
+                        (onAccept)="accept()"
+      ></app-connect-link>
+    </div>
+
+</div>

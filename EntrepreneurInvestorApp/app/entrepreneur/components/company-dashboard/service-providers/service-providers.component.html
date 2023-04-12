@@ -1,0 +1,18 @@
+<tgt-card cardTitle="Service Providers" actionLabel="All(8+)" >
+  <div class="ServiceProviders">
+    <div class="serviceColumn" *ngFor="let serviceProvider of serviceProviders">
+      <div class="serviceImage">
+        <tgt-loader width="100" height="100" circle="true" *ngIf="loader"></tgt-loader>
+        <mat-icon class="serviceProviderIcon" *ngIf="!loader" [svgIcon]="serviceProvider.icon"></mat-icon>
+      </div>
+      <div class="serviceText">
+         <tgt-loader width="120" height="15" *ngIf="loader"></tgt-loader>
+        <h3 class="" *ngIf="!loader">{{serviceProvider.service}}</h3>
+        <tgt-loader width="100" height="15" *ngIf="loader"></tgt-loader>
+        <p *ngIf="!loader">{{serviceProvider.providers}}+ providers</p>
+      </div>
+    </div>
+  </div>
+  <div class="alignRight"><a>Add requirements</a></div>
+</tgt-card>
+

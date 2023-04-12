@@ -1,0 +1,24 @@
+<tgt-card [cardTitle]="timeLineTitle" class="investmentJourneyCol" fullHeight="true">
+  <div class="noData noVerticalData" *ngIf="!investmentJourney?.length">
+    Your Investment journey not started yet
+  </div>
+  <div *ngIf="investmentJourney?.length" [ngClass]="disabled ? 'disabled' : ''">
+    <div class="verticalTimelineHeader">{{completedSteps}} steps completed</div>
+    <div class="verticalTimeLine" >
+      <tgt-perfect-scroll class="tgtCardContent  perfectSmHeight">
+        <div *ngFor="let journey of investmentJourney; let i = index" class="verticalTimelineRow {{getClassName(journey,i)}}" >
+          <div class="verticalTimelineCol" [ngClass]="i == activeStepIndex?'active':''">
+            <div class="userDetails" [ngClass]="i == activeStepIndex?'activeUser':''" >
+              <span class="userThumb">
+                <img  [src]="journey?.userImage || '../assets/images/default-avatar.jpeg'">
+              </span>
+                {{journey?.userName || '-'}}
+            </div>
+            <h2>{{journey?.name}}</h2>
+          </div>
+        </div>
+      </tgt-perfect-scroll>
+    </div>
+    <div class="verticalTimelineFooter">Investment</div>
+  </div>
+</tgt-card>

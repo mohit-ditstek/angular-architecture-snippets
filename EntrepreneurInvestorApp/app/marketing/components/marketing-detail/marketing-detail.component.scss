@@ -1,0 +1,29 @@
+@import "src/assets/scss/mixins/typography.scss";
+@import "src/assets/scss/mixins/layouts.scss";
+
+.dFlex{
+  display: flex;
+}
+.flex-direction{
+  flex-direction: column;
+}
+
+.comContainer{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 15px;
+  .coll {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+
+
+
+
+

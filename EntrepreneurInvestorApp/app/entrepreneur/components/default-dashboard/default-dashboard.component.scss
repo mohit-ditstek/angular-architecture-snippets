@@ -1,0 +1,87 @@
+@import "src/assets/scss/mixins/typography.scss";
+@import "src/assets/scss/mixins/layouts.scss";
+
+
+  .pageWithRightNav {
+    @include pageWithRightNav;
+    @include for-tablet {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .pageContentLayout {
+    @include pageContentLayout;
+    @include for-xl-desktop {
+      grid-template-areas: repeatStr(12, "header") 
+                           repeatStr(12, "summary") 
+                           repeatStr(4, "r1-card-1") + repeatStr(4, "r1-card-2") + repeatStr(4, "r1-card-3")
+                           repeatStr(6, "r2-card-1") + repeatStr(6, "r2-card-2") 
+    }
+    @include for-lg-desktop {
+      grid-template-areas: repeatStr(12, "header") 
+                           repeatStr(12, "summary") 
+                           repeatStr(4, "r1-card-1") + repeatStr(4, "r1-card-2") + repeatStr(4, "r1-card-3")
+                           repeatStr(6, "r2-card-1") + repeatStr(6, "r2-card-2") 
+    }
+    @include for-desktop {
+      grid-template-areas:  repeatStr(12, "header") 
+                            repeatStr(12, "summary") 
+                            repeatStr(6, "r1-card-1") + repeatStr(6, "r1-card-3")
+                            repeatStr(12, "r1-card-2") 
+                            repeatStr(6, "r2-card-1") + repeatStr(6, "r2-card-2") 
+    }
+    @include for-tablet {
+      grid-template-areas:  repeatStr(6, "header") 
+                            repeatStr(6, "summary") 
+                            repeatStr(3, "r1-card-1") + repeatStr(3, "r1-card-3")
+                            repeatStr(6, "r1-card-2") 
+                            repeatStr(3, "r2-card-1") + repeatStr(3, "r2-card-2")  
+    }
+    @include for-mobile {
+      grid-template-areas: "header"
+                          "summary"
+                          "r1-card-1"
+                          "r1-card-2"
+                          "r1-card-3"
+                          "r2-card-1"
+                          "r2-card-2";
+    }
+    @include for-sm-mobile {
+      grid-template-areas: "header"
+                          "summary"
+                          "r1-card-1"
+                          "r1-card-2"
+                          "r1-card-3"
+                          "r2-card-1"
+                          "r2-card-2";
+    }
+    
+  }
+
+  .header {
+    grid-area: header;
+  }
+  .summary {
+    grid-area: summary;
+  }
+  .r1-card-1 {
+    grid-area: r1-card-1;
+  }
+  .r1-card-2 {
+    grid-area: r1-card-2;
+  }
+  .r1-card-3 {
+    grid-area: r1-card-3;
+  }
+  .r2-card-1 {
+    grid-area: r2-card-1;
+  }
+  .r2-card-2 {
+    grid-area: r2-card-2;
+  }
+  app-tasks{
+    margin-top: 15px;
+  }
+
+  

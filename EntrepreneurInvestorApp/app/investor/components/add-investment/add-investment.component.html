@@ -1,0 +1,45 @@
+<div class="addInvestmentForm">
+  <div class="companyFormHeading">
+    <button class="backButton" *ngIf="stepper.selectedIndex > 0" (click)="onBack(stepper)">
+      <mat-icon svgIcon="tgt_back"></mat-icon>
+    </button>
+    <tgt-heading withUnderline=true headingLevel="H2" content="Add investment profile"></tgt-heading>
+    <button class="closeButton" (click)="close()">
+      <mat-icon svgIcon="tgt_close"></mat-icon>
+    </button>
+  </div>
+
+  <mat-dialog-content class="mat-typography" [class]="enableStepperClick ? '': 'stepperDisabled'">
+    <mat-horizontal-stepper #stepper labelPosition="bottom">
+      <mat-step label="Financial Requirements" [completed]="false">
+        <app-financial-requirements [currencyOptions]="currencyOptions" [investment]="investment">
+        </app-financial-requirements>
+      </mat-step>
+      <mat-step label="Sector Requirements" [completed]="false">
+        <app-sector-requirements [sectorsOptions]="sectorsOptions" [investment]="investment"></app-sector-requirements>
+      </mat-step>
+      <mat-step label="Stage Requirements" [completed]="false">
+        <app-stage-requirements [investmentStageOptions]="investmentStageOptions" [stageOptions]="stageOptions"
+          [companyTypeOptions]="companyTypeOptions" [investment]="investment"></app-stage-requirements>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-dialog-content>
+</div>
+
+<mat-dialog-actions align="center">
+  <div *ngIf="stepper.selectedIndex < (stepper.steps.length - 1);else lastStep">
+    <button mat-button color="primary" (click)="saveInfo(stepper)">Save</button>
+    <button mat-raised-button color="primary" [disabled]="loading" (click)="onNext(stepper)">
+      <mat-icon *ngIf="loading">
+        <mat-spinner diameter="20"></mat-spinner>
+      </mat-icon>Next
+    </button>
+  </div>
+  <ng-template #lastStep>
+    <button mat-raised-button color="primary" [disabled]="loading" (click)="onFinish(stepper)">
+      <mat-icon *ngIf="loading">
+        <mat-spinner diameter="20"></mat-spinner>
+      </mat-icon>Finish
+    </button>
+  </ng-template>
+</mat-dialog-actions>

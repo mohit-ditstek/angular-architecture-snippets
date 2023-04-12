@@ -1,0 +1,14 @@
+<form class="tgtForm"  [formGroup]="formGroup">
+  <tgt-heading headingLevel="H2" headingStyle="headingRegularSmall" content="Documents"></tgt-heading>
+  <div *ngIf="documentTypes.length > 0">
+    <div *ngFor="let documentType of documentTypes">
+      <tgt-file-upload [label]="formConfig[documentType.id].label" 
+                      [controlName]="documentType.id" 
+                      [form]="formGroup"
+                      [fileName]="formConfig[documentType.id].name"
+                      accept=".pdf,.doc,.docx,.png,.jpeg,.jpg,.gif"
+      >
+      </tgt-file-upload>
+    </div>
+  </div>
+</form>

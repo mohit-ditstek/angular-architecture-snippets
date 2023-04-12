@@ -1,0 +1,16 @@
+@import "src/assets/scss/mixins/typography.scss";
+
+.mat-error {
+    @include errorFontSmall;
+    margin-left: 10px;
+    position: relative;
+    bottom: 17px;
+}
+
+.yearPicker{
+    ::ng-deep {
+        .mat-form-field {
+            width: 8em
+        }
+    }
+}

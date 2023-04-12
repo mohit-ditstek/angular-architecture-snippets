@@ -1,0 +1,13 @@
+@import 'src/assets/scss/media-queries.scss';
+@import 'src/assets/scss/mixins/typography.scss';
+
+
+.formWrapper{
+    p{
+        margin-bottom: 20%;
+    }
+    .mat-form-field {
+        margin-bottom: 20%;
+  }
+}
+  

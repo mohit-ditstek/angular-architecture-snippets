@@ -1,0 +1,14 @@
+.ratingStars{
+    ::ng-deep{
+        .stars-line{
+            z-index: 9;
+        }
+        .star{
+            height: 12px !important;
+            width: 12px !important;
+            &.star-full,&.star-half,&.star-empty {
+                background-color: var(--tgt-orange-color) !important;
+            }
+        }
+    }
+}

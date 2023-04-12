@@ -1,0 +1,23 @@
+<tgt-field-wrapper class="tgtTextInputWrapper" [label]="label" [fullWidth] ="fullWidth" [icon]="icon" [fieldRequired]="required">
+  <mat-form-field appearance="outline" 
+                  [formGroup]="form" 
+                  [ngClass]="{'fullWidth': fullWidth}" 
+                  class="tgtTextInput"
+                  [ngStyle]="styles"
+  >
+    <input 
+        autocomplete="off" 
+        matInput 
+        [placeholder]="placeholder" 
+        [maxlength]="maxlength" 
+        (keypress)=validate($event) 
+        [formControlName]="controlName"
+        [type]="inputType"
+        [mask]="mask"
+        (input)="transformTextToUppercase($event)"
+        [id]="id?id:controlName"
+      >
+    <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
+    <span matSuffix *ngIf="suffix">{{suffix}}</span>
+  </mat-form-field>
+</tgt-field-wrapper>

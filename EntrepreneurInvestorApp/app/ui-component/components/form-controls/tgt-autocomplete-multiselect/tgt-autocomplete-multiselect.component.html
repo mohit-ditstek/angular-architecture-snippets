@@ -1,0 +1,31 @@
+<tgt-field-wrapper  [label]="label" [fullWidth]="fullWidth" [icon]="icon" [fieldRequired]="required">    
+    <mat-form-field appearance="outline"  class="fullWidth"> 
+      <input
+          matInput
+          [placeholder]="placeholder"
+          #autoCompleteInput
+          (input)="filterOptions($event)"
+          (focus)="clearInputValue()"
+          (blur)="showNoOfSelectedOptions()"
+          [matAutocomplete]="auto"
+        >
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelection($event)">
+          <mat-option *ngFor="let option of filteredOptions" [value]="option.key" [disabled]="option.selected">      
+            {{option.value}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-error class="errorClass" *ngIf="errorMessage">{{errorMessage}}</mat-error>
+      <mat-chip-list #chipList class="multiSelectChip">
+        <ng-container *ngFor="let option of filteredOptions">
+        <mat-chip
+          *ngIf="option.selected"
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="remove(option)">
+          {{option.value}}
+          <mat-icon matChipRemove *ngIf="removable">close</mat-icon>
+        </mat-chip>
+      </ng-container>
+      </mat-chip-list>
+</tgt-field-wrapper>

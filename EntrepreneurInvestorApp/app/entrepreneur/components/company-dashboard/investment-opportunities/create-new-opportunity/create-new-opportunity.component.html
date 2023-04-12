@@ -1,0 +1,15 @@
+<div *ngIf="!isLoading">
+  <div class="companyFormHeading">
+    <tgt-heading withUnderline=true headingLevel="H2" content="Add Opportunity"></tgt-heading>
+    <button class="closeButton" (click)="close()" tooltip="Close">
+      <mat-icon svgIcon="tgt_close"></mat-icon>
+    </button>
+  </div>
+
+  <app-investment [company]="companyDetail" [currencyOptions]="currencyOptions"
+    [investmentStageOptions]="investmentStageOptions" ></app-investment>
+
+  <mat-dialog-actions align="center">
+      <button mat-raised-button color="primary" (click)="onSave()">Save</button>
+  </mat-dialog-actions>
+</div>

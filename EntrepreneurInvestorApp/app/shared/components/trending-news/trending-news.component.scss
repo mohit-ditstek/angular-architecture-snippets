@@ -1,0 +1,29 @@
+.trendingNews {
+    .tgtListingCardContent {
+        width: 100%;
+    }
+    .contentWrapper {
+         height: 16em;
+         overflow: auto;
+         
+         .content {
+            display: flex;
+            align-items: center;
+    
+            .rightContent {
+                display: flex;
+                flex-direction: column;
+            }
+    
+        }
+    }
+    
+    .newsIcon {
+        border-radius: 3px;
+        width: 60px;
+        margin-right: 10px;
+        img {
+            border-radius: 5px;
+        }
+    }
+}

@@ -1,0 +1,172 @@
+@import "../../../../assets/scss/mixins/typography.scss";
+@import '../../../../assets/scss/common-style.scss';
+
+.goals {
+    ::ng-deep {
+        .mat-drawer-backdrop {
+            position: fixed;
+        }
+        .mat-drawer-container {
+            position: fixed;
+            z-index: 35;
+        }
+
+        .mat-drawer {
+            position: fixed;
+            right: 0;
+        }
+
+        .datePickerWrapper {
+            ::ng-deep .tgtFormFieldWrapper label {
+                width: 100px;
+            }
+        }
+    }
+
+    .headingContainer {
+        display: flex;
+        justify-content: space-between;
+        button {
+            margin-top: 10px;
+
+            &:focus {
+                background-color: transparent;
+            }
+
+            ::ng-deep .mat-icon {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+
+    .addGoalFormWrapper {
+        min-width: 500px;
+        max-width: 100%;
+        padding: 0 20px;
+        padding-bottom: 95px;
+    }
+
+    hr {
+        margin-bottom: 25px;
+        border-color: var(--tgt-border-color-light);
+    }
+
+    .deleteBtn {
+        margin-right: 1em;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 75px;
+        padding: 15px;
+        background: var(--tgt-page-background-light);
+    }
+}
+
+form {
+    &.tgtForm {
+        .userName {
+            margin-bottom: 10px;
+            mat-icon {
+                width: 20px;
+                color: var(--tgt-blue);
+                position: relative;
+                top: 5px;
+                margin-right: 10px;
+            }
+            span {
+                @include bodyText;
+            }
+        }
+        .createdDate {
+            display: flex;
+            margin-bottom: 15px;
+
+            @include for-mobile {
+                align-items: self-start;
+                flex-direction: column;
+            }
+            label {
+                @include bodyTextSmallLight;
+                min-width: 90px;
+                color: var(--tgt-regular-text-color);
+
+                @include for-mobile {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+
+        tgt-field-wrapper {
+            ::ng-deep {
+                label {
+                    min-width: 90px;
+                    margin-top: 0;
+                }
+            }
+        }
+        tgt-datepicker {
+            ::ng-deep {
+                label {
+                    min-width: 90px;
+                    margin-top: 10px;
+                }
+                .tgtFormFieldWrapper {
+                    width: 100%;
+                    margin-bottom: 20px;
+                    @include for-mobile {
+                        align-items: self-start;
+                    }
+                }
+                .mat-form-field-wrapper {
+                    padding: 0;
+                }
+                mat-error {
+                    margin-top: 20px;
+                }
+            }
+        }
+        tgt-textarea {
+            ::ng-deep {
+                .iconWrapper {
+                    margin-top: 15px;
+                    margin-right: 20px;
+                    min-width: 70px;
+                }
+            }
+        }
+    }
+}
+
+.customRadioBtn{
+    ::ng-deep tgt-radio-button{
+        ::ng-deep tgt-field-wrapper{
+            ::ng-deep .tgtFormFieldWrapper {
+                ::ng-deep label{
+                    min-width: 90px !important;
+                }
+            }
+        }
+    }
+}
+.viewOnlyModeClass{
+    display: flex;
+    margin: 16px 0;
+    ::ng-deep .label{
+        min-width: 90px;
+        @include bodyText;
+    }
+    ::ng-deep .value{
+        @include bodyTextHighlight
+    }
+    ::ng-deep .goalTitle{
+        @include bodyTextLargeHighlight 
+    }
+}

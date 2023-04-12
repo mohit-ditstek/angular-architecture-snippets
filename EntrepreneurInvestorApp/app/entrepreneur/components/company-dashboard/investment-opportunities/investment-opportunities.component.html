@@ -1,0 +1,98 @@
+<tgt-card cardTitle="Investment Opportunities" class="investmentOpportunities" fullHeight="true">
+  <ng-container *ngIf="!isLoading">
+    <tgt-perfect-scroll class="tgtCardContent perfectMdHeight"
+      *ngIf="(investmentOpportunitiesData?.investmentOpportunities?.length || investmentOpportunitiesData?.profileAndGoalForIOs?.length)">
+      <ul class="recommendedMentor" *ngIf="investmentOpportunitiesData?.profileAndGoalForIOs?.length">
+        <tgt-li withAvatar="true" *ngFor="let investor of investmentOpportunitiesData?.profileAndGoalForIOs"
+          [avatarImageUrl]="investor?.profilePicture || '../assets/images/default-avatar.jpeg'">
+          <tgt-li-content-wrapper>
+            <tgt-li-left-content>
+              <tgt-li-text-content type="title">{{investor?.name}}</tgt-li-text-content>
+              <tgt-li-text-content type="subTitle" *ngIf="investor?.stage">Stage <span
+                  class="highlight">{{investor?.stage}}</span>
+              </tgt-li-text-content>
+              <tgt-li-text-content type="subText">
+                <span class="noWrap">
+                  {{investor?.dueDate | date:'d MMM y'}}
+                  <span class="subColumn" *ngIf="investor?.dueDate && investor?.goalDescription">:</span>
+                  <span class="highlight">
+                    {{investor?.goalDescription}}
+                  </span>
+                </span>
+              </tgt-li-text-content>
+            </tgt-li-left-content>
+            <tgt-li-right-content>
+              <mat-icon class="sharedIcon" tooltip="Collaboration Hub" svgIcon="tgt_collaboration"
+                (click)="collaboration(investor?.investmentJourneyId)"></mat-icon>
+            </tgt-li-right-content>
+          </tgt-li-content-wrapper>
+        </tgt-li>
+      </ul>
+
+      <table mat-table
+        *ngIf="investmentOpportunitiesData?.investmentOpportunities?.length && !investmentOpportunitiesData?.profileAndGoalForIOs?.length"
+        [dataSource]="investmentOpportunitiesData?.investmentOpportunities">
+        <ng-container matColumnDef="investment">
+          <th mat-header-cell *matHeaderCellDef class="colAlignCenter">
+            <span>
+              <mat-icon svgIcon="tgt_dollar"></mat-icon>
+              Investment
+            </span>
+          </th>
+          <td mat-cell *matCellDef="let element" class="colAlignCenter">
+            <div *ngIf="element?.investmentRequired">
+              {{element?.investmentCurrency?.symbol}}{{element?.investmentRequired | currencyTransform}}
+            </div>
+            <span *ngIf="!element?.investmentRequired">-</span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="stage">
+          <th mat-header-cell *matHeaderCellDef class="colAlignCenter">
+            <span>
+              <mat-icon svgIcon="tgt_triangle"></mat-icon>Stage
+            </span>
+          </th>
+          <td mat-cell *matCellDef="let element" class="colAlignCenter">
+            {{element?.investmentStage?.name || '-'}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="equity">
+          <th mat-header-cell *matHeaderCellDef class="colAlignCenter"> <span>
+              <mat-icon svgIcon="tgt_circular_pie_chart"></mat-icon>Equity
+            </span></th>
+          <td mat-cell *matCellDef="let element" class="colAlignCenter">
+            {{element?.investmentEquityPercent || '-'}}%
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="valuation">
+          <th mat-header-cell *matHeaderCellDef class="colAlignCenter"> <span>
+              <mat-icon svgIcon="tgt_money"></mat-icon>Valuation
+            </span></th>
+          <td mat-cell *matCellDef="let element" class="colAlignCenter">
+            <div *ngIf="element?.valuation">
+              {{element?.investmentCurrency?.symbol}}{{element?.valuation | currencyTransform}}
+            </div>
+            <span *ngIf="!element?.valuation">
+              -
+            </span>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <span class="staticText"
+        *ngIf="investmentOpportunitiesData?.investmentOpportunities?.length && !investmentOpportunitiesData?.profileAndGoalForIOs?.length">
+        You can add only one opportunity
+      </span>
+    </tgt-perfect-scroll>
+    <div class="noData noOpportunityData"
+      *ngIf="!investmentOpportunitiesData?.investmentOpportunities?.length && !investmentOpportunitiesData?.profileAndGoalForIOs?.length">
+      Please go ahead and add investment opportunity so that system can recommend you investors
+      <a class="addOpportunities" (click)="openFundingModal()">
+        Add opportunitiy
+      </a>
+    </div>
+   
+  </ng-container>
+  <div *ngIf="isLoading"> Loading...</div>
+</tgt-card>

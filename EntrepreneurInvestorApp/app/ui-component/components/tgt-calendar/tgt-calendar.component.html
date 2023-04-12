@@ -1,0 +1,46 @@
+  <mwl-calendar-month-view [viewDate]="viewDate" [events]="events" [refresh]="refresh" weekStartsOn="1"
+    [cellTemplate]="customCellTemplate" (dayClicked)="dayClicked($event.day)">
+  </mwl-calendar-month-view>
+
+  <ng-template #customCellTemplate let-day="day" let-locale="locale">
+    <div class="cal-cell-top">
+      <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+    </div>
+    <div  *ngFor="let data of allData;let i= index;">
+      <div *ngIf="(day.date | date:'shortDate') == (data.start | date:'shortDate')">
+
+        <span class="taskTitle eventCol" *ngIf="!data?.isEvent" [innerHTML]="data?.title"></span>
+        <span class="eventTitle eventCol"  (click)="preventFromOpeningDayView($event,data)"  *ngIf="data?.isEvent" [matMenuTriggerFor]="getDetailMenu" [innerHTML]="data?.title"></span> 
+
+        <mat-menu #getDetailMenu="matMenu" class="calendarWidget">
+          <div class="calendarPopUp">
+            <div class="cpCaption">
+              <label>Organiser</label>
+              <mat-icon svgIcon="tgt_close" tooltip="Close"></mat-icon>
+            </div>
+            <div class="cpUserInfoWrapper">
+              <span><img [src]="data.imageUrl || '../assets/images/default-avatar.jpeg'"></span>
+              <div class="cpUserInfo">
+                <h5>{{data?.organizerName}}</h5>
+                <p>{{data.role}}</p>
+              </div>
+            </div>
+            <div class="cpDetails">
+              <p><span>Title : </span>{{data.title}}</p>
+              <p><span>Time : </span>{{data.startTime | date:'h:mm a'}}-{{data.endTime | date:'h:mm a'}}</p>
+            </div>
+            <div class="cpActionBtn" *ngIf="!data.isPastEvent">
+              <a *ngIf="!data.owned" (click)="onClickDeclineEvent(data)">Decline Event</a>
+              <div *ngIf="data.owned">
+                <a (click)="onCancelEvent(data)">Cancel</a>
+                <a (click)="onEditEvent(data)">Edit</a>
+              </div>
+            </div>
+            <div class="cpActionBtn" *ngIf="data.isPastEvent">
+              <a (click)="onEditEvent(data)">View</a>
+            </div>
+          </div>
+        </mat-menu>
+      </div>
+    </div>
+  </ng-template>

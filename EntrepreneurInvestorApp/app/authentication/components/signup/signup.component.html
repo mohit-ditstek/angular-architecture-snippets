@@ -1,0 +1,16 @@
+<app-choose-role *ngIf="step == 0" (roleSubmit)="submit($event)"></app-choose-role>
+
+<app-signup-detail *ngIf="step == 1" [selectedRoleData]="selectedRoleData" (detailSubmit)="submit($event)">
+</app-signup-detail>
+
+<app-otp-verification *ngIf="step == 2" 
+    [selectedRoleData]="selectedRoleData" 
+    [detail]="user" 
+    [dynamicEmailExpiryTime]="dynamicEmailExpiryTime" 
+    [dynamicMobileExpiryTime]="dynamicMobileExpiryTime"
+    [isEmailVerified]="user.isEmailVerified" 
+    (otpSubmit)="submit($event)"
+></app-otp-verification>
+
+<app-mobile-not-verfied *ngIf="step == 3"  [selectedRoleData]="selectedRoleData" (proceedSubmit)="submit($event)">
+</app-mobile-not-verfied>

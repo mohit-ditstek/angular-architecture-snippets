@@ -1,0 +1,49 @@
+<div class="pageWithRightNav">
+    <div name="content">
+        <div class="pageContentLayout">
+            <div class="header">
+                <tgt-li withAvatar=true
+                    [avatarImageUrl]="companyDetail?.logoUrl || '../assets/images/companyDefaultImage.png'"
+                    avatarSize="lg">
+                    <div class="heading">
+                        <tgt-heading headingLevel="H1" headingStyle="headingRegularDarkLarge"
+                            noMargin=true>{{companyDetail?.name}}
+                        </tgt-heading>
+                        <mat-icon svgIcon="tgt_edit" (click)="openEditModal(companyDetail)" [tooltip]="'Edit '+companyDetail?.name"></mat-icon>
+                    </div>
+                </tgt-li>
+                <tgt-horizontal-timeline class="horizontalTimeline"  *ngIf="!isLoading" requiredLabel="true" [milestones]="getGrowthStageData()" ></tgt-horizontal-timeline>
+            </div>
+            <div class="summary">
+                <div class="widgetsContainer">
+                    <tgt-widget *ngFor="let widget of widgets;let index = index" [widgetIndex]="index" [widgetDetail]="widget"></tgt-widget>
+                </div>
+            </div>
+            <div class="mentors">
+                <app-mentors [recommendedMentors]="recommendedMentors"></app-mentors>
+            </div>
+            <div class="investors">
+                <app-recommended-investor [companyId]="companyId"
+                    class="recommendedInvestorWrap">
+                </app-recommended-investor>
+            </div>
+            <div class="investmentOpportunities">
+                <app-investment-opportunities [companyId]="companyId" [companyDetail]="companyDetail">
+                </app-investment-opportunities>
+            </div>
+            <div class="recommendedServiceProviders">
+                <app-service-providers></app-service-providers>
+            </div>
+            <div class="investmentJourney">
+                <tgt-vertical-timeline timeLineTitle="Investment Journey"   *ngIf="!isLoading" [investmentJourney]="investmentJourneyMilstone || indicativeIJ" [disabled]="!investmentJourneyMilstone"></tgt-vertical-timeline>
+            </div>
+        </div>
+    </div>
+    <div name="right-nav">
+        <tgt-right-nav withOfficeIcons=true>
+            <app-events [entityType]="entityType" [entityId]="companyId" [calendarHeader]="companyDetail?.name"></app-events>
+            <app-tasks [entityType]="entityType" [entityId]="companyId"></app-tasks>
+            <app-documents [entityType]="entityType" [entityId]="companyId" ></app-documents>
+        </tgt-right-nav>
+    </div>
+</div>

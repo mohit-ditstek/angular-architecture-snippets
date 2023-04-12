@@ -1,0 +1,76 @@
+<div class="addCompanyForm">
+  <div class="companyFormHeading">
+    <button class="backButton" *ngIf="stepper.selectedIndex > 0 || (detailsComponent && detailsComponent.step > 0 )"
+      (click)="onBack(stepper)">
+      <mat-icon svgIcon="tgt_back"></mat-icon>
+    </button>
+    <tgt-heading withUnderline=true headingLevel="H2" [content]="modalTitle"></tgt-heading>
+    <button class="closeButton" (click)="close()">
+      <mat-icon svgIcon="tgt_close"></mat-icon>
+    </button>
+  </div>
+
+  <mat-dialog-content class="mat-typography modalContentContainer" [class]="enableStepperClick ? '': 'stepperDisabled'">
+    <mat-horizontal-stepper #stepper labelPosition="bottom" >
+      <mat-step label="Company Details" [completed]="false">
+        <app-details [company]="company" [sectorsOptions]="sectorsOptions" [stageOptions]="stageOptions"
+           [companyType]="modalData.type"
+          [companyTypeOptions]="companyTypeOptions" [countryOptions]="countryOptions" *ngIf="!isLoading"></app-details>
+          
+      </mat-step>
+      <mat-step label="Team" [completed]="false">
+        <app-team [company]="company" 
+          [designationOptions]="designationOptions"> </app-team>
+      </mat-step>
+      <mat-step label="Financials" [completed]="false">
+        <app-financial [company]="company" [currencyOptions]="currencyOptions"></app-financial>
+      </mat-step>
+      <mat-step label="Funding" [completed]="false">
+        <app-investment
+                [company]="company"
+                [currencyOptions]="currencyOptions"
+                [investmentStageOptions]="investmentStageOptions"
+        ></app-investment>
+      </mat-step>
+      <mat-step label="Documents" [completed]="false">
+        <app-company-documents
+            [company]="company"
+            [documentTypes]="documentTypes"
+        ></app-company-documents>
+      </mat-step>
+      <mat-step label="Maturity Model" [completed]="false">
+        <app-operational-maturity-model [company]="company"
+                                        [operationalStatuses]="operationalStatuses"
+                                        [departments]="departments"
+        ></app-operational-maturity-model>
+      </mat-step>
+      <mat-step label="GTM" [completed]="false">
+        <app-go-to-market [company]="company"
+                          [currencyOptions]="currencyOptions"
+                          [gtmStageOptions]="gtmStageOptions"
+                          ></app-go-to-market>
+      </mat-step>
+      <mat-step label="Sales" [completed]="false">
+        <app-sales [company]="company"
+                  [currencyOptions]="currencyOptions"
+        ></app-sales>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-dialog-content>
+
+</div>
+<mat-dialog-actions align="center"
+                  *ngIf="!detailsComponent?.companyDetailsComponent?.showCropper"
+>
+  <div *ngIf="stepper.selectedIndex < (stepper.steps.length - 1);else lastStep">
+    <button mat-button color="primary" (click)="saveInfo(stepper)">Save</button>
+    <button mat-raised-button color="primary" [disabled]="loading" (click)="onNext(stepper)">
+      <mat-icon *ngIf="loading">
+        <mat-spinner diameter="20"></mat-spinner>
+      </mat-icon> Next
+    </button>
+  </div>
+  <ng-template #lastStep>
+    <button mat-raised-button color="primary" (click)="onFinish()">Finish</button>
+  </ng-template>
+</mat-dialog-actions>

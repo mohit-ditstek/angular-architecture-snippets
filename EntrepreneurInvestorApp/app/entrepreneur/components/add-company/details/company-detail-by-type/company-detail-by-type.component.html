@@ -1,0 +1,76 @@
+<form [formGroup]="formGroup" class="tgtForm companyDetailByType">
+    <tgt-heading headingLevel="H2" headingStyle="headingRegularSmall" content="Company Details: Type"> </tgt-heading>
+
+    <div>
+        <tgt-toggle label="Is the company incorporated?" controlName="companyIncorporated" [form]="formGroup"
+            (change)="onCompanyIncorporatedChange()"></tgt-toggle>
+    </div>
+    <div *ngIf="formGroup.controls['companyIncorporated'].value">
+        <div class="formFieldContainer2Col">
+            <div class="col1">
+                <tgt-dropdown label="Company Type" 
+                            [options]="formConfig.companyType.options" 
+                            controlName="companyType"
+                            [form]="formGroup" 
+                            [errorMessage]="getFieldError('companyType')"
+                            width=22
+                            (onChange)="onCompanyTypeChange($event)">
+                </tgt-dropdown>
+            </div>
+        </div>
+
+        <div>
+            <tgt-year-picker label="Year of Incorporation" 
+                         controlName="yearOfIncorporation" 
+                         required=true
+                         placeholder="YYYY" 
+                         [maxDate]="maxDate"
+                         [form]="formGroup" 
+                         [maxDate]="maxIncorporationYear"
+                         [id]="formConfig.yearOfIncorporation.id"
+                         [errorMessage]="getFieldError('yearOfIncorporation')">
+            </tgt-year-picker>
+            <tgt-text-input label="CIN number" class="cinNumber" *ngIf="!isLlpNumber"
+                         type="text"
+                         controlName="cinNumber" 
+                         maxlength="21" 
+                         width=22
+                         placeholder="Enter CIN number"
+                         isUppercaseRequired=true
+                         [form]="formGroup" 
+                         required=true
+                         [id]="formConfig.cinNumber.id"
+                         [errorMessage]="getFieldError('cinNumber')"
+                     >
+            </tgt-text-input>
+            <tgt-text-input label="LLP number" class="cinNumber" *ngIf="isLlpNumber"
+                         type="text"
+                         controlName="llpNumber" 
+                         maxlength="8" 
+                         placeholder="Enter LLP number"
+                         isUppercaseRequired=true
+                         [form]="formGroup" 
+                         required=true
+                         width=9
+                         [id]="formConfig.llpNumber.id"
+                         [errorMessage]="getFieldError('llpNumber')"
+                     >
+            </tgt-text-input>
+            <tgt-text-input label="GST number" 
+                            type="text"
+                            controlName="gstNumber" 
+                            maxlength="15" 
+                            isUppercaseRequired=true
+                            placeholder="Enter GST number"
+                            [form]="formGroup" 
+                            width=15
+                            [errorMessage]="getFieldError('gstNumber')"
+        >
+            </tgt-text-input>
+            <app-share-holder *ngIf="partnerFormConfig" 
+                [formConfiguration]="partnerFormConfig"
+                [company]="company"
+                addLinkLabel="Add Partner"></app-share-holder>
+        </div>
+    </div>
+</form>

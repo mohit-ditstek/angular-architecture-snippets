@@ -1,0 +1,42 @@
+@import 'src/assets/scss/form.scss';
+.companyAddress{
+  padding-right: 40px;
+  margin-top: 15px;
+  .formFieldContainer2Col {
+    display: flex;
+    flex-wrap: wrap;
+
+      .col1,
+      .col2 {
+          width: 50%;
+          padding-right: 40px;
+      }
+  }
+  .inputWrapper {
+    width: 100%;
+  }
+
+  .browseBtn{
+    position: relative;
+    max-width: 130px;
+    overflow: hidden;
+    &:before {
+      position: absolute;
+      content: "Upload Photo";
+      left: 0;
+      top: 0;
+      border: 1px dashed var(--tgt-blue);
+      border-radius: 5px;
+      padding: 10px 20px;
+      text-align: center;
+      z-index: 0;
+      @include bodyTextSmallHighlight;
+      color:var(--tgt-blue);
+    }
+    input{
+      opacity: 0;
+      height: 42px;
+      cursor: pointer;
+    }
+  } 
+}

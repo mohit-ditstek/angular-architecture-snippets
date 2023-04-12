@@ -1,0 +1,50 @@
+<form [formGroup]="formGroup" class="tgtForm companyAddress">
+  <tgt-heading headingLevel="H2" headingStyle="headingRegularSmall" content="Company Details: Address"> </tgt-heading>
+  <div class="formFieldContainer2Col">
+    <div class="col1">
+      <tgt-dropdown label="Country" 
+                    controlName="country" 
+                    required="true"
+                    [options]="formConfig.country.options" 
+                    [form]="formGroup"
+                    (onChange)="setStateOptions($event)"
+                    [id]="formConfig.country.id"
+                    [errorMessage]="getFieldError('country')"
+                    width="18"
+                    >
+                  </tgt-dropdown>
+      <tgt-text-input label="Pincode" 
+                type="number" 
+                required="true" 
+                controlName="pincode" 
+                maxlength="6" 
+                placeholder="Enter pincode"
+                [form]="formGroup" 
+                [errorMessage]="getFieldError('pincode')" 
+                [id]="formConfig.pincode.id" 
+                width="18"
+                >
+      </tgt-text-input>
+      <tgt-textarea label="Address" 
+                controlName="address" 
+                placeholder="Address" 
+                [form]="formGroup" 
+                cols="5" 
+                rows="3"
+                [errorMessage]="getFieldError('address')"></tgt-textarea>
+      <tgt-text-input label="City" 
+                required="true" 
+                controlName="city" 
+                maxlength="50" 
+                placeholder="Enter city name" 
+                [form]="formGroup"
+                [errorMessage]="getFieldError('city')" 
+                [id]="formConfig.city.id"
+                width="18"
+        >
+      </tgt-text-input>
+      <tgt-dropdown label="State" [options]="states" controlName="state" [form]="formGroup"
+        [errorMessage]="getFieldError('state')" width="18"></tgt-dropdown>
+    </div>
+  </div>
+</form>

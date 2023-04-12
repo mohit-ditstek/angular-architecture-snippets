@@ -1,0 +1,97 @@
+<div class="pageWithRightNav">
+    <div name="content" >
+        <tgt-page-loader [isLoading]="isLoading">
+            <div class="pageContent">
+                <tgt-heading headingLevel="H3" headingStyle="headingRegularLightSmall"> {{investmentProfile?.financialRequirement.name}}</tgt-heading>
+                <tgt-heading headingLevel="H1" headingStyle="headingRegular">
+                    <div class="heading1Wrapper">
+                        <a routerLink="/investor/dashboard/{{investmentProfileId}}"><mat-icon svgIcon="tgt_back"></mat-icon></a>
+                        <span>Recommended Companies</span>
+                    </div>
+                </tgt-heading>
+                <table mat-table matSort  [dataSource]="recommendedCompanies" 
+                    matSort matSortActive="amount" matSortDisableClear matSortDirection="asc">
+                    <ng-container matColumnDef="companyCode">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Company </th>
+                        <td mat-cell *matCellDef="let element" class='m-card-title' test data-label='companyCode'>
+                        <a (click)="displayCompanyDetails(element.companyId)">  {{element.companyCode}}</a>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="foundingYear">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Founding Year </th>
+                        <td mat-cell *matCellDef="let element" class='m-card-sub-title' data-label='Counding Year'> {{element.foundingYear}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="amount">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount</th>
+                        <td mat-cell *matCellDef="let element" data-label='Amount'> {{element.expectedInvestment | currencyTransform:
+                            element.expectedInvestmentCurrency.symbol }} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="equity">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Equity</th>
+                        <td mat-cell *matCellDef="let element" data-label='equity'> {{element.equity}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="founders">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Founders</th>
+                        <td mat-cell *matCellDef="let element" data-label='founders'> {{element.totalFounders}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="currentValuation">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Current Valuation</th>
+                        <td mat-cell *matCellDef="let element" data-label='currentValuation'> {{element.currentValuation | currencyTransform:
+                            element.currentValuationCurrency?.symbol}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="rating">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Rating</th>
+                        <td mat-cell *matCellDef="let element" data-label='rating'> <tgt-star-rating [rating]="element.rating"></tgt-star-rating> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="connection">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                        <td mat-cell *matCellDef="let element" data-label='connection'> 
+                            <app-connect-link  [requestStatus]="element?.requestStatus"
+                                               [requestSentByMe]="element?.requestSentByMe"
+                                               showConnectLinkAsButton="true"
+                                               (onConnect)="onConnect(element.ioId, element.ipId)" 
+                                               (onWithdraw)="onWithdraw(element.rcIjDto.ijId)"
+                                               (onAccept)="onAccept(element.rcIjDto.ijId)"
+                                                hideConnectLink=true
+                            ></app-connect-link>
+                        </td>
+                    </ng-container>
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="9999">
+                          No recommended companies found
+                        </td>
+                      </tr>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <mat-paginator  [pageSize]="10"
+                                [length]="totalRecommendations"
+                                showFirstLastButtons >
+                </mat-paginator>
+
+                <tgt-drawer  drawerTitle="Company Details" (onClose)="onDrawerClose()">
+                    <app-company-details *ngIf="!!selectedCompany" [company]="selectedCompany" 
+                    (onConnect)="onConnectWrapper($event)" 
+                    (onWithdraw)="onWithdraw($event)"
+                    (onAccept)="onAccept($event)"
+                    ></app-company-details>
+                </tgt-drawer>
+                
+            </div>
+        </tgt-page-loader>
+        
+    </div>
+    <div name="right-nav" class="rightNav">
+        <tgt-right-nav>
+            <app-connection-card [connections]="connectedCompanies" title="My Company Connections" chubLink="investor/chub" *ngIf="!isLoading"> </app-connection-card>
+        </tgt-right-nav>
+    </div>
+    
+</div>

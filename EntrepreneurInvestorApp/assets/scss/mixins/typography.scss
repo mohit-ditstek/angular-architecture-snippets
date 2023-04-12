@@ -1,0 +1,353 @@
+
+@import '../variables.scss';
+
+@mixin text-highlight {
+    color: var(--tgt-highligt-text-color)
+}
+
+@mixin text-light {
+    color: var(--tgt-light-text-color)
+}
+
+@mixin default-link {
+    color: var(--tgt-default-link-color);
+}
+@mixin text-primary{
+    color : var(--tgt-primary-color);
+}
+@mixin pageTitle {
+    font-family: var(--tgt-font-primary);
+    font-size: var(--tgt-font-size-xl);
+    color: var(--tgt-heading-color);
+    font-weight: var(--font-weight-normal);
+}
+
+@mixin pageTitleSecondary {
+    font-family: var(--tgt-font-primary);
+    font-size: var(--tgt-font-size-lg);
+    color: var(--tgt-heading-color);
+    font-weight: var(--font-weight-normal);
+}
+
+@mixin sectionTitle {
+    font-family: var(--tgt-font-secondary);
+    font-size: var(--tgt-font-size-regular);
+    color: var(--tgt-regular-text-color);
+}
+
+@mixin sectionTitleHighlight {
+    @include sectionTitle();
+    @include text-highlight();
+}
+
+@mixin xlCaption {
+  font-family: var(--tgt-font-heading-secondary);
+  font-size: var(--tgt-font-size-huge);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-color);
+}
+@mixin lgCaption {
+  font-family: var(--tgt-font-heading-secondary);
+  font-size: var(--tgt-font-size-huge);
+  font-weight: var(--font-weight-bold);
+  color: var(--black-color);
+}
+@mixin smCaption {
+  font-family: var(--tgt-font-heading-secondary);
+  font-size: var(--tgt-font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--darkest-grey);
+}
+
+/**
+* BodyText
+*/
+@mixin bodyText {
+    font-family: var(--tgt-font-primary);
+    font-size: var(--tgt-font-size-regular);
+    color: var(--tgt-regular-text-color);
+}
+@mixin bodyTextDarkGrey {
+    @include bodyText;
+    color: var(--tgt-dark-grey);
+}
+
+@mixin bodyTextSecondary {
+    font-family: var(--tgt-font-secondary);
+    font-size: var(--tgt-font-size-regular);
+    color: var(--tgt-regular-text-color);
+}
+
+
+@mixin bodyTextLight {
+    @include bodyText;
+    @include text-light;
+}
+
+@mixin bodyTextHighlight {
+    @include bodyText;
+    @include text-highlight;
+}
+
+/**
+* BodyTextLarge
+*/
+@mixin bodyTextLarge {
+    font-family: var(--tgt-font-primary);
+    font-size: var(--tgt-font-size-md);
+    color: var(--tgt-regular-text-color);
+}
+
+@mixin bodyTextLargeHighlight {
+    @include bodyTextLarge;
+    @include text-highlight;
+}
+
+@mixin bodyTextLargeLight {
+    @include bodyTextLarge;
+    @include text-light;
+}
+
+/**
+* TextSmall
+*/
+@mixin bodyTextSmall {
+    font-family: var(--tgt-font-primary);
+    font-size: var(--tgt-font-size-sm);
+    color: var(--tgt-regular-text-color);
+}
+@mixin bodyTextSmallDarkGrey {
+    @include bodyTextSmall;
+    color: var(--tgt-dark-grey);
+}
+
+@mixin bodyTextSecondarySmall {
+    @include bodyTextSmall;
+    font-family: var(--tgt-font-secondary);
+}
+
+@mixin bodyTextSmallLight {
+    @include bodyTextSmall;
+    @include text-light;
+}
+@mixin bodyTextSecondarySmallLight {
+    @include bodyTextSecondarySmall;
+    @include text-light;
+}
+
+
+@mixin bodyTextSmallHighlight {
+    @include bodyTextSmall;
+    @include text-highlight;
+}
+
+
+/**
+* SubText
+*/
+@mixin bodySubText {
+    font-family: var(--tgt-font-primary);
+    font-size: var(--tgt-font-size-xs);
+    color: var(--tgt-regular-text-color);
+}
+
+@mixin bodySubTextSecondary {
+    font-family: var(--tgt-font-secondary);
+    font-size: var(--tgt-font-size-xs);
+    color: var(--tgt-light-text-color);
+}
+
+@mixin bodySubTextHighlight {
+    @include bodySubText;
+    @include text-highlight;
+}
+@mixin bodySubTextSecondaryHighlight {
+    @include bodySubTextSecondary;
+    @include text-highlight;
+}
+
+@mixin bodySubTextLight {
+    @include bodySubText;
+    @include text-light;
+}
+
+@mixin bodySubTextSecondaryLight {
+    @include bodySubTextSecondary;
+    @include text-light;
+}
+@mixin bodySubTextXXSmallPrimary {
+    @include bodySubText;
+    @include text-primary;
+    font-size: var(--tgt-font-size-xxs);
+}
+@mixin bodySubTextXXXSmallPrimary {
+    @include bodySubText;
+    @include text-primary;
+    font-size : var(--tgt-font-size-xxxs)
+}
+
+@mixin bodySubTextXXXSmallLight {
+    @include bodySubTextLight;
+    font-size : var(--tgt-font-size-xxxs)
+}
+
+@mixin bodySubTextSmallLight {
+    @include bodySubTextLight;
+    font-size: var(--tgt-font-size-xxs);
+}
+
+@mixin linkSubText {
+    @include bodySubText;
+    @include default-link;
+}
+
+@mixin titleWithUnderLine {
+
+    &:before{
+        position: absolute;
+        content: "";
+        background-color: var(--tgt-primary-color);
+        width: 53px;
+        height: 4px;
+        bottom: -7px;
+        border-radius: 40px;
+        left: 0;
+      }
+}
+
+@mixin link {
+    @include bodyTextSmall;
+    @include default-link;
+}
+
+
+/**
+*
+* Headings
+*
+**/
+
+// Heading Regular
+
+@mixin headingRegular {
+    font-family: var(--tgt-font-heading-regular);
+    font-size: var(--tgt-font-size-md);
+    color: var(--tgt-dark-grey);
+}
+
+@mixin headingRegularLarge {
+    @include headingRegular;
+    font-size: var(--tgt-font-size-xl);
+}
+
+@mixin headingRegularSmall {
+    @include headingRegular;
+    font-size: var(--tgt-font-size-sm);
+}
+
+// Heading Regular Dark
+
+@mixin headingRegularDark {
+    @include headingRegular;
+    color: var(--tgt-black);
+}
+
+@mixin headingRegularDarkLarge {
+    @include headingRegularLarge;
+    color: var(--tgt-black);
+}
+
+@mixin headingRegularDarkSmall {
+    @include headingRegularSmall;
+    color: var(--tgt-black);
+}
+
+
+// Heading Regular Light
+
+@mixin headingRegularLight {
+    @include headingRegular;
+    color: var(--tgt-grey);
+}
+
+@mixin headingRegularLightLarge {
+    @include headingRegularLarge;
+    color: var(--tgt-grey);
+}
+
+@mixin headingRegularLightSmall {
+    @include headingRegularSmall;
+    color: var(--tgt-grey);
+}
+// Heading Secondary
+
+@mixin headingSecondary {
+    font-family: var(--tgt-font-heading-secondary);
+    font-size: var(--tgt-font-size-lg);
+    color: var(--tgt-dark-grey);
+}
+
+@mixin headingSecondaryLarge {
+    @include headingSecondary;
+    font-size: var(--tgt-font-size-xl);
+}
+
+@mixin headingSecondarySmall {
+    @include headingSecondary;
+    font-size: var(--tgt-font-size-sm);
+}
+
+// Heading Regular Dark
+
+@mixin headingSecondaryDark {
+    @include headingSecondary;
+    color: var(--tgt-black);
+}
+
+@mixin headingSecondaryDarkLarge {
+    @include headingSecondaryLarge;
+    color: var(--tgt-black);
+}
+
+@mixin headingSecondaryDarkSmall {
+    @include headingSecondarySmall;
+    color: var(--tgt-black);
+}
+
+
+// Heading Regular Light
+
+@mixin headingSecondaryLight {
+    @include headingSecondary;
+    color: var(--tgt-grey);
+}
+
+@mixin headingSecondaryLightLarge {
+    @include headingSecondaryLarge;
+    color: var(--tgt-grey);
+}
+
+@mixin headingSecondaryLightSmall {
+    @include headingSecondarySmall;
+    color: var(--tgt-grey);
+}
+
+/* welcome component styles */
+@mixin welcomeHeadingRegularGigantic {
+    @include headingRegularLarge;
+    font-size : var(--tgt-font-size-gigantic);
+}
+@mixin welcomeParagraphRegularHuge {
+    @include headingRegularLight;
+    font-size : var(--tgt-font-size-huge);
+}
+
+
+/*sizes:
+Large: 25px,
+medium: 16px,
+small: 13px
+*/
+@mixin errorFontSmall{
+    font-size: 75%;
+}

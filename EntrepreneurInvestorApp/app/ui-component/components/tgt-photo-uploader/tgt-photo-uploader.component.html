@@ -1,0 +1,29 @@
+<div *ngIf="!showCropper">
+  <div class="browseImageWraper">
+    <div class="browseImage">
+      <img [src]="localImageSrc">
+    </div>
+    <div class="browseBtn">
+      <input type="file" (change)="fileChangeEvent($event)" (click)="$event.target.value=null" accept="image/*" />
+      <div class="mat-form-field-subscript-wrapper">
+        <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showCropper">
+  <form >
+    <div class="imageCroper">
+      <div class="imageCroperHeader">
+        <tgt-heading headingLevel="H3" content="Upload Photo"></tgt-heading>
+      </div>
+      <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+        [resizeToWidth]="256" format="png" (imageCropped)="imageCropped($event)">
+      </image-cropper>
+      <div class="imageCroperFooter">
+        <button mat-button color="primary" (click)="cancel()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="save()">Save Photo</button>
+      </div>
+    </div>
+  </form>
+</div>

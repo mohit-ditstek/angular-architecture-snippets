@@ -1,0 +1,33 @@
+<form [formGroup]="formGroup" class="tgtForm">
+  <tgt-heading headingLevel="H2" headingStyle="headingRegularSmall" content="Sales"> </tgt-heading>
+
+  <div class="formField">
+    <tgt-text-input label="Sales Employees" type="number" controlName="salesEmployees" maxLength="50"
+    placeholder="Enter number of employees" [form]="formGroup" [errorMessage]="getFieldError('salesEmployees')">
+        </tgt-text-input>
+  </div>
+
+  <div class="formField">
+    <tgt-composite-input type="number" label="Sales Target in current year" [form]="formGroup.controls.salesTarget"
+      dropDownOptionsControlName="salesTargetDropDown" inputFieldControlName="salesTargetInput"
+      placeholder="Enter Amount" [options]="currencyOptions" [errorMessage]="getFieldError('salesTarget')">
+    </tgt-composite-input>
+  </div>
+
+  <div class="formField">
+    <tgt-composite-input type="number" label="Sales achieved so far" [form]="formGroup.controls.salesAchieved"
+      dropDownOptionsControlName="salesAchievedDropDown" inputFieldControlName="salesAchievedInput"
+      placeholder="Enter Amount" [options]="currencyOptions" [errorMessage]="getFieldError('salesAchieved')">
+    </tgt-composite-input>
+  </div>
+
+  <div class="formField">
+    <tgt-toggle label="Do you have a sales plan?" controlName="salesPlan" (change)="onChange()" [form]="formGroup">
+    </tgt-toggle>
+    <tgt-file-upload *ngIf="formGroup.controls['salesPlan'].value"
+      [fileName]="formGroup.controls['salesPlanReport'].value ? 'Sales plan report': '' "
+     uploadButtonText="Upload Sales Deck" controlName="salesPlanReport" [form]="formGroup" [errorMessage]="getFieldError('salesPlanReport')">
+
+    </tgt-file-upload>
+  </div>
+</form>

@@ -1,0 +1,6 @@
+<tgt-field-wrapper [label]="label" [fieldRequired]="required">
+  <div [formGroup]="form" class="toggle">
+    <mat-slide-toggle [formControlName]="controlName" (change)="onToggle($event)" >
+    </mat-slide-toggle>
+  </div>
+</tgt-field-wrapper>

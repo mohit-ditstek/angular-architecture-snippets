@@ -1,0 +1,73 @@
+@import '../../../../../../../assets/scss/common-style.scss';
+
+.shareHolders {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding-top: 24px;
+    border-top: 1px solid var(--tgt-dark-silver);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    @include for-tablet{
+      flex-direction: column;
+    }
+    .formFieldContainer2Col {
+        display: flex;
+        flex-wrap: wrap;
+
+        .col1,
+        .col2 {
+            width: 50%;
+        }
+
+        .col1{
+            min-width: 350px;
+            padding-right: 40px;
+        }
+
+        .col2 {
+            ::ng-deep {
+                .mat-form-field{
+                    width: 70px;
+                }
+
+                label {
+                    width: 150px;
+                }
+            }
+
+        }
+    }
+
+    .footer {
+        padding-left: 200px;
+        .chipsContainer {
+            margin-bottom: 15px;
+        }
+
+        .linkSmall {
+            display: inline-block;
+        }
+    }
+    .toggleBtn {
+      margin-bottom: 20px;
+    }
+    tgt-perfect-scroll{
+      max-width:520px;
+    }
+    .founderRadioBtn{
+    ::ng-deep{
+      mat-radio-group{
+        display: flex;
+      }
+    }
+  }
+}
+.verticalLineDivider{
+    border: solid 0.5px var(--tgt-silver);
+}
+.tgtListingCardContent {
+    .listing {
+      margin-top: 5px;
+    }
+  }

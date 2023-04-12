@@ -1,0 +1,94 @@
+@import "../media-queries.scss";
+
+$left-nav-width: 85;
+$right-nav-width: 350;
+$row-gap: 15;
+$col-gap: 15;
+$grid-col-lg-desktop: 12;
+$grid-col-desktop: 12;
+$grid-col-tablet: 6;
+$grid-col-mobile: 1;
+$grid-col-sm-mobile: 1;
+
+
+/**
+* Functions
+**/
+
+@function repeatStr($len, $str) {
+    $row: '';
+    @for $i from 1 through $len {
+        $row: $row + $str + ' ';
+    }
+    @return $row;
+}
+
+
+
+@mixin pageWithRightNav {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr $right-nav-width * 1px;
+    grid-template-rows: auto;
+    grid-auto-flow: column;
+    row-gap: 15px;
+    grid-template-areas: "content right-nav";
+    @include for-tablet {
+        grid-template-areas: "content" "right-nav";
+        grid-template-columns: 1fr;
+    }
+}
+
+[name="content"] {
+    grid-area: content;
+}
+
+[name="right-nav"] {
+    grid-area: "right-nav";
+    background-color: var(--tgt-page-background-dark);
+    padding:20px;
+    height: 100%;
+    min-height: 100vh;
+}
+
+@mixin generateLayout() {
+    display: grid;
+    column-gap: $col-gap * 1px;
+    row-gap: $row-gap * 1px;
+    grid-template-rows: auto;
+    justify-items: stretch;
+    width: 100%;
+    max-width: 1600px;
+
+    @include for-xl-desktop {
+        grid-template-columns: repeat($grid-col-lg-desktop, calc(8.33% - 15px));
+    }
+
+    @include for-lg-desktop {
+        grid-template-columns: repeat($grid-col-lg-desktop, calc(8.33% - 15px));
+    }
+
+    @include for-desktop {
+        grid-template-columns: repeat($grid-col-lg-desktop, calc(8.33% - 15px));
+    }
+    @include for-tablet {
+        grid-template-columns: repeat($grid-col-lg-desktop, calc(16.66% - 15px));
+    }
+    
+    @include for-mobile {
+        grid-template-columns: repeat($grid-col-mobile, calc(100% - 15px));
+    }
+}
+
+@mixin pageContentLayout {
+    @include generateLayout();
+    margin: 0 auto;
+    padding-left: 25px;
+    padding-right: 10px;
+
+    @include for-sm-mobile {
+        column-gap: 0;
+        padding-right: 0;
+        padding-left: 10px;
+    }
+}

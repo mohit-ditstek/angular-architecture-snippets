@@ -1,0 +1,41 @@
+.welcomeInnerWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 70px 20px;
+  width: 100%;
+  position: relative;
+
+  .welcomeActions {
+    display: flex;
+    width: 40%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    min-width: 300px;
+
+    button {
+      margin: 15px;
+    }
+  }
+
+  h1 {
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+  h2 {
+    margin: 10px 0 40px;
+  }
+  p {
+    margin: 0 0 10px;
+  }
+}
+.closeButton {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding-left: 0;
+  outline: none;
+  position: absolute;
+  right: -50px;
+  top: 0;
+}

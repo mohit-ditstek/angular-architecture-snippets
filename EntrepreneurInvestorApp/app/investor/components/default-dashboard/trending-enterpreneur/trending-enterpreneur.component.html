@@ -1,0 +1,22 @@
+<tgt-card title="Trending Enterprenuers" actionLabel="All (100+)">
+  <ul class="trendingEntrepreneurs">
+      <tgt-li 
+        withAvatar="true" 
+        *ngFor="let enterprenuer of trendingEnterprenuers" 
+        [avatarImageUrl]="enterprenuer.imageUrl"
+      >
+        <tgt-li-content-wrapper>
+            <tgt-li-left-content>
+                <tgt-li-text-content type="title">{{enterprenuer.name}}</tgt-li-text-content>
+                <tgt-li-text-content type="subTitle">{{enterprenuer.designation}} at {{enterprenuer.organisation}}</tgt-li-text-content>
+                <tgt-li-text-content type="subText">enterprenuer Type: <strong>{{enterprenuer.status}}</strong>
+                </tgt-li-text-content>
+            </tgt-li-left-content>
+            <tgt-li-right-content>
+                <tgt-li-text-content type="subTextHighlight"><strong>{{enterprenuer.portfolios}}</strong></tgt-li-text-content>
+                <span>Portfolio</span>
+            </tgt-li-right-content>
+        </tgt-li-content-wrapper>
+    </tgt-li>
+  </ul>
+</tgt-card>

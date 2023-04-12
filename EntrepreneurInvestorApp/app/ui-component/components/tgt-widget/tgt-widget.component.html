@@ -1,0 +1,17 @@
+<mat-card class="cardWrap">
+    <tgt-loader width="150" height="20" *ngIf="loader"></tgt-loader>
+    <h5 *ngIf="!loader">{{widgetDetail.name}}</h5>
+    <tgt-loader width="120" height="20" *ngIf="loader"></tgt-loader>
+    <h3 *ngIf="!loader" class="widgetText"  [ngClass]="widgetDetail.value == 'SWOT | Maturity Model' ? 'insideCaption' : ''"
+      >{{widgetDetail.value}} <span>{{widgetDetail.lable}}</span></h3>
+
+    <div class="startUpText" *ngIf="widgetDetail.percentage">
+        <span *ngIf="!loader">{{widgetDetail.value}} </span>
+        <span *ngIf="!loader">{{widgetDetail.type}}</span>
+    </div>
+    <div class="progress">
+        <mat-progress-bar class="widget-{{widgetIndex}}" mode="determinate"
+            [value]="widgetDetail.percentage? widgetDetail.percentage : 100">
+        </mat-progress-bar>
+    </div>
+</mat-card>

@@ -1,0 +1,21 @@
+<div class="companyDetailsFormWapper">
+<mat-horizontal-stepper #detailsStepper labelPosition="bottom">
+    <mat-step [completed]="false">
+        <app-company-details [class]="step === 0 ? '' : 'hideForm'" [stages]="stageOptions" [company]="company">
+        </app-company-details>
+    </mat-step>
+    <mat-step [completed]="false">
+        <app-company-details-sector [class]="step === 1 ? '' : 'hideForm'" [company]="company"
+            [sectorsOptions]="sectorsOptions">
+        </app-company-details-sector>
+    </mat-step>
+    <mat-step [completed]="false">
+        <app-company-detail-by-type [class]="step === 2 ? '' : 'hideForm'" [companyType]="companyType"
+            [company]="company" [companyTypes]="companyTypeOptions"></app-company-detail-by-type>
+    </mat-step>
+    <mat-step [completed]="false">
+        <app-company-address [class]="step === 3 ? '' : 'hideForm'" [company]="company" [countries]="countryOptions">
+        </app-company-address>
+    </mat-step>
+</mat-horizontal-stepper>
+</div>

@@ -1,0 +1,28 @@
+<tgt-card>
+   <div class="logoAndName">
+        <tgt-avatar class="tgtAvatar"  [avatarImageUrl]="data?.logoUrl || '../assets/images/companyDefaultImage.png'"></tgt-avatar>
+        <span class="header">{{data?.companyName}}</span>
+        <span class="label">{{data?.sector}}</span>
+   </div>
+   <div class="details">
+        <div class="dateAndAmountInvested">
+            <span class="label">Investment Date</span>
+            <span class="value"> {{data?.investmentDate | date:'MMM yyyy'}} </span>
+            
+        </div>
+        <div class="dateAndAmountInvested verticalLineDivider">
+            <span class="label">Equity%</span>
+            <span class="value"> {{data?.investmentEquityPercent}}% </span>
+        </div>
+   </div>
+   <div class="details ">
+        <div class="dateAndAmountInvested">
+            <span class="label">Amount Invested</span>
+            <span class="value"> {{data?.amountInvested | currencyTransform}} </span>
+        </div>
+        <div class="dateAndAmountInvested verticalLineDivider">
+            <span class="label">Current Investment Value</span>
+            <span class="value"> {{data?.currentInvestmentValue | currencyTransform}} </span>
+        </div>
+    </div>
+</tgt-card>

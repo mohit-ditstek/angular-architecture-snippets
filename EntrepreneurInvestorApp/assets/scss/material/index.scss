@@ -1,0 +1,211 @@
+@import './mat-palettes.scss';
+@import '~@angular/material/theming';
+@import '../mixins/typography.scss';
+@import './mat-table.scss';
+@include mat-core();
+@import './mat-stepper.scss';
+
+$TheGrowthTree-primary: mat-palette($tgt-primary-map);
+$TheGrowthTree-accent: mat-palette($tgt-accent-map);
+$TheGrowthTree-foreground: tgt-light-theme-foreground(mat-color($TheGrowthTree-accent, 700));
+$TheGrowthTree-theme: mat-light-theme((
+  color: (
+    primary: $TheGrowthTree-primary,
+    accent: $TheGrowthTree-accent
+  )
+));
+
+@include angular-material-theme($TheGrowthTree-theme);
+
+
+/**
+*
+* Material Components CSS
+* General TGT Overrides
+*
+**/ 
+
+:root {
+    .mat-card {
+        @include bodyText;
+    }
+
+    /**
+    *
+    * Button Overrides
+    * 
+    **/
+
+    
+    
+    /**
+    * General Button
+    **/
+    .mat-button.withoutLeftPadding{
+      padding-left: 0;
+    }
+
+    .mat-button.small, 
+    .mat-raised-button.small,
+    .mat-stroked-button.small{
+      text-transform: capitalize;
+      margin-left: 15px;
+      line-height: 30px !important; 
+      font-size:var(--tgt-font-size-xs);
+    }
+
+    .mat-button.large, 
+    .mat-raised-button.large
+    .mat-stroked-button.large {
+      text-transform: capitalize;
+      margin-left: 15px;
+      font-size:var(--tgt-font-size-lg);
+    }
+
+    /** 
+    * Secondary Button
+    **/
+
+    .mat-stroked-button {
+      border-radius: 8px;
+      line-height: 30px;
+    }
+
+    .mat-stroked-button:not(.mat-button-disabled) {
+      border-color: var(--tgt-secondary-button-border-color)
+    }
+
+    /**
+    *
+    * Table
+    *
+    **/
+
+    .mat-table {
+      width: 100%;
+    }
+
+    .mat-table,
+    .mat-cell, 
+    .mat-footer-cell {
+      @include bodyTextSmallHighlight;
+    }
+    .colAlignCenter{
+        text-align: center;
+        
+    }
+    .colAlignRight {
+        text-align: right;
+    }
+    
+    th.mat-header-cell {
+        border: none;
+    }
+    
+    th.mat-header-cell:first-of-type, 
+    td.mat-cell:first-of-type, 
+    td.mat-footer-cell:first-of-type{
+        padding-left: 0;
+    }
+    
+    th.mat-header-cell:last-of-type, 
+    td.mat-cell:last-of-type, 
+    td.mat-footer-cell:last-of-type {
+        padding-right: 0;
+    }
+
+    .mat-row:last-of-type td.mat-cell {
+      border: none;
+    }
+
+    .mat-form-field-infix {
+        border-top: 0.5em solid transparent !important;
+    }
+    .mat-form-field-appearance-outline .mat-form-field-infix{
+        padding: 0.6em 0px !important;
+    }
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+      color: var(--tgt-light-grey) !important;
+   }
+
+   // mat-input focused color
+   .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+      color: var(--tgt-primary-color) !important;
+   }
+
+   // mat-input error outline color
+  .mat-form-field-appearance-outline.mat-form-field-invalid {
+    .mat-form-field-outline {
+      opacity: 1
+    }
+    .mat-form-field-outline-thick{
+      opacity: 0;
+    }
+
+    &.ng-touched {
+      .mat-form-field-outline {
+        opacity: 0;
+      }
+      .mat-form-field-outline-thick{
+        color: var(--tgt-error-red) !important;
+        opacity: 1;
+      }
+    }
+    
+  }
+
+  
+
+  .mat-form-field .mat-select.mat-select-invalid {
+    .mat-select-arrow {
+      color: inherit
+    }
+
+    &.ng-touched{
+      .mat-select-arrow {
+        color: var(--tgt-error-red) !important;
+      }
+    }
+  }
+
+   // mat-input caret color
+   .mat-input-element {
+    color: var(--tgt-dark-grey) !important;
+   }
+
+   // mat-input error caret color
+   .mat-form-field-invalid.ng-touched .mat-input-element, .mat-warn .mat-input-element {
+      caret-color: var(--tgt-error-red) !important;
+   }
+
+   // mat-label normal state style
+   .mat-form-field-label {
+      color: var(--tgt-primary-color) !important;
+   }
+   
+
+   .mat-drawer-backdrop,
+   .cdk-overlay-dark-backdrop {
+     backdrop-filter: blur(3px)
+   }
+
+   .mat-checkbox-disabled .mat-checkbox-layout .mat-checkbox-inner-container-no-side-margin .mat-checkbox-frame{
+    border-color: var(--tgt-dark-silver) !important;
+    background: var(--tgt-extra-light-silver) !important;
+  }
+  .mat-tab-group.mat-primary .mat-ink-bar {
+    background-color: var(--tgt-primary-color);
+  }
+  .mat-horizontal-content-container {
+    overflow: auto;
+  }
+  
+}
+.matTabCustom {
+      .mat-tab-label-content {
+        @include bodyTextLargeHighlight
+    }
+}
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background: var(--tgt-primary-action-color) !important;
+}

@@ -1,0 +1,144 @@
+@import "src/assets/scss/mixins/layouts.scss";
+@import "src/assets/scss/mixins/typography.scss";
+
+.pageWithRightNav {
+    @include pageWithRightNav;
+
+    .pageContent {
+        padding: 15px;
+
+        .heading1Wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            ::ng-deep .mat-icon {
+                display: flex;
+                height: 15px;
+                width: 15px;
+                margin-right: 10px;
+            }
+
+            > span {
+                margin-top: 5px;
+            }
+
+            > a {
+                &:hover,
+                &:link,
+                &:active,
+                &:visited{
+                    @include bodyTextSmall
+                }
+
+            }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 15px;
+            background-color: transparent;
+
+            .mat-table thead, 
+            .mat-table tbody, 
+            .mat-table tfoot, 
+            mat-header-row, mat-row, 
+            mat-footer-row, 
+            [mat-header-row], 
+            [mat-row], 
+            [mat-footer-row], .mat-table-sticky {
+                background: var(--tgt-white);
+            }
+
+            [mat-header-row]{
+                box-shadow: 1px 1px 4px 0px var(--tgt-box-shadow-default);
+            }
+            [mat-row] {
+                box-shadow: 1px 1px 4px 0px var(--tgt-box-shadow-default);
+            }
+            [mat-cell] {
+                padding: 15px 0;
+            }
+
+
+
+            ::ng-deep{ 
+                th.mat-header-cell:first-of-type, 
+                td.mat-cell:first-of-type, 
+                td.mat-footer-cell:first-of-type {
+                    border-top-left-radius: 4px;
+                    border-bottom-left-radius: 4px;
+                    padding-left: 15px;
+                }
+
+                th.mat-header-cell, 
+                td.mat-cell, 
+                td.mat-footer-cell{
+                    border-right: none;
+                    border-left: none;
+                    
+                }
+
+                th.mat-header-cell:last-of-type, 
+                td.mat-cell:last-of-type, 
+                td.mat-footer-cell:last-of-type {
+                    padding-right: 15px;
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                }
+                .justifyCenter {
+                    text-align: center;
+                    padding-right: 25px !important;
+                }
+
+                .investorCode {
+                    padding-right: 15px;
+
+                    > a {
+                        display: inline-block;
+                        margin-bottom: 10px;
+                    } 
+                }
+
+                .connectionRequest {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .connectionSent{
+                    display: flex;
+                    flex-direction: column;
+                    margin: 10px 0;
+                    align-items: center;
+                    
+                    .connectionSentLabel {
+                        @include bodyTextSmallLight;
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 5px;
+
+                        ::ng-deep .mat-icon {
+                            width: 20px;
+                            height: 20px;
+                            margin-right: 5px;
+                        }
+                    }
+
+                }
+
+
+            }
+
+            
+        }
+    }
+  }
+.recommendedInvestorsTable {
+    tr {
+        th {
+            z-index: 9999 !important;
+        }
+    }
+}

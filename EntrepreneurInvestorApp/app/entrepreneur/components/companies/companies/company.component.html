@@ -1,0 +1,80 @@
+<mat-card class="companiesCard">
+    <div class="companyWrapper">
+        <div class="companyLogo">
+            <tgt-avatar class="tgtAvatar" size="sm" [avatarImageUrl]="data.logoUrl || '../assets/images/companyDefaultImage.png'"></tgt-avatar>
+        </div>
+        <div class="companyDetails">
+            <div class="detailsRow companyHeadingWrapper">
+                <div class="companyHeading">
+                    <div class="companyTitle">
+                        <tgt-heading headingLevel="H2" noMargin=true headingStyle="headingRegular" (click)="goToProfileDashboard(data)"
+                            [content]="data?.name" [tooltip]="data.name" placement="top"></tgt-heading>
+                    </div>
+                    <div *ngIf="data.incorporationYear" class="companyActions">
+                       Founded in {{data?.incorporationYear}}
+                    </div>
+                </div>
+                <div *ngIf="!data.isCompleted" class="completeCompanyProfile">
+                    <a color="primary" (click)="onEditCompanyAndIdea(data)">
+                        {{data?.isIncorporated?'Complete company profile':'Complete idea profile'}}
+                    </a>
+                </div>
+                <div class="companyIcons">
+                    <a class="editCompanyIcon" *ngIf="data.isCompleted" (click)="onEditCompanyAndIdea(data)" tooltip="Edit {{data.name}}">
+                        <mat-icon svgIcon="tgt_edit"></mat-icon>
+                    </a>
+                    <mat-icon [svgIcon]="data?.isIncorporated?'tgt_company':'tgt_idea'"></mat-icon>
+                </div>
+            </div>
+            <div class="detailsRow" *ngIf="data.isCompleted">
+                <div class="detailsColumn">
+                    <div class="detailsHeader">
+                        <p class="headerTitle">Growth Journey</p>
+                        <div class="timeLine">
+                            <tgt-horizontal-timeline [milestones]="getGrowthStageData(data)"></tgt-horizontal-timeline>
+                        </div>
+                    </div>
+                    <div class="detailsHeader">
+                        <p class="headerTitle">Revenue</p>
+                        <p class="headerValue">
+                           {{data?.revenue}}
+                        </p>
+                    </div>
+                </div>
+                <div class="detailsColumn">
+                    <div class="detailsHeader">
+                        <p class="headerTitle">Employees</p>
+                        <p class="headerValue">{{data?.employeeStrength || '0'}}</p>
+                    </div>
+                    <div class="detailsHeader">
+                        <p class="headerTitle">Collaborations</p>
+                        <p class="headerValue">
+                            {{data?.collaborations  || '0'}}
+                        </p>
+                    </div>
+                </div>
+                <div class="detailsColumn">
+                    <div class="detailsHeader">
+                        <p class="headerTitle">Inv. Journey</p>
+                        <div class="timeLine">
+                            <tgt-horizontal-timeline    [milestones]="getMilestoneData(data)" [disabled]="!data?.milestoneListDtos?.length"></tgt-horizontal-timeline>
+                        </div>
+                    </div>
+                    <div class="detailsHeader">
+                        <p class="headerTitle">
+                            <span *ngIf="!data?.goal?.dueDate">No Upcoming Goal</span>
+                            <span *ngIf="data?.goal?.dueDate">
+                                {{data?.goal?.dueDate | date: 'd MMM y'}}
+                            </span>
+                        </p>
+                        <p class="headerValue">{{data?.goal?.description || ''}} </p>
+                    </div>
+                </div>
+                <div class="linkColunm">
+                    <a class="linkSmall">Maturity Model</a>
+                    <a class="linkSmall">SWOT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-card>

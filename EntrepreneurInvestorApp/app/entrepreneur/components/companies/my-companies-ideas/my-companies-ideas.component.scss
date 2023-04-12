@@ -1,0 +1,100 @@
+@import "src/assets/scss/mixins/layouts.scss";
+@import "src/assets/scss/mixins/typography.scss";
+
+$pagePadding: 25px;
+
+tgt-perfect-scroll {
+    height: 100%;
+    display:flex;
+    width:100%;
+ }
+ tgt-perfect-scroll {
+     ::ng-deep{
+        .ps{
+            width: 100%;
+            padding-bottom: 15px;
+            &.ps--active-y {
+                width: 100%;
+            }
+        }
+     }
+ }
+ 
+
+.pageWithRightNav {
+    @include pageWithRightNav;
+    @include for-tablet {
+        display: flex;
+        flex-direction: column;
+    }
+}
+.pageContentLayout {
+    
+    display: flex;
+    flex-direction: column;
+    
+
+    .tabCustom {
+        padding-left: 10px;
+    }
+
+    .headerContainer {
+        background-color: var(--white-color);
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 $pagePadding;
+            margin-top: 20px;
+        }
+
+        .tabCustom {
+            padding: 0 $pagePadding;
+        }
+    }
+
+    .contentContainer{
+        padding: 0px $pagePadding;
+    }
+}
+
+::ng-deep .tabCustom .mat-tab-header {
+    border-bottom: none;
+}
+
+.actionContainer {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    margin-right: 10px;
+}
+.noData {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    padding-top: 40px;
+    @include pageTitle;
+}
+
+button {
+    &.addDropdownBtn{
+        padding-right: 5px;
+        position: relative;
+        margin-left: 10px;
+        mat-icon {
+            margin-left: 10px;
+            &:before {
+                position: absolute;
+                content: "";
+                height: 100%;
+                width: 1px;
+                background-color: var(--white-color);
+                opacity: 0.3;
+                margin-left: -2px;
+                top: 0;
+            }
+        }
+    }
+}

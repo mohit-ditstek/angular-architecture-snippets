@@ -1,0 +1,41 @@
+<tgt-card cardTitle="Investors" actionLabel="{{!recommendedInvestors?.length?'':'View More'}}" class="investorCol"
+    fullHeight="true" (action)="onClickAction($event)" >
+    <div *ngIf="isLoading"> Loading...</div>
+    <div *ngIf="!recommendedInvestors?.length && !isLoading" class="noData noRecommendedInvestorsData">No data found
+    </div>
+    <tgt-perfect-scroll class="tgtCardContent perfectMdHeight" *ngIf="recommendedInvestors?.length && !isLoading">
+        <ul class="recommendedInvestor">
+            <tgt-li withAvatar="true" *ngFor="let investor of recommendedInvestors"
+                [avatarImageUrl]="investor?.iconUrl || '../assets/images/default-avatar.jpeg'">
+                <tgt-li-content-wrapper>
+                    <tgt-li-left-content>
+                        <tgt-li-text-content type="title">
+                            <a (click)="displayInvestmentDetails(investor?.investmentProfileId)">
+                                {{investor?.investorCode}}
+                            </a>
+                        </tgt-li-text-content>
+                        <tgt-li-text-content type="subTitle">Amount Invested:<span
+                                class="highlight">{{investor?.currentInvestments | currencyTransform}}</span>
+                        </tgt-li-text-content>
+                        <tgt-li-text-content type="subText">
+                            Investor Type: <span class="highlight">{{(investor?.investorType.includes('_') ? investor?.investorType.replace("_"," ") : investor?.investorType) || '-'}}</span>
+                        </tgt-li-text-content>
+                    </tgt-li-left-content>
+                    <tgt-li-right-content>
+                        <app-connect-link [requestStatus]="investor?.requestStatus"
+                            [requestSentByMe]="investor?.requestSentByMe"
+                            (onConnect)="onConnect(investor.ioId, investor.investmentProfileId)"
+                            (onWithdraw)="onWithdraw(investor.riIjDto.ijId)"
+                            (onAccept)="onAccept(investor.riIjDto.ijId)" hideConnectLink=true></app-connect-link>
+                        <tgt-star-rating [rating]="investor?.rating"></tgt-star-rating>
+                    </tgt-li-right-content>
+                </tgt-li-content-wrapper>
+            </tgt-li>
+        </ul>
+    </tgt-perfect-scroll>
+    <tgt-drawer drawerTitle="Investor Details" (onClose)="onDrawerClose()">
+        <app-recommended-investor-details *ngIf="!!selectedInvestor" [investor]="selectedInvestor"
+            (onConnect)="onConnectWrapper($event)" (onWithdraw)="onWithdraw($event)" (onAccept)="onAccept($event)">
+        </app-recommended-investor-details>
+    </tgt-drawer>
+</tgt-card>

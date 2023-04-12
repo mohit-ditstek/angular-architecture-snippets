@@ -1,0 +1,79 @@
+ <tgt-full-width-card>
+    <ul class="noInvestmentProfileContent" *ngIf="investmentProfilesList.length === 0">
+        <tgt-li>
+             <span class="noInvestmentProfileContentLabel">Let's get started with creating Investment Profile!</span>
+        </tgt-li>
+        <tgt-li>
+             <button mat-raised-button color="primary" (click)="openAddInvestmentDialog()" tooltip="Add Investment Profile">Add Profile</button>
+        </tgt-li>
+    </ul>
+    <div class="investmentProfileListContent" *ngIf="investmentProfilesList.length > 0">
+        <div class="header">
+            <tgt-heading headingLevel="H2" headingStyle="headingRegular">Investment Profiles</tgt-heading>
+            <div class="actionsContainer">
+                <button mat-stroked-button color="primary" (click)="openAddInvestmentDialog()" class="small" tooltip="Add Investment Profile"> Add
+                    profile</button>
+            </div>
+        </div>
+        <tgt-perfect-scroll class="tgtCardContent perfectMdHeight">
+            <ul class="investmntProfilesList">
+                <div *ngFor="let investment of investmentProfilesList" class="investmentItem">
+                    <tgt-li>
+                        <div class="investmentProfileItemContentNew">
+                            <div class="investmentContentItem primaryDescriptionNew">
+                                <div class="profileDashboardLink" (click)="goToInvestmentProfileDashbored(investment.id)" [tooltip]="investment.financialRequirement.name">
+                                    <a >
+                                        <tgt-heading headingLevel="H2" headingStyle="headingRegular" noMargin=true >{{investment.financialRequirement.name}}</tgt-heading>
+                                    </a>
+                                </div>
+                                <div class="subtitle" *ngFor="let subtitleText of investment.sectors">
+                                    <span *ngIf="subtitleText.isPrimary">{{subtitleText.name}}</span> 
+                                </div>
+                            </div>
+                            <div *ngIf="!investment?.completed" class=" completeInvProfile">
+                                <a (click)="openInvestmentEditDialog(investment)">Complete your investment profile</a>
+                            </div>
+                            <ng-container *ngIf="investment?.completed"> 
+                                <div class="contentItem investmentContentItem">
+                                    <ul>
+                                        <tgt-li-content-wrapper>
+                                            <tgt-li-left-content><span class="label">Amount</span></tgt-li-left-content>
+                                            <tgt-li-right-content >
+                                                <span class="value">
+                                                    {{investment.financialRequirement?.currency?.symbol}}{{investment.financialRequirement?.amountToInvest | currencyTransform}}
+                                                </span>
+                                            </tgt-li-right-content>
+                                        </tgt-li-content-wrapper>
+                                    </ul>
+                                    <ul>
+                                        <tgt-li-content-wrapper>
+                                            <tgt-li-left-content><span class="label">Inv. Opportunites</span></tgt-li-left-content>
+                                            <tgt-li-right-content>
+                                                <span class="value">{{investment?.noOfInvOpportunities || '0'}}</span>
+                                            </tgt-li-right-content>
+                                        </tgt-li-content-wrapper>
+                                    </ul>
+                                </div>
+                                <div class="timlineClass">
+                                    <tgt-horizontal-timeline class="horizontalTimelineNew"   *ngIf="investment?.latestCompletedMilestone" [milestones]="getMilestoneData(investment)"></tgt-horizontal-timeline>
+                                    <div *ngIf="investment?.latestCompletedMilestone" class="currentStage">Current Stage : {{getCurrentStage(investment,investment?.latestCompletedMilestone)}} </div>
+
+                                    <tgt-horizontal-timeline class="horizontalTimelineNew"   *ngIf="!investment?.latestCompletedMilestone" [milestones]="indicativeIj" disabled="true"></tgt-horizontal-timeline>
+                                </div>
+                                <div class="investmentContentItem primaryDescriptionNew" *ngIf="investment?.event">
+                                    <span class="value ">{{investment.event?.title}}</span>
+                                    <div class="subtitle eventSubTitle">{{investment.event?.startTime | date:'dd MMM yyyy'}} </div>
+                                </div>
+                                <div class=" investmentContentItem" *ngIf="!investment?.event">
+                                    <span>No Upcoming Events</span>
+                                </div>
+                                <mat-icon svgIcon="tgt_edit" (click)="openInvestmentEditDialog(investment)" [tooltip]="'Edit ' + investment.financialRequirement.name"></mat-icon>
+                            </ng-container>
+                        </div>
+                    </tgt-li>
+                </div>
+            </ul>
+        </tgt-perfect-scroll>
+    </div>
+</tgt-full-width-card> 
+

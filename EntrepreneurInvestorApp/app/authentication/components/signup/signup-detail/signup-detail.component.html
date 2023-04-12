@@ -1,0 +1,55 @@
+<mat-grid-list mat-cols-sm="2" mat-cols-md="4" mat-cols-lg="4" cols="2" class="authenticationFormWrap">
+    <mat-grid-tile class="formWrapperImage">
+        <div class="logoWrapper"><img src="assets/images/logo.png" alt="Logo" title="Logo" [routerLink]="['/home']"/></div>
+        <div class="signUpImage">
+            <img [src]="selectedRoleData.logoImage" alt="Logo" title="Logo" />
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile class="formWrapper">
+        <form [formGroup]="signupForm">
+            <tgt-heading headingLevel="H1" headingStyle="headingRegularDarkLarge" withUnderline=true content="Sign Up">
+            </tgt-heading>
+            <p>Already have an account? <a [routerLink]="['/login']">Login</a></p>
+            <mat-form-field appearance="standard">
+                <input matInput placeholder="Name" formControlName="name">
+                <mat-error *ngIf="signupForm.get('name').hasError('required')">
+                    Name is required!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <input matInput placeholder="Email" formControlName="email">
+                <mat-error *ngIf="signupForm.get('email').hasError('required')">
+                    Email is required!
+                </mat-error>
+                <mat-error *ngIf="signupForm.get('email').hasError('email')">
+                    Enter valid email!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <input matInput maxlength="10" placeholder="Phone number" formControlName="mobile"
+                    (keypress)=checkMobile($event)>
+                <mat-error *ngIf="signupForm.get('mobile').hasError('required')">
+                    Phone number is required!
+                </mat-error>
+                <mat-error *ngIf="signupForm.get('mobile').hasError('pattern')">
+                    Enter valid phone number!
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard">
+                <input matInput [matDatepicker]="picker" placeholder="Date of birth " formControlName="dateOfBirth" (click)="picker.open()"
+                (keydown)="picker.open()" (dateChange)="onDateChange($event)" [max]="minimumAge" readonly>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="signupForm.get('dateOfBirth').hasError('required')">
+                    Date of birth is required!
+                </mat-error>
+                <mat-error *ngIf="signupForm.get('dateOfBirth').hasError('noValidDate')">
+                    Date of birth must be greater than 15 years
+                </mat-error>
+            </mat-form-field>
+            <div class="rightCenter">
+                <button mat-raised-button color="primary" (click)="submitDetail()">Sign Up</button>
+            </div>
+        </form>
+    </mat-grid-tile>
+</mat-grid-list>

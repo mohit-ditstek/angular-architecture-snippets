@@ -1,0 +1,66 @@
+@import "src/assets/scss/mixins/layouts.scss";
+@import "src/assets/scss/mixins/typography.scss";
+
+$pagePadding: 25px;
+
+tgt-perfect-scroll {
+    height: 100%;
+    display:flex;
+    width:100%;
+ }
+ tgt-perfect-scroll {
+     ::ng-deep{
+        .ps{
+            width: 100%;
+            padding-bottom: 15px;
+            &.ps--active-y {
+                width: 100%;
+            }
+        }
+     }
+ }
+ 
+
+.pageWithRightNav {
+    @include pageWithRightNav;
+    @include for-tablet {
+        display: flex;
+        flex-direction: column;
+    }
+}
+.pageContentLayout {
+    
+    display: flex;
+    flex-direction: column;
+
+    .headerContainer {
+        background-color: var(--white-color);
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 $pagePadding;
+            margin-top: 20px;
+        }
+    }
+
+    .contentContainer{
+        padding: 0px $pagePadding;
+    }
+}
+
+.actionContainer {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    margin-right: 10px;
+}
+.noData {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    padding-top: 40px;
+    @include pageTitle;
+}

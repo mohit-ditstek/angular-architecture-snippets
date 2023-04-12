@@ -1,0 +1,153 @@
+@import "src/assets/scss/mixins/typography.scss";
+@import "src/assets/scss/media-queries.scss";
+
+
+
+.companiesCard {
+    box-shadow: 0 0 10px rgba(0,0,0,0.12);
+    margin: 20px 5px 0;
+    display: flex;
+    .companyWrapper {
+        display: flex;
+        flex-direction: row; 
+        width: 100%; 
+
+        .companyLogo {
+            display: flex;
+            margin-right: 10px;
+        }
+
+        .companyDetails {
+            display: flex;
+            flex-direction: column;
+            width:100%;
+            @include for-landscape-tablet {
+                width:100%;
+            }
+            .detailsRow {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin-bottom: 0px;
+                width:100%;
+                align-items: center;
+                &.companyHeadingWrapper{
+                    @include for-desktop {
+                        flex-flow: inherit;
+                    }
+                    @include for-landscape-tablet {
+                        flex-direction: row;
+                    }
+                    @include for-mobile {
+                        flex-flow: wrap;
+                        flex-direction: column;
+                    }
+                }
+                @include for-desktop {
+                    flex-flow: wrap;
+                }
+                @include for-landscape-tablet {
+                    flex-direction: column;
+                }
+                &.companyHeadingWrapper{
+                    margin-bottom: 20px;
+                }
+                .editIcon {
+                    color: var(--tgt-primary-action-color);
+                    margin-right: 6px;
+                    cursor: pointer;
+                }
+                .companyIcons{
+                    display: flex;
+                    .editCompanyIcon{
+                      padding-right: 8px;
+                    }
+                    .mat-icon {
+                        height: 16px;
+                        width: 16px;
+                    }
+                  }
+                .companyHeading {
+                    display: flex;
+                    justify-content: flex-start;
+                    flex-wrap: wrap;
+                    align-items: baseline;
+                    // margin-bottom: 20px;
+                    .companyTitle {
+                        @include pageTitleSecondary;
+                        text-align: left;
+                        cursor: pointer;
+                        ::ng-deep{
+                            h2{
+                                @include for-landscape-tablet {
+                                    max-width: 250px;
+                                    white-space: nowrap;
+                                    text-overflow: ellipsis;
+                                    overflow: hidden;
+                                }
+                            }
+                        }
+                    }
+                    .companyActions {
+                        @include bodyText;
+                        text-align: left;
+                        margin-left: 15px;
+                    }   
+                }
+                .companyHeading,.completeCompanyProfile{
+                    width: 100%;
+                }
+                .linkColunm {
+                    flex-direction: column;
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: space-evenly;
+                    @include for-landscape-tablet {
+                        width: 100%;
+                    }
+                }
+                .detailsColumn {
+                    flex-direction: column;
+                    display: flex;
+                    width: 29%;
+                    border-left: 1px solid var(--tgt-border-color-default);
+                    padding-left: 12px;
+                    padding-right: 12px;
+                    @include for-desktop {
+                        padding-right: 25px;
+                    }
+                    @include for-landscape-tablet {
+                        width: 100%;
+                        border-top: 1px solid var(--tgt-border-color-default);
+                        padding-top: 20px;
+                        border-left: none;
+                        padding-left: 0;
+                        padding-right: 0;
+                    }
+                    &:first-child {
+                        border-left: none;
+                        padding-left: 0;
+                    }
+                    .detailsHeader {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: baseline;
+                        .headerTitle {
+                            @include bodySubText;
+                            min-width: 120px;
+                        }
+                        .headerValue {
+                            @include bodySubTextHighlight;
+                            font-weight: 500;
+                        }
+                        .timeLine {
+                            @include bodyText;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

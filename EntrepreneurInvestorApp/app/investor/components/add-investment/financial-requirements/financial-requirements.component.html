@@ -1,0 +1,36 @@
+<form [formGroup]="formGroup" class="tgtForm" *ngIf="formGroup">
+  <tgt-heading headingLevel="H2" headingStyle="headingRegularSmall" content="Financial Requirements"> </tgt-heading>
+  <div class="formField">
+    <tgt-text-input label="Inv. Profile Name" controlName="name" maxlength="50" required=true
+      placeholder="Enter Inv. Profile Name" [form]="formGroup" [errorMessage]="getFieldError('name')" [id]="formConfig.name.id" width="22">
+    </tgt-text-input>
+  </div>
+
+  <div class="formField">
+    <tgt-composite-input type="number" label="Amount to be Invested" [form]="formGroup.controls.amountToInvested" required=true
+      dropDownOptionsControlName="amountToInvestedDropDown" inputFieldControlName="amountToInvestedInput"
+      placeholder="Enter Amount" [options]="formConfig.amountToInvested.amountToInvestedDropDown.options" [id]="formConfig.amountToInvested.amountToInvestedInput.id"
+      [errorMessage]="getFieldError('amountToInvested')"></tgt-composite-input>
+  </div>
+
+  <div class="formField">
+    <tgt-text-input type="number" class="sharePercentage" label="Expected ROI" [form]="formGroup" required=true
+      controlName="roi" placeholder="Percentage" [errorMessage]="getFieldError('roi')" suffix="%" [id]="formConfig.roi.id" width="8">
+    </tgt-text-input>
+  </div>
+  
+
+  <div class="formField">
+    <tgt-text-input type="number" class="sharePercentage" label="Exit period" [form]="formGroup" required=true [maxlength]="2"
+       controlName="exitPeriod" placeholder="Year" [errorMessage]="getFieldError('exitPeriod')" suffix="Years" [id]="formConfig.exitPeriod.id" width="8">
+    </tgt-text-input>
+  </div>
+
+  <div class="formField">
+    <div class="customRadioBtn">
+      <tgt-radio-button displayAsChip=true required=true label="Level of involvement" controlName="investorType"
+        [options]="formConfig.investorType.options" [form]="formGroup" [errorMessage]="getFieldError('investorType')">
+      </tgt-radio-button>
+    </div>
+  </div>
+</form>

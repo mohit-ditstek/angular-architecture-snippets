@@ -1,0 +1,24 @@
+.tgtAvatar {
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    &.xs {
+        width: 1.5em;
+        height: 1.5em;
+    }
+    &.sm {
+        width: 1.8em;
+        height: 1.8em;
+    }
+
+    &.md {
+        width: 2.75em;
+        height: 2.75em;
+    }
+
+    &.lg {
+        width: 4.063em;
+        height: 4.063em;
+    }
+}

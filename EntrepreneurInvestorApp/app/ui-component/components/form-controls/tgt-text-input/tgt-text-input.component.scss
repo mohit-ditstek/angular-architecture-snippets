@@ -1,0 +1,43 @@
+.fullWidth { 
+    width: 100%
+}
+
+.tgtTextInput.sm {
+    ::ng-deep {
+        .mat-form-field-appearance-outline .mat-form-field-infix {
+            border-top: 0.3em solid transparent !important;
+            padding: 8px 0px !important;
+        }
+        
+    }
+}
+
+.tgtTextInput {
+    ::ng-deep {
+        
+
+        .mat-form-field-subscript-wrapper {
+            min-width: 320px;
+            padding: 0
+        }
+
+        .mat-form-field-infix {
+            width: auto;
+        }
+    }
+}
+
+.tgtTextInputWrapper {
+    ::ng-deep .mat-form-field.fullWidth {
+        width: 100%;
+    }
+    ::ng-deep .mat-form-field {
+        width: 180px;
+        .mat-form-field-appearance-outline .mat-form-field-prefix, 
+        .mat-form-field-appearance-outline .mat-form-field-suffix {
+            top: 0;
+        }
+    }
+
+    
+}

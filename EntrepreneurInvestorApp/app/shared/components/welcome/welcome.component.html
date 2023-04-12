@@ -1,0 +1,10 @@
+<div class="welcomeInnerWrap">
+  <div class="welcomeImageWrap">
+    <button class="closeButton" (click)="close()" title="Close">
+      <mat-icon class="dialogClose" svgIcon="tgt_close" ></mat-icon>
+      </button>
+    <img src="assets/images/check-image.png" width="81" alt="image" />
+  </div>
+  <h1>Congratulations</h1>
+  <p>{{data?.displayMessage || '--'}}</p>
+</div>

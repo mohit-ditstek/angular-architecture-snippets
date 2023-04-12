@@ -1,0 +1,2 @@
+<app-login-detail *ngIf="step == 0" (detailSubmit)="submit($event)"></app-login-detail>
+<app-login-verification *ngIf="step == 1" (otpSubmit)="submit($event)" [detail]="detail" [emailExpiryTime]="emailExpiryTime"></app-login-verification>

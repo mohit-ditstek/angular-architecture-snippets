@@ -1,0 +1,19 @@
+<tgt-card cardTitle="Trending News" class="trendingNews" fullHeight="true">
+    <tgt-perfect-scroll class="tgtListingCardContent perfectSmHeight">
+        <ul class="contentWrapper">
+            <tgt-li *ngFor="let news of newsList">
+                <tgt-li-content-wrapper>
+                    <div class="content">
+                        <div class="newsIcon">
+                            <img [src]="news.icon" />
+                        </div>
+                        <div class="rightContent">
+                            <tgt-li-text-content type="title">{{news.title}}</tgt-li-text-content>
+                            <tgt-li-text-content type="subTitle">{{news.description}}</tgt-li-text-content>
+                        </div>
+                    </div>
+                </tgt-li-content-wrapper>
+            </tgt-li>
+        </ul>
+    </tgt-perfect-scroll>
+</tgt-card>

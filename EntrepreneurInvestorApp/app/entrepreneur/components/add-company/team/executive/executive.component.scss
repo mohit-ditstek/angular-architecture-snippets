@@ -1,0 +1,35 @@
+@import 'src/assets/scss/mixins/typography.scss';
+.executiveContainer {
+    display: flex;
+    margin-top: 15px;
+    .form {
+        width: 50%;
+    }
+
+    .designation {
+      @include bodySubText;
+    }
+
+    .email {
+      @include bodySubTextLight;
+    }
+    
+
+}
+.tgtDropdown {
+  margin-bottom: 20px;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  label {
+    @include bodyTextSmall;
+    display: inline-block;
+    width: 220px;
+    margin-top: 0;
+  }
+}
+.tgtListingCardContent {
+  .listing {
+    margin-top: 5px;
+  }
+}

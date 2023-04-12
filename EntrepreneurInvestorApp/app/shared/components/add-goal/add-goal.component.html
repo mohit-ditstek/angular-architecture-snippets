@@ -1,0 +1,42 @@
+<div class="goals">
+    <tgt-drawer title="Upcoming Goal"
+                (onClose)="drawerClosed($event)" 
+                [enablePreviousButton]="enablePreviousButton" 
+                [enableNextButton]="enableNextButton"
+                [showPreviousNextButtons]="showPreviousNextButtons"
+                (prevNextButtonClick)="onPrevNextButtonClick($event)">
+          
+            <form [formGroup]="formGroup" class="tgtForm addGoalFormWrapper">
+
+                <div class="userName" >
+                    <mat-icon svgIcon="tgt_user"></mat-icon>
+                    <span *ngIf="!systemGenerated">{{userDetail.name}} <span>(Me, Creator)</span></span>
+                    <span *ngIf="systemGenerated">Nurtur Guide (Creator)</span>
+                </div>
+
+                <div class="viewOnlyModeClass" >
+                    <span class="label">Goal </span>
+                    <span class="goalTitle">{{formGroup.controls['title'].value || '-'}}</span>
+                </div>
+
+                <div class="createdDate">
+                    <tgt-field-wrapper label="Created" [fullWidth]="true">
+                        {{formGroup.controls["createdDate"].value | date:'d MMM y'}}
+                    </tgt-field-wrapper>
+                </div>
+    
+                <tgt-datepicker label="Due Date" placeholder="DD/MM/YYYY" controlName="dueDate" [form]="formGroup"
+                                [minimumDate]="minimumDueDate"
+                                [errorMessage]="getFieldError('dueDate')">
+                </tgt-datepicker>
+
+                <tgt-textarea controlName="description" maxLength="maxlength" placeholder="Add details" fullWidth=true size="sm" [readonly]="true"
+                    [form]="formGroup" icon="tgt_document" [errorMessage]="getFieldError('description')">
+                </tgt-textarea>
+    
+                <div class="footer">
+                    <button mat-raised-button color="primary" class="small" [disabled]="goalDetail?.goalStatus==='CLOSED'" (click)="onSave()"> Save</button>
+                </div>
+            </form>
+    </tgt-drawer>
+  </div>

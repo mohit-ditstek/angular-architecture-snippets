@@ -1,0 +1,91 @@
+
+@import "src/assets/scss/mixins/typography.scss";
+@import "src/assets/scss/media-queries.scss";
+
+      .investmentProfileListContent {
+      .header {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        @include for-mobile {
+          flex-direction: column;
+          padding-bottom: 20px ;
+        }
+        .actionsContainer {
+          width: 19em;
+          text-align: right;
+          @include for-mobile {
+            text-align: center;
+          }
+          button {
+            margin: 0 10px;
+          }
+        }
+      }
+      .ijSummaryList{ 
+        overflow: auto;
+        .ijItem {
+          padding: 15px 0;
+          border-bottom: 1px solid var(--tgt-border-color-default);
+          &:last-of-type {
+            border: none;
+          }
+          .ijItemContent {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            justify-content: space-between;
+            align-items: flex-start;
+            .listItem{
+              width: 33%;
+              @include for-landscape-tablet{
+                width: 50%;
+                margin: 10px 0;
+              }
+              @include for-mobile{
+                width: 100%;
+                margin: 10px 0;
+              }
+            }
+            .contentItem{
+              width: 200px;
+              @include for-landscape-tablet{
+                margin-left: 50px;
+              }
+              @include for-mobile{
+                margin-left: 50px;
+              }
+            }
+            .ijClass {
+              display: flex;
+               .primaryDescription{
+                margin-left: 10px;
+              }
+          }
+          }
+      }
+    }
+  }
+  .label{
+    @include bodyTextSmall;
+    line-height: 25px;
+    text-align: end
+  }
+ .value{
+    @include bodyTextHighlight;
+  }
+  .noInvestmentMadeLabel{
+    font-size: 20px;
+    font-weight: 400;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: var(--tgt-black);
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+  }
+  .noInvestmentsMade {
+    height: 300px;
+  }

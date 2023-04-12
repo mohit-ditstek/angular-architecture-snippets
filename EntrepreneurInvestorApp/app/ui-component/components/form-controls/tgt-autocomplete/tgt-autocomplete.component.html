@@ -1,0 +1,16 @@
+<tgt-field-wrapper  [label]="label" [fullWidth]="fullWidth" [icon]="icon" [fieldRequired]="required">    
+    <mat-form-field appearance="outline"  class="fullWidth" [formGroup]="form" [ngStyle]="styles"> 
+        <input matInput
+            [placeholder]="placeholder"
+            aria-label="Number"
+            matInput
+            [formControlName]="controlName"
+            [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption  #auto="matAutocomplete" >
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.key" tooltip="{{option.value}}">
+                {{option.value}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+      <mat-error class="errorClass" *ngIf="errorMessage">{{errorMessage}}</mat-error>
+</tgt-field-wrapper>

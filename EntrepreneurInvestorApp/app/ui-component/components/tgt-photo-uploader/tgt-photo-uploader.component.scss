@@ -1,0 +1,90 @@
+@import 'src/assets/scss/mixins/typography.scss';
+@import "src/assets/scss/media-queries.scss";
+
+.imageCroper{
+   width: 500px;
+   margin: 0 auto;
+   border: 1px solid var(--dark-silver);
+   border-radius: 5px;
+   image-cropper {
+    padding: 0 ;
+    height: 200px;
+    background-color: var(--dark-black-color);
+  }
+  .imageCroperHeader{
+    ::ng-deep{
+      h3{
+        @include bodyTextSmallHighlight;
+        margin: 0;
+        padding:10px;
+      }
+    }
+  }
+  .imageCroperFooter {
+    padding: 15px;
+    text-align: center;
+    button {
+      margin: 0 5px;
+    }
+  }
+  &::ng-deep{
+    .overlay{
+      outline: none !important;
+      width: 100% !important;
+      margin: 0 !important;
+    }
+    .cropper {
+      outline: none !important;
+    }
+  }
+
+}
+.browseImageWraper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+
+  @include for-mobile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .browseImage {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: contain;
+    margin-right: 120px;
+  }
+
+  .browseBtn {
+    position: relative;
+    overflow: hidden;
+
+    @include for-mobile {
+      margin-top: 20px;
+    }
+    &:before {
+      position: absolute;
+      content: "Upload Photo";
+      left: 0;
+      top: 0;
+      border: 1px dashed var(--tgt-blue);
+      border-radius: 5px;
+      padding: 10px 20px;
+      text-align: center;
+      z-index: 0;
+      @include bodyTextSmallHighlight;
+      color:var(--tgt-blue);
+    }
+    input{
+      opacity: 0;
+      height: 42px;
+      cursor: pointer;
+    }
+    .mat-form-field-subscript-wrapper {
+      position: relative;
+    }
+  }
+}

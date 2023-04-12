@@ -1,0 +1,202 @@
+@import "src/assets/scss/mixins/typography.scss";
+
+.investorDetails {
+    max-width: 100%;
+    padding-bottom: 60px;
+
+    .title{
+        display: flex;
+        align-items: center;
+
+        
+
+        .investorLogo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            object-fit: contain;
+        }
+
+        .investorDetail {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+
+            .investorCode {
+                @include bodyTextLargeHighlight;
+            }
+
+            .designation {
+                color: var(--tgt-grey)
+            }
+            .currentPostionLabel {
+                @include bodyTextLight;
+            }
+        }
+
+    }
+
+    .cards {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: 20px;
+
+        ::ng-deep .mat-card {
+            width: 120px;
+            height: 100%;
+            padding-bottom: 20px;
+            margin-right: 5px;
+            text-align: center;
+        }
+
+        .cardContent {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .value {
+                @include bodyTextHighlight
+            }
+
+            .subText{
+                @include bodyTextSmallLight;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    .aboutInvestor {
+        margin: 20px -20px;
+    }
+
+    .panelDescription {
+        width: 100%;
+        @include bodyTextSmall;
+
+        .noData {
+            @include bodyTextSmallLight
+        }
+    }
+    .sectorDescription{
+        .noData {
+            width: 100%;
+            @include bodyTextSmallLight
+        }
+        height: 70px !important;
+
+    }
+
+    ::ng-deep {
+        .mat-accordion .mat-expansion-panel:first-of-type,
+        .mat-accordion .mat-expansion-panel:last-of-type {
+            border-radius: 0;
+        }
+        .mat-expansion-panel-spacing {
+            margin: 0;
+        }
+
+        .mat-expansion-panel {
+            border-radius: 0;
+        }
+
+        .mat-expanded {
+            background-color: var(--tgt-page-background-light);
+        }
+    }
+
+    .actions {
+        position: absolute ;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--tgt-page-background-dark);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 10px 20px;
+
+        .connectionSent {
+            display: flex;
+            align-items: center;
+            .connectionSentLabel {
+                @include bodyTextSmallLight;
+                display: flex;
+                align-items: center;
+                margin-bottom: 5px;
+
+                ::ng-deep .mat-icon {
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+}
+.educationClass{
+    display: flex;
+    flex-wrap: wrap; 
+    ::ng-deep button {
+        margin-right: 15px;
+            ::ng-deep mat-icon {
+                height: 45px;
+                width: 45px;
+            }
+      }
+}
+.companyClass {
+    display: flex;
+    flex-wrap: wrap;
+    ::ng-deep button {
+      border: 1px solid var(--tgt-dark-grey);
+      border-radius: 50%;
+      margin-right: 15px;
+      height: 48px;
+      width: 48px;
+          ::ng-deep mat-icon {
+              height: 24px;
+              width: 24px;
+          }
+    }
+    ::ng-deep .primaryDescription{
+        width: 70%
+    }
+}
+.liTitle{
+    @include bodyTextDarkGrey;
+}
+.liSubTitle{
+    @include bodyTextSmall;
+}
+.accordionDetails{
+    background: var(--tgt-white);
+    padding: 10px;
+    border-bottom: 1px solid var(--tgt-light-silver);
+}
+
+.multiSelectChip .mat-chip.mat-standard-chip {
+    border: 1px solid var(--grey-color)!important;
+    color: var(--tgt-teal) !important;
+    background: #fafafa !important;
+}
+.multiSelectChip{
+    &.drawerMatChip{
+        pointer-events: none;
+        width: 100%;
+        .mat-chip{
+            &.mat-standard-chip{
+                &:after{
+                    display: none;
+                }
+            }
+        }        
+    }
+}
+.totalExperienceClass{
+    @include bodyTextSmall;
+    padding-right: 10px;
+}

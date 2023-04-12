@@ -1,0 +1,30 @@
+<div class="pageWithRightNav">
+    <div name="content">
+        <div class="pageContentLayout">
+            <div class="header">
+                <tgt-heading headingLevel='H1' headingStyle='headingRegularDarkLarge' content="Welcome {{userDetail.name}}!"></tgt-heading>
+            </div>
+            <div class="summary">
+                <app-default-entrepreneur-summary companyList="companyList"> </app-default-entrepreneur-summary>
+            </div>
+            <div class="r1-card-1">
+                <app-trending-investor></app-trending-investor>
+            </div>
+            <div class="r1-card-2">
+                <app-recent-deals></app-recent-deals>
+            </div>
+            <div class="r1-card-3">
+                <app-trending-news></app-trending-news>
+            </div>
+        </div>
+    </div>
+    <div name="right-nav">
+        <tgt-right-nav withOfficeIcons=true>
+            <app-user-profile></app-user-profile>
+            <app-events [entityType]="entityType" [entityId]="profileId" [calendarHeader]="userDetail?.name"></app-events>
+            <app-tasks [entityType]="entityType" [entityId]="profileId"></app-tasks>
+            <app-connections chubLink="entrepreneur/chub"></app-connections>
+        </tgt-right-nav>
+    </div>
+</div>
+<tgt-page-loader [isLoading]="isLoading"></tgt-page-loader>

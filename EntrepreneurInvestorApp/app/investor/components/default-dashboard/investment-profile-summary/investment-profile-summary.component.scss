@@ -1,0 +1,161 @@
+@import "src/assets/scss/mixins/typography.scss";
+@import "src/assets/scss/media-queries.scss";
+
+
+  .investmentProfileListContent {
+    .header {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      @include for-mobile {
+        flex-direction: column;
+        padding-bottom: 20px ;
+      }
+      .actionsContainer {
+        width: 19em;
+        text-align: right;
+        @include for-mobile {
+          text-align: center;
+        }
+        button {
+          margin: 0 10px;
+        }
+      }
+    }
+    .investmntProfilesList{ 
+      overflow: auto;
+      padding: 10px 0;
+      .investmentItem {
+        padding: 15px 0;
+        border-bottom: 1px solid var(--tgt-border-color-default);
+        &:last-of-type {
+          border: none;
+        }
+        .investmentProfileItemContentNew{
+          display: flex;
+          flex-wrap: wrap;
+          width: 100%;
+          justify-content: space-between;
+          align-items: center;
+          mat-icon{
+            height: 15px;
+            width: 15px;
+            color: var(--tgt-primary-action-color)
+          }
+          .primaryDescriptionNew {
+            .eventSubTitle{
+              margin-top: 10px;
+            }
+            .profileDashboardLink {
+              cursor: pointer;
+              a{
+                text-decoration: none;
+              }
+               tgt-heading{
+                ::ng-deep h2{
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                }
+              }
+            }
+            .subtitle {
+              @include bodyTextSmall;
+            }
+          }
+          .investmentContentItem{
+            width: 20%;
+            tgt-li-right-content{
+              padding-right: 2.5em;
+              @include for-lg-desktop{
+              padding-right: 1em;
+              }
+            }
+            @include for-desktop{
+              width : 35%;
+              margin: 15px 0;
+            }
+            @include for-landscape-tablet{
+              width : 35%;
+              margin: 15px 0;
+            }
+            @include for-tablet{
+              width : 30%;
+              margin: 15px 0;
+            }
+            @include for-mobile{
+              width: 50%;
+              margin: 15px 0;
+            }
+          }
+          .timlineClass{
+            width: 20%;
+            .currentStage{
+              @include bodyTextSmall;
+              padding-top: 10px;
+            }
+            @include for-desktop{
+              width : 45%;
+              margin: 15px 0;
+              padding: 0 30px;
+            }
+            @include for-landscape-tablet{
+              width : 50%;
+              margin: 15px 0;
+              padding: 0 30px;
+            }
+            @include for-tablet{
+              width : 50%;
+              margin: 15px 0;
+              padding: 0 30px;
+            }
+            @include for-mobile{
+              width: 100%;
+              padding: 0 30px;
+              margin: 15px 0;
+          }
+        }
+      }
+    }
+  }
+}
+.label{
+    @include bodyTextSmall;
+    line-height: 25px;
+  }
+ .value{
+    @include bodyTextHighlight;
+  }
+  tgt-li{
+    ::ng-deep{
+      .tgtLI{
+        display: flex;
+        align-items: flex-start;
+        padding: 10px 0;
+        margin: 5px 0;
+      }
+    }
+  }
+  .noInvestmentsMade {
+    height: 18.75em;
+    overflow: auto;
+    
+  }
+  .noInvestmentMadeLabel{
+    font-size: 20px;
+    font-weight: 400;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    color: var(--tgt-black);
+  }
+  .noInvestmentProfileContent{
+    width: 100%;
+    text-align: center;
+    height: 18.75em;
+    padding-top: 80px;
+  }
+  .noInvestmentProfileContentLabel{
+    @include bodyTextLargeHighlight;
+  }

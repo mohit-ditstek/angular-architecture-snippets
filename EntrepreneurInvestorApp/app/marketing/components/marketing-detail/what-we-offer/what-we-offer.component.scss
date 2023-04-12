@@ -1,0 +1,45 @@
+@import "src/assets/scss/mixins/typography.scss";
+@import "src/assets/scss/mixins/layouts.scss";
+
+/*   what we offer  */
+.col-2-wrapper{
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0px auto;
+    display: grid;
+    grid-gap: 2rem;
+    width: 100%;
+    align-items: center;
+    @include for-mobile {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+.whatWeOffer{
+    padding: 0 15px;
+    .wwoWrapper {
+      display: flex;
+      min-height: 140px;
+      margin-bottom: 20px;
+      padding-right:20px;
+      @include for-mobile {
+        padding-right:0px;
+      }
+      .iconCol {
+        min-width: 90px;
+        margin-right: 15px;
+        @include for-mobile {
+          min-width: 50px;
+        }
+      }
+      .detailCol{
+        h3 {
+          margin: 0;
+          @include smCaption;
+         color: var(--tgt-teal);
+        }
+        p {
+          line-height: 22px;
+          @include bodyText;
+        }
+      }
+    }
+  }

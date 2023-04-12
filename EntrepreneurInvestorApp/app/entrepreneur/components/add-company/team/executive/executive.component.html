@@ -1,0 +1,41 @@
+<div class="executiveContainer">
+  <div class="form">
+    <form [formGroup]="formGroup" class="tgtForm">
+        <tgt-text-input label="Executive name" *ngIf="!isLoading" controlName="name" maxlength="50" [id]="formConfig.name.id"
+          placeholder="Enter executive name" [form]="formGroup" [errorMessage]="getFieldError('name')" width="20">
+        </tgt-text-input>
+        <tgt-text-input label="Executive's email" *ngIf="!isLoading" controlName="email" maxlength="50" [id]="formConfig.email.id"
+          placeholder="Enter executive's email" [form]="formGroup" [errorMessage]="getFieldError('email')"  width="20">
+        </tgt-text-input>
+        <tgt-dropdown label="Designation" *ngIf="!isLoading" [options]="formConfig.designation.options" controlName="designation" [id]="formConfig.designation.id"
+          placeholder="Choose Designation" [form]="formGroup" [errorMessage]="getFieldError('designation')"  width="20">
+        </tgt-dropdown>
+        <tgt-year-picker label="Association year" *ngIf="!isLoading" controlName="associationYear" [form]="formGroup" [maxDate]="maxAssociationYear" [id]="formConfig.associationYear.id"
+          [errorMessage]="getFieldError('associationYear')"></tgt-year-picker>
+    </form>
+    <a  mat-button  class="withoutLeftPadding" color="primary" (click)="addUpdateExecutive()">{{isUpdateExecutive?'Update Executive':'Add Executive'}}</a>
+    <a  mat-button color="primary" *ngIf="isUpdateExecutive" (click)="cancelUpdateExecutive()">Cancel</a>
+
+  </div>
+
+  <tgt-perfect-scroll class="tgtListingCardContent perfectMdHeight">
+    <div class="listing" *ngIf="executives.length > 0">
+      <div class="cardContainer" *ngFor="let executive of executives">
+        <mat-card class="listingCard">
+          <tgt-heading noMargin=true headingLevel="H4" [content]="executive.name" [tooltip]="executive.name"></tgt-heading>
+          <div class="listActionBtn">
+            <mat-icon svgIcon="tgt_delete" (click)="deleteExecutive(executive)" tooltip="Delete"></mat-icon>
+            <mat-icon svgIcon="tgt_edit" (click)="editExecutive(executive)" tooltip="Edit"></mat-icon>
+          </div>
+          <div class="designation">
+            <span>{{executive.designation}}</span>
+          </div>
+          <div class="email">
+            <span>{{executive.email}} </span>
+          </div>
+          
+        </mat-card>
+      </div>
+    </div>
+  </tgt-perfect-scroll>
+</div>

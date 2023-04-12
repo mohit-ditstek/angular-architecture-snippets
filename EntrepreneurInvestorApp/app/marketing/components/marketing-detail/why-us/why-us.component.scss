@@ -1,0 +1,51 @@
+@import "src/assets/scss/mixins/typography.scss";
+@import "src/assets/scss/mixins/layouts.scss";
+/* why US */
+.whyUs{
+    width: 100%;
+    margin-bottom: 80px;
+    .statsWrapper{
+      grid-template-columns: repeat(4, 1fr);
+      margin: 0px auto;
+      display: grid;
+      grid-gap: 2rem;
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+      @include for-mobile {
+        grid-template-columns: repeat(1, 1fr);
+      }
+      .statsColumn {
+        border: 1px solid var(--tgt-teal);
+        padding: 15px;
+        border-radius: 10px;
+        .statsDetails {
+          min-height: 200px;
+          @include for-mobile {
+            min-height: 80px;
+          }
+          h3 {
+            @include lgCaption;
+            margin: 15px 0 0;
+
+            @include for-lg-desktop {
+              font-size: 28px;
+            }
+            span {
+              color: var(--tgt-teal);
+            }
+          }
+          p {
+            @include smCaption;
+            font-weight: var(--font-weight-normal);
+            color: var(--black-contrast-color);
+            margin: 10px 0;
+            @include for-lg-desktop{
+              font-size: 17px;
+            }
+          }
+        }
+      }
+    }
+}

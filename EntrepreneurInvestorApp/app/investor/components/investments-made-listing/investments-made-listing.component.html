@@ -1,0 +1,28 @@
+<div class="pageWithRightNav">
+    <div name="content">
+        <div class="pageContentLayout">
+            <div class="headerContainer">
+                <div class="header">
+                    <tgt-heading headingLevel="H1" headingStyle="headingRegularDarkLarge"
+                        content="Investments Made"> </tgt-heading>
+                </div>
+            </div>
+            <div class="contentContainer" *ngIf="investmentsMadeList.length">
+                <tgt-perfect-scroll>
+                    <app-investment-made *ngFor="let investmentMade of investmentsMadeList" [data]="investmentMade"></app-investment-made>
+                </tgt-perfect-scroll>
+                <mat-paginator [pageSize]="25" [length]="totalCount" (page)="onChange()" showFirstLastButtons
+                    aria-label="Select page of periodic elements">
+                </mat-paginator>
+            </div>
+            <div *ngIf="!investmentsMadeList.length" class="noData">No data found</div>
+        </div>
+    </div>
+    <div name="right-nav">
+        <tgt-right-nav withOfficeIcons=true>
+            <app-events [entityType]="entityType" [entityId]="profileId" [calendarHeader]="userDetail?.name"></app-events>
+            <app-tasks [entityType]="entityType" [entityId]="profileId"></app-tasks>
+            <app-connections chubLink="investor/chub"></app-connections>
+        </tgt-right-nav>
+    </div>
+</div>

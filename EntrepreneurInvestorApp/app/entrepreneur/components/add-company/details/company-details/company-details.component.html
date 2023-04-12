@@ -1,0 +1,27 @@
+<form [formGroup]="formGroup" class="tgtForm companyBasicDetails">
+  <tgt-heading headingLevel="H2" headingStyle="headingRegularSmall" content="Company Details"> </tgt-heading>
+
+  <div class="formField">
+    <div class="imageUploadWrapper">
+      <tgt-photo-uploader [imageSrc]="logoImageUrl" (onCropperLoad)="onCropperLoad()" (onChange)="onLogoChange($event)"
+        (onClose)="onCropperClose()" [errorMessage]="logoImage ? '' : getFieldError('logoUrl')"></tgt-photo-uploader>
+    </div>
+  </div>
+  <div *ngIf="!showCropper">
+    <div class="companyNameField">
+      <tgt-text-input label="Name of the company" required=true controlName="name" maxLength="50" [id]="formConfig.name.id"
+        placeholder="Enter Name of the company" [form]="formGroup" [errorMessage]="getFieldError('name')"
+        fullWidth=true>
+      </tgt-text-input>
+    </div>
+
+    <div class="stageField">
+      <tgt-dropdown label="Stage" controlName="stage"  required=true  placeHolder="Select Stage" [options]="formConfig.stage.options"  [id]="formConfig.stage.id"
+        [form]="formGroup" [errorMessage]="getFieldError('stage')"></tgt-dropdown>
+    </div>
+    <div class="companyDescriptionField">
+      <tgt-textarea label="About the company" required=true controlName="description" placeholder="About the company"  [id]="formConfig.description.id"
+        [form]="formGroup" cols="5" rows="3" [errorMessage]="getFieldError('description')"></tgt-textarea>
+    </div>
+  </div>
+</form>

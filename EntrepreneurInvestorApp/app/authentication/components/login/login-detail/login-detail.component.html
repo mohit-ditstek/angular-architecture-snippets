@@ -1,0 +1,27 @@
+<mat-grid-list mat-cols-sm="2" mat-cols-md="4" mat-cols-lg="4" cols="2" class="authenticationFormWrap">
+  <mat-grid-tile class="formWrapperImage">
+      <div class="logoWrapper"><img src="assets/images/logo.png" alt="Logo" title="Logo" [routerLink]="['/home']"/></div>
+      <div class="loginImage">
+          <img src="assets/images/entrepreneur.png" alt="Logo" title="Logo" />
+      </div>
+  </mat-grid-tile>
+  <mat-grid-tile class="formWrapper">
+      <form [formGroup]="loginForm">
+          <tgt-heading headingLevel="H1" headingStyle="headingRegularDarkLarge" withUnderline=true content="Log In"></tgt-heading>
+          <p>New to Nurtur? <a href="" [routerLink]="['/signup']">Create an account</a></p>
+          
+          <mat-form-field appearance="standard">
+              <input matInput placeholder="Email address" #emailField formControlName="email">
+              <mat-error *ngIf="loginForm.get('email').hasError('required')">
+                  Email is required!
+              </mat-error>
+              <mat-error *ngIf="loginForm.get('email').hasError('email')">
+                  Enter valid email!
+              </mat-error>
+          </mat-form-field>
+          <div class="rightCenter">
+              <button mat-raised-button color="primary" (click)="submitDetail()">Request OTP</button>
+          </div>
+      </form>
+  </mat-grid-tile>
+</mat-grid-list>

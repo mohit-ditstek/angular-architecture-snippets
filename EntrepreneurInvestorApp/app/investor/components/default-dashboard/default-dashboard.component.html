@@ -1,0 +1,33 @@
+<div class="pageWithRightNav">
+    <div name="content">
+        <div class="pageContentLayout">
+            <header class="header">
+                <h1> Welcome {{userDetail.name}}! </h1>
+            </header>
+            <div class="summary">
+                <app-investment-profile-summary></app-investment-profile-summary>
+            </div>
+            <div class="investmentMade">
+                <app-investment-journey-summary></app-investment-journey-summary>
+            </div>
+            <div class="r1-card-1">
+                <app-trending-investor></app-trending-investor>
+            </div>
+            <div class="r1-card-2">
+                <app-recent-deals></app-recent-deals>
+            </div>
+            <div class="r1-card-3">
+                <app-trending-news></app-trending-news>
+            </div>
+        </div>
+    </div>
+    <div name="right-nav">
+        <tgt-right-nav withOfficeIcons=true>
+            <app-user-profile></app-user-profile>
+            <app-events [entityType]="entityType" [entityId]="profileId" [calendarHeader]="userDetail?.name"></app-events>
+            <app-tasks [entityType]="entityType" [entityId]="profileId"></app-tasks>
+            <app-connections chubLink="investor/chub"></app-connections>
+        </tgt-right-nav>
+    </div>
+</div>
+<tgt-page-loader [isLoading]="isLoading"></tgt-page-loader>

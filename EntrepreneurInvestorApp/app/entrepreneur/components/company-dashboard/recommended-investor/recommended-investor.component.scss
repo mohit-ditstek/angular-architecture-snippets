@@ -1,0 +1,28 @@
+@import "src/assets/scss/mixins/typography.scss";
+
+.recommendedInvestor {
+    .highlight {
+        @include bodyTextSmall;
+    }
+
+    ::ng-deep {
+        .connectLink {
+            margin-bottom: 8px;
+        }
+    }
+
+}
+.investorCol{    
+    ::ng-deep{
+        mat-card{
+            height: 100%;
+        }
+    }
+}
+.noData{
+    &.noRecommendedInvestorsData{
+        white-space: nowrap;
+        position: relative;
+        padding: 30% 0;
+    }
+}

@@ -1,0 +1,62 @@
+@import "src/assets/scss/mixins/layouts.scss";
+@import "src/assets/scss/mixins/typography.scss";
+.logoAndName{
+    display: flex;
+    ::ng-deep span{
+        padding: 5px 20px 30px 20px;
+    }
+}
+.label{
+    @include bodyTextSmall;
+  }
+ .value{
+    @include bodyTextHighlight;
+}
+.header{
+    @include  bodyTextLargeHighlight
+}
+.details{
+    padding: 0 60px;
+    width: 100%;
+    @include for-xl-desktop{
+        width: 90%;
+    }
+    display: flex;
+    @include for-mobile {
+        flex-wrap: wrap;
+    }
+    @include for-sm-mobile {
+        flex-wrap: wrap;
+    }
+    ::ng-deep .label{
+        @include bodyTextSmall;
+        padding-right: 5px;
+        width: 50%;
+        @include for-landscape-tablet{
+            width: 60%;
+        }
+      }
+}
+.dateAndAmountInvested{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 5px 0;
+}
+.verticalLineDivider::before{
+    border: solid 0.5px var(--tgt-silver);
+    content: '';
+    margin: 0 50px 0 -80px;
+    height: 150%;
+    @include for-landscape-tablet{
+        margin: 0 30px 0 -10px
+    }
+    @include for-mobile {
+        border: none;
+        margin : 0;
+    }
+    @include for-sm-mobile {
+        border: none;
+        margin : 0;
+    }
+}

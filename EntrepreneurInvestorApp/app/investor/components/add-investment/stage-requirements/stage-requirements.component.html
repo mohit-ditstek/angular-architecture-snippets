@@ -1,0 +1,18 @@
+<form [formGroup]="formGroup" class="tgtForm" *ngIf="formGroup">
+  <tgt-heading headingLevel="H2" headingStyle="headingRegularSmall" content="Stage Requirements"> </tgt-heading>
+  <div class="formField">
+    <tgt-dropdown label="Investment Stage" required=true [options]="formConfig.investmentStage.options" [id]="formConfig.investmentStage.id"
+      controlName="investmentStage" [form]="formGroup" [errorMessage]="getFieldError('investmentStage')" width="18">
+    </tgt-dropdown>
+  </div>
+  <div class="formField">
+    <tgt-dropdown label="Company Stage" required=true [options]="formConfig.companyStage.options" [id]="formConfig.companyStage.id"
+      controlName="companyStage" [form]="formGroup" [errorMessage]="getFieldError('companyStage')" width="18">
+    </tgt-dropdown>
+  </div>
+  <div class="formField">
+    <tgt-dropdown label="Company type" required=true [options]="formConfig.companyType.options" [id]="formConfig.companyType.id"
+      controlName="companyType" [form]="formGroup" [errorMessage]="getFieldError('companyType')" width="22">
+    </tgt-dropdown>
+  </div>
+</form>

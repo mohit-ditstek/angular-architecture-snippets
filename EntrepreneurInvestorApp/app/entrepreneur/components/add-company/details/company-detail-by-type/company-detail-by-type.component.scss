@@ -1,0 +1,29 @@
+@import '../../../../../../assets/scss/common-style.scss';
+
+.companyDetailByType {
+  margin-top: 15px;
+    .formFieldContainer2Col {
+        display: flex;
+        flex-wrap: wrap;
+
+        .col1,
+        .col2 {
+            padding-right: 40px;
+        }
+    }
+    .toggleBtn {
+      margin-bottom: 20px;
+    }
+    .cinNumber {
+      ::ng-deep{
+        .fieldContainer {
+          .mat-form-field-subscript-wrapper{
+            overflow: visible;
+            .mat-error{
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+    }
+}

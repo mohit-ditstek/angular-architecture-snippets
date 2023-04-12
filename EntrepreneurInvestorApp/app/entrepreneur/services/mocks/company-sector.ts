@@ -1,0 +1,1 @@
+export const  INTERESTS_LIST: string[] = ["Advertising", "Economics", "Aeronautics", "Medical", "Design", "Teaching", "AI", "Agriculture", "Engineering", "Biotechnology", "Space Technology", "Human Resorurce", "Animation", "Marketing", "Accountancy", "Art and Photography", "Automobile", "Fashion", "Management", "Biomedical"]

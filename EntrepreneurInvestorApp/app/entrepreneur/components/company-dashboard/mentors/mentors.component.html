@@ -1,0 +1,22 @@
+<tgt-card cardTitle="Mentors" actionLabel="" class="mentorCol" fullHeight="true">
+    <tgt-perfect-scroll class="tgtCardContent perfectMdHeight">
+        <ul class="recommendedMentor">
+            <tgt-li withAvatar="true" *ngFor="let mentor of recommendedMentors" avatarImageUrl="../assets/images/default-avatar.jpeg">
+                <tgt-li-content-wrapper>
+                    <tgt-li-left-content>
+                        <tgt-li-text-content type="title">{{mentor.name}}</tgt-li-text-content>
+                        <tgt-li-text-content type="subTitle">{{mentor.designation}} at {{mentor.organisation}}
+                        </tgt-li-text-content>
+                        <tgt-li-text-content type="subText">
+                            {{mentor.workExperience}}
+                        </tgt-li-text-content>
+                    </tgt-li-left-content>
+                    <tgt-li-right-content>
+                        <tgt-star-rating [rating]="mentor.rating"></tgt-star-rating>
+                    </tgt-li-right-content>
+                </tgt-li-content-wrapper>
+            </tgt-li>
+        </ul>
+    </tgt-perfect-scroll>
+    <!-- <div class="alignRight"><a>Add requirement</a></div> -->
+</tgt-card>

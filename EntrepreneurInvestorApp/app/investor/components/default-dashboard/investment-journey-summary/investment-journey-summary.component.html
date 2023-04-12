@@ -1,0 +1,68 @@
+<tgt-full-width-card>
+    <div class="noInvestmentsMade" *ngIf="!investmentJourneySummaryList.length">
+        <span class="noInvestmentMadeLabel">You have no investments made yet!</span>
+    </div>
+    <div class="investmentProfileListContent" *ngIf="investmentJourneySummaryList.length">
+        <div class="header">
+            <tgt-heading headingLevel="H2" headingStyle="headingRegular">Investments Made</tgt-heading>
+        </div>
+         
+        <tgt-perfect-scroll class="tgtCardContent perfectMdHeight">
+            <ul class="ijSummaryList">
+                <div *ngFor="let investment of investmentJourneySummaryList" class="ijItem">
+                    <tgt-li>
+                        <div class="ijItemContent">
+                            <div class="ijClass listItem">
+                                <tgt-avatar class="tgtAvatar"  [avatarImageUrl]="investment?.logoUrl || '../assets/images/companyDefaultImage.png'"></tgt-avatar>
+                                <div class="primaryDescription">
+                                    <tgt-heading headingLevel="H2" headingStyle="headingRegular" noMargin=true>{{investment.companyName}}</tgt-heading>
+                                    <div class="liSubTitle" >{{investment.sector}} </div>
+                                </div>
+                            </div> 
+                            <div class="contentItem listItem">
+                                <ul>
+                                    <tgt-li-content-wrapper>
+                                        <tgt-li-left-content><span class="label">Investment Date</span></tgt-li-left-content>
+                                        <tgt-li-right-content >
+                                            <span class="value">
+                                                {{investment?.investmentDate | date:'MMM yyyy'}}
+                                            </span>
+                                        </tgt-li-right-content>
+                                    </tgt-li-content-wrapper>
+                                </ul>
+                                <ul>
+                                    <tgt-li-content-wrapper>
+                                        <tgt-li-left-content><span class="label">Amount Invested</span></tgt-li-left-content>
+                                        <tgt-li-right-content>
+                                            <span class="value">{{investment?.amountInvested | currencyTransform}}</span>
+                                        </tgt-li-right-content>
+                                    </tgt-li-content-wrapper>
+                                </ul>
+                            </div>
+                            <div class="contentItem listItem">
+                                <ul>
+                                    <tgt-li-content-wrapper>
+                                        <tgt-li-left-content><span class="label">Equity%</span></tgt-li-left-content>
+                                        <tgt-li-right-content >
+                                            <span class="value">
+                                                {{investment?.investmentEquityPercent}}%
+                                            </span>
+                                        </tgt-li-right-content>
+                                    </tgt-li-content-wrapper>
+                                </ul>
+                                <ul>
+                                    <tgt-li-content-wrapper>
+                                        <tgt-li-left-content><span class="label">Current Inv. Value</span></tgt-li-left-content>
+                                        <tgt-li-right-content>
+                                            <span class="value">{{investment?.currentInvestmentValue | currencyTransform}}</span>
+                                        </tgt-li-right-content>
+                                    </tgt-li-content-wrapper>
+                                </ul>
+                            </div>
+                        </div>
+                    </tgt-li>
+                </div>
+            </ul>
+        </tgt-perfect-scroll>
+    </div>
+</tgt-full-width-card>

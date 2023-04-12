@@ -1,0 +1,72 @@
+<div class="shareHolders">
+    <div class="addPartnerFormWrap">
+      <form [formGroup]="formGroup" class="tgtForm">
+        <div>
+            <div class="formFieldContainer2Col">
+                <div class="col1">
+                    <tgt-text-input [label]="formConfiguration['name'].label" type="text" controlName="name"
+                        width="20"
+                        placeholder="Enter name" [errorMessage]="getFieldError('name')" [id]="formConfiguration['name'].id"
+                        [form]="formGroup">
+                    </tgt-text-input>
+  
+                    <tgt-text-input [label]="formConfiguration['email'].label" [form]="formGroup" type="text" [id]="formConfiguration['email'].id"
+                        width="20"
+                        controlName="email" placeholder="Enter email" [errorMessage]="getFieldError('email')"
+                        >
+                    </tgt-text-input>
+  
+                    <tgt-text-input class="sharePercentage" [label]="formConfiguration['sharePercentage'].label" [form]="formGroup" type="text"
+                        controlName="sharePercentage" placeholder="" [errorMessage]="getFieldError('sharePercentage')"  [id]="formConfiguration['sharePercentage'].id"
+                        width="5"
+                        suffix="%">
+                    </tgt-text-input>
+  
+                    <tgt-radio-button class="founderRadioBtn" 
+                                      displayAsChip=true 
+                                      [label]="formConfiguration['partnerType'].label" 
+                                      required=true
+                                      controlName="partnerType" 
+                                      [options]="formConfiguration['partnerType'].options"
+                                      [form]="formGroup"
+                                      [errorMessage]="getFieldError('partnerType')">
+                    </tgt-radio-button>
+  
+                    <div class="toggleBtn">
+                      <tgt-toggle [label]="formConfiguration['isBoardMember'].label" controlName="isBoardMember"
+                          [form]="formGroup">
+                      </tgt-toggle>
+                    </div>
+  
+                  </div>
+              </div>
+          </div>
+      </form>
+      <a mat-button color="primary" class="withoutLeftPadding" (click)="addUpdatePartner()">{{isUpdatePartner?'Update Partner':'Add Partner'}}</a>
+      <span class="verticalLineDivider"></span>
+      <a mat-button color="primary"  (click)="cancelAndClearPartner()">{{isUpdatePartner?'Cancel':'Clear'}}</a>
+    </div>
+  
+  
+      <tgt-perfect-scroll class="tgtListingCardContent perfectMdHeight">
+          <div class="listing" *ngIf="partners.length > 0">
+              <tgt-heading noMargin=true headingLevel="H2" content="Partners"></tgt-heading>
+              <div class="cardContainer" *ngFor="let partner of partners">
+                  <mat-card class="listingCard">
+                      <tgt-heading noMargin=true headingLevel="H4" [content]="partner.name" [tooltip]="partner.name"></tgt-heading>
+                      <div class="listActionBtn">
+                          <mat-icon svgIcon="tgt_delete" (click)="deletePartner(partner)" tooltip="Delete"></mat-icon>
+                          <mat-icon svgIcon="tgt_edit" (click)="editPartner(partner)" tooltip="Edit"></mat-icon>
+                      </div>
+                      <div>
+                          <span>{{partner.founder | listingLabelByValue:founders}}</span>
+                      </div>
+                      <div>
+                          <span>{{partner.sharePercentage}}% share</span>
+                      </div>
+                  </mat-card>
+              </div>
+          </div>
+      </tgt-perfect-scroll>
+  </div>
+  

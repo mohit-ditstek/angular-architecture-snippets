@@ -1,0 +1,8 @@
+<div>
+    <div *ngIf="isLoading" class="pageLoader">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!isLoading">
+        <ng-content></ng-content>
+    </div>
+</div>

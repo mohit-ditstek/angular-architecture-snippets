@@ -1,0 +1,51 @@
+@import "src/assets/scss/mixins/typography.scss";
+@import "src/assets/scss/mixins/layouts.scss";/*  how it works   */
+.howItWorks {
+    margin-bottom: 60px;
+    .coll{
+      img{
+        max-width: 490px;
+        width: 100%;
+        @include for-mobile {
+          margin: 0 auto;
+        }
+      }
+      .hiwList {
+        display: flex;
+        align-items: center;
+        min-height: 150px;
+        @include for-mobile {
+          margin-top: 15px;
+        }
+        .countNumber {
+          font-size: var(--tgt-font-size-gigantic);
+          font-weight: var(--font-weight-medium);
+          color: var(--tgt-teal);
+          margin-right:20px;
+        }
+        .countDetails {
+          h3 {
+            margin: 0;
+            @include smCaption;
+            color: var(--black-color);
+          }
+          p {
+            margin: 10px 0 0;
+            line-height: 22px;
+            @include bodyText;
+          }
+        }
+      }
+    }
+  }
+  .col-2-wrapper{
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0px auto;
+    display: grid;
+    grid-gap: 2rem;
+    width: 100%;
+    align-items: center;
+    @include for-mobile {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }

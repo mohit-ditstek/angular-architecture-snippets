@@ -1,0 +1,71 @@
+@import 'src/assets/scss/form.scss';
+.companyBasicDetails{
+  padding-right: 40px;
+  margin-top: 15px;
+  .imageUploadWrapper {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  .inputWrapper {
+    width: 100%;
+  }
+  .imageCroperHeader{
+    ::ng-deep{
+      h3{
+        @include bodyTextSmallHighlight;
+        margin: 0;
+        padding:10px;
+      }
+    }
+  }
+  .browseBtn{
+    position: relative;
+    max-width: 130px;
+    overflow: hidden;
+    &:before {
+      position: absolute;
+      content: "Upload Photo";
+      left: 0;
+      top: 0;
+      border: 1px dashed var(--tgt-blue);
+      border-radius: 5px;
+      padding: 10px 20px;
+      text-align: center;
+      z-index: 0;
+      @include bodyTextSmallHighlight;
+      color:var(--tgt-blue);
+    }
+    input{
+      opacity: 0;
+      height: 42px;
+      cursor: pointer;
+    }
+  }
+
+  .companyNameField {
+    width: 70%;
+  }
+
+
+  .stageField {
+    width: 50%;
+  }
+
+  .companyDescriptionField {
+    width: 90%;
+    ::ng-deep textarea {
+      height: 120px;
+    }
+  }
+
+  .logoField{
+    display: flex;
+    label.logo {
+      width: 200px;
+      margin-bottom: 30px;
+      padding: 0;
+    }
+
+  } 
+ 
+}

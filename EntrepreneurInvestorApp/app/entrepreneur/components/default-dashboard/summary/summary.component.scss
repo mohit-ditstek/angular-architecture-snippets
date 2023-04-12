@@ -1,0 +1,194 @@
+@import "src/assets/scss/mixins/typography.scss";
+@import "src/assets/scss/media-queries.scss";
+
+.companyListContent {
+  .header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    @include for-mobile {
+      flex-direction: column;
+      padding-bottom: 20px;
+    }
+
+    h2 {
+      flex: 1;
+    }
+
+    .actionsContainer {
+      width: 19em;
+      text-align: right;
+
+      @include for-mobile {
+        text-align: center;
+      }
+      button {
+        margin: 0 10px;
+      }
+    }
+  }
+  .invOpportunities,
+  .upcomingTask,
+  .companyIcon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @include for-tablet {
+      align-items: self-start;
+    }
+  }
+  .companyList{
+    max-height: 350px;
+    overflow: auto;
+    .completeCompanyProfile{
+      width: 25%;
+    }
+    .companyItem{
+      padding: 14px 0;
+      border-bottom: 1px solid var(--tgt-border-color-default);
+    }
+     .companyItemContent{
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: space-between;
+      @include for-landscape-tablet{
+        margin-top: -15px !important;
+      }
+      @include for-tablet{
+        margin-top: -15px !important;
+      }
+      @include for-mobile{
+        margin-top: -15px !important;
+      }
+      .companiesProgressBar {
+        // display: flex;
+        align-items: center;
+      }
+       .primaryDescription{
+        padding-left: 10px;
+      }
+       .contentItem{
+        width: 20%;
+          .subtitle {
+          @include bodyTextSmall;
+        }
+        ::ng-deep tgt-heading{
+          cursor: pointer;
+          ::ng-deep h2{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+        @include for-landscape-tablet{
+          width : 35%;
+          margin: 15px 0;
+        }
+        @include for-tablet{
+          width : 30%;
+          margin: 15px 0;
+        }
+        @include for-mobile{
+          width: 50%;
+          margin: 15px 0;
+        }
+         .numberStepper {
+          display: flex;
+          align-items: flex-start;
+          ::ng-deep {
+            .mat-horizontal-stepper-header-container {
+              position: relative;
+              top: auto;
+              right: auto;
+            }
+            // .mat-horizontal-stepper-header {
+            //   pointer-events: none !important;
+            // }
+          }
+        }
+      }
+       .timeline{
+        padding: 0 10px;
+        @include for-landscape-tablet{
+          width : 35%;
+        }
+        @include for-tablet{
+          width : 30%;
+        }
+        @include for-mobile{
+          width: 100%;
+        }
+      }
+    }
+  }
+  .invOpportunities {
+    label {
+      @include bodyTextSmall;
+    }
+    .value {
+      @include bodyTextSecondarySmall;
+      margin-top: 10px;
+    }
+  }
+  .upcomingTask {
+    .title {
+    margin-bottom: 10px;
+
+      @include bodyTextSecondarySmall;
+    }
+    .date {
+      @include bodySubTextLight;
+    }
+  }
+  .companyIcon {
+    flex: 0.5;
+    align-items: flex-end !important;
+  }
+}
+.noCompanyContent {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  padding: 40px;
+
+  .contentLabel {
+    margin: 15px 0;
+  }
+  .actionContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    > button {
+      margin: 15px;
+    }
+  }
+  span {
+    @include bodyTextLarge;
+  }
+  button {
+    text-transform: capitalize;
+  }
+}
+.numberStepper {
+  display: flex;
+  align-items: center;
+}
+tgt-li {
+  ::ng-deep {
+    .tgtLI {
+      display: flex;
+      align-items: flex-start;
+      padding: 10px 0;
+      margin: 5px 0;
+    }
+  }
+}

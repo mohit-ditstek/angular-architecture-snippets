@@ -1,0 +1,47 @@
+@import '../../../../../assets/scss/mixins/typography.scss';
+.ServiceProviders{
+    grid-template-columns: repeat(4, 1fr);
+    margin: 14px 0 !important;
+    display: grid;
+    grid-gap: 0;
+    text-align: center;
+      .serviceColumn{
+        .serviceImage{
+          height: 90px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-right: 2px solid #eee;
+          margin: 15px 0;
+          img{
+            height: 50px;
+          }
+        }
+        .serviceText{
+          h3{
+            margin: 0;
+            @include bodyTextSmall;
+          }
+          p{
+            margin: 0;
+            @include bodySubText;
+          }
+        }
+        &:last-child{
+          .serviceImage{
+            border-right: none;
+
+          }
+        }
+      }
+.serviceProviderIcon{
+  height: 60px;
+  width: 60px;
+  color: var(--tgt-primary-action-color);
+}
+}
+.alignRight {
+  display: flex;
+  justify-content: flex-end;
+}
+

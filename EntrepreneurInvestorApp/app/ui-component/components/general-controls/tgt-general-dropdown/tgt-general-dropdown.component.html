@@ -1,0 +1,8 @@
+
+<tgt-field-wrapper [label]="label" [icon]="icon" [fullWidth]="fullWidth" [fieldRequired]="required" >
+    <mat-form-field appearance="outline"  [ngClass]="{'fullWidth': true}">
+      <mat-select [placeholder]="placeholder" [(ngModel)]="selectedValue"  ngDefaultControl (selectionChange)="handleChange()" [id]="id?id:''">
+        <mat-option *ngFor="let option of options" [value]="option.key">{{option.value}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </tgt-field-wrapper>

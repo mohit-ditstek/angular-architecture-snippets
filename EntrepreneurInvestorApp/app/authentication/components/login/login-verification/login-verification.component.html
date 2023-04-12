@@ -1,0 +1,42 @@
+<mat-grid-list mat-cols-sm="2" mat-cols-md="4" mat-cols-lg="4" cols="2" class="authenticationFormWrap">
+    <mat-grid-tile class="formWrapperImage">
+        <div class="logoWrapper"><img src="assets/images/logo.png" alt="Logo" title="Logo" /></div>
+        <div class="loginImage">
+            <img src="assets/images/entrepreneur.png" alt="Logo" title="Logo" />
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile class="formWrapper">
+        <form #verificationForm="ngForm" id="verificationForm" class="formFieldWraper">
+            <h2 class="mainCaption" *ngIf="!isOtpExpired">OTP Verification</h2>
+            <h2 class="mainCaption" *ngIf="isOtpExpired">Oops!</h2>
+            <p class="otpSentText" *ngIf="!isOtpExpired">Enter the OTP</p>
+            <div class="otpNumber" *ngIf="!isOtpExpired">
+                <mat-form-field>
+                    <input matInput #otpField name="otp" maxlength="4" [(ngModel)]="otp" required (keypress)=checkOtp($event)>
+                    <mat-error *ngIf="isOtpSubmitted && !otp">
+                        Please enter OTP!
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="progressBar" *ngIf="!isOtpExpired">
+                <p class="otpSentText">Your code expires in</p>
+                <mat-progress-bar mode="determinate" [value]="progressbarValue"></mat-progress-bar>
+                <p class="otpSentText">{{timeLeft | minuteSeconds}} sec</p>
+            </div>
+            <div class="progressBar hasError" *ngIf="isOtpExpired">
+                <p class="otpSentText">Your code expired</p>
+                <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+                <p class="otpSentText">{{timeLeft | minuteSeconds}} sec</p>
+
+                <button mat-button color="primary" (click)="resendOtp()">Regenrate OTP</button>
+            </div>
+            <div class="verifyActionButton">
+                <button mat-raised-button color="primary" [disabled]="isOtpExpired"
+                    (click)="verifyOtp()">Verify</button>
+            </div>
+
+            <p class="resendText" *ngIf="!isOtpExpired">Did not receive OTP? <button mat-button color="primary"
+                    (click)="resendOtp()">Resend</button>
+        </form>
+    </mat-grid-tile>
+</mat-grid-list>

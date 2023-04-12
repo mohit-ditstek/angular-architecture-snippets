@@ -1,0 +1,24 @@
+.iconListWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    mat-list-item {
+      background-color: var(--white-color);
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0px 0px 5px var(--tgt-box-shadow-default);
+      &:last-child{
+        margin-right:0;
+      }
+      ::ng-deep{
+        .mat-list-item-content{
+          padding: 0;
+        }
+      }
+    }
+  }

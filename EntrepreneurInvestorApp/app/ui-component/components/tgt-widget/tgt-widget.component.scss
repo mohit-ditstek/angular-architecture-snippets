@@ -1,0 +1,112 @@
+@import 'src/assets/scss/mixins/typography';
+
+
+mat-card{
+    &.cardWrap{
+        padding: 15px;
+        box-shadow: 2px 2px 5px var(--tgt-box-shadow-default);
+        border-radius: 10px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: var(--white-color);
+        overflow: hidden;
+        height: 100%;
+
+        h5{
+            margin: 0;
+            @include bodyTextSmallLight;
+        }
+        h3 {
+            margin: 0;
+            line-height: 40px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            width: 100%;
+            text-align: center;
+            overflow: hidden;
+            
+            @include bodyTextLargeHighlight;
+            span{
+              @include bodyTextLight;
+            }
+            &.insideCaption{
+                @include bodySubText;
+                color:var(--tgt-primary-action-color);
+            }
+        }
+        .startUpText {
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            span{
+                @include bodySubTextHighlight
+            }
+        }
+        .progress {
+            display: flex;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+    }
+    
+}
+
+/* progress bar  */
+.progress{
+    mat-progress-bar{
+        &.widget-0{
+            ::ng-deep{
+                .mat-progress-bar-fill{
+                    &::after {
+                    background-color: var(--tgt-blue-secondary);
+                    } 
+                }
+            }
+        }
+        &.widget-1{
+            ::ng-deep{
+                .mat-progress-bar-fill{
+                    &::after {
+                    background-color: var(--tgt-green-color);
+                    } 
+                }
+            }
+        }
+        &.widget-2{
+            ::ng-deep{
+                .mat-progress-bar-fill{
+                    &::after {
+                    background-color: var(--tgt-violet-color);
+                    } 
+                }
+            }
+        }
+        &.widget-3{
+            ::ng-deep{
+                .mat-progress-bar-fill{
+                    &::after {
+                    background-color: var(--tgt-orange-color);
+                    } 
+                }
+            }            
+        }
+        &.widget-4{
+            ::ng-deep{
+                .mat-progress-bar-fill{
+                    &::after {
+                    background-color: var(--tgt-dark-blue);
+                    } 
+                }
+            }            
+        }
+    }
+}
+

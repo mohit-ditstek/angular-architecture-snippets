@@ -1,0 +1,127 @@
+@import "src/assets/scss/mixins/layouts.scss";
+
+.pageWithRightNav {
+  @include pageWithRightNav;
+  @include for-tablet {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.pageContentLayout {
+  @include pageContentLayout;
+  padding-bottom: 25px;
+  @include for-xl-desktop {
+    grid-template-areas: repeatStr(12, "header") 
+                         repeatStr(12, "summary") 
+                         repeatStr(4, "mentors") + repeatStr(4, "investors") + repeatStr(4, "opportunities")
+                         repeatStr(4, "mentors") + repeatStr(4, "investors") + repeatStr(4, "journey")
+                         repeatStr(8, "recommended-service-providers") + repeatStr(4, "journey") 
+  }
+  @include for-lg-desktop {
+    grid-template-areas: repeatStr(12, "header") 
+                         repeatStr(12, "summary") 
+                         repeatStr(4, "mentors") + repeatStr(4, "investors") + repeatStr(4, "opportunities")
+                         repeatStr(4, "mentors") + repeatStr(4, "investors") + repeatStr(4, "journey")
+                         repeatStr(8, "recommended-service-providers") + repeatStr(4, "journey") 
+  }
+  @include for-desktop {
+    grid-template-areas:  repeatStr(12, "header") 
+                        repeatStr(12, "summary") 
+                        repeatStr(6, "mentors") + repeatStr(6, "investors")
+                        repeatStr(6, "opportunities") + repeatStr(6, "journey")
+                        repeatStr(12, "recommended-service-providers") 
+  }
+  @include for-tablet {
+    grid-template-areas:  repeatStr(6, "header") 
+                          repeatStr(6, "summary") 
+                          repeatStr(3, "mentors") + repeatStr(3, "investors")
+                          repeatStr(3, "opportunities") + repeatStr(3, "journey")
+                          repeatStr(6, "recommended-service-providers")   
+  }
+  @include for-mobile {
+    grid-template-areas: "header"
+                        "summary"
+                        "mentors"
+                        "investors"
+                        "opportunities"
+                        "recommended-service-providers"
+                        "journey";
+  }
+  @include for-sm-mobile {
+    grid-template-areas: "header"
+                        "summary"
+                        "mentors"
+                        "investors"
+                        "opportunities"
+                        "recommended-service-providers"
+                        "journey";
+  }
+  
+}
+
+.header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .heading {
+    display: flex;
+    align-items: center;
+    
+    mat-icon{
+      color: var(--tgt-primary-action-color);
+      text-decoration: none;
+      margin-left: 8px !important;
+      position: relative;
+      width: 15px;
+      height: 15px;
+    }
+  }
+  .horizontalTimeline{
+    width:100%;
+    max-width: 300px;
+    ::ng-deep .tgtTimeline{
+      ::ng-deep .milestone{
+        top: 10px !important;
+      }
+    }
+  }
+}
+.summary {
+  grid-area: summary;
+}
+
+.mentors {
+  grid-area: mentors;
+}
+
+.investors {
+  grid-area: investors;
+}
+
+.investmentOpportunities {
+  grid-area: opportunities;
+}
+
+.recommendedServiceProviders {
+  grid-area: recommended-service-providers;
+}
+
+.investmentJourney {
+  grid-area: journey;
+}
+
+.widgetsContainer {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  > tgt-widget {
+      margin-bottom: 15px;
+      width: calc(20% - 15px);
+      min-width: 140px;
+  }
+}

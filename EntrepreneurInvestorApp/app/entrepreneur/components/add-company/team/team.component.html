@@ -1,0 +1,13 @@
+<div class="executiveContainer">
+  <div class="form">
+    <tgt-heading headingLevel="H2" headingStyle="headingRegularSmall" content="Team: Executive"></tgt-heading>
+    <form [formGroup]="formGroup" class="tgtForm">
+      <div class="col2">
+        <tgt-text-input label="Number of employees" type="number" controlName="employeeStrength" maxLength="50"
+          placeholder="Number of employees" [form]="formGroup" [errorMessage]="getFieldError('employeeStrength')"  width="12">
+        </tgt-text-input>
+      </div>
+    </form>
+    <hr />
+    <app-executive [executives]="executives" [designations]="designationOptions"></app-executive>
+  </div>

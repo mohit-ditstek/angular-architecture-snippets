@@ -1,0 +1,20 @@
+<tgt-field-wrapper [label]="label" [fieldRequired]="required">
+    <div class="datePickerWrapper yearPicker">
+        <mat-form-field appearance="outline">
+          <input matInput 
+                autocomplete="off"
+                [(ngModel)]="selectedDate" 
+                [min]="minDate"
+                [max]="maxDate"
+                [matDatepicker]="picker" 
+                [placeholder]="placeholder" 
+                (click)="picker.open()"
+                [id]="id ? id : controlName"
+                (keydown)="picker.open()" readonly>
+          <mat-datepicker #picker startView="multi-year" (yearSelected)="onYearChange($event, picker)"></mat-datepicker>
+        </mat-form-field>
+        <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
+    </div>
+    
+  </tgt-field-wrapper>
+  

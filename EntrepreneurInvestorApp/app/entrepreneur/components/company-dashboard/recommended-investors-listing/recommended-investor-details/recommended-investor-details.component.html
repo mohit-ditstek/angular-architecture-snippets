@@ -1,0 +1,140 @@
+<div class="investorDetails">
+  <div class="title">
+    <div class="investorLogo">
+      <img [src]="investor.iconUrl || '../assets/images/default-avatar.jpeg'" />
+    </div>
+    <div class="investorDetail">
+      <span class="investorCode">{{investor?.investorCode}}</span>
+      <tgt-star-rating [rating]="investor.rating"></tgt-star-rating>
+        <span class="designation">
+           {{investor?.designation}}
+           <span *ngIf="investor?.designation && investor?.company">,</span>
+           {{investor?.company}}
+        </span>
+      <span class="currentPostionLabel" *ngIf="investor?.designation"><small>Current Position</small></span>
+    </div>
+  </div>
+  <div class="cards">
+    <tgt-card withProgress=true progressColor="TEAL" noTitle="true">
+      <div class="cardContent">
+        <span *ngIf="investor.investmentAppetite" class="value">{{investor?.investmentAppetite | currencyTransform}}
+        </span>
+        <span *ngIf="!investor.investmentAppetite">NA</span>
+        <span class="subText">Appetite</span>
+      </div>
+    </tgt-card>
+    <tgt-card withProgress=true progressColor="ORANGE" noTitle="true">
+      <div class="cardContent">
+        <span *ngIf="investor.companiesInvested" class="value">{{investor?.companiesInvested}} </span>
+        <span *ngIf="!investor.companiesInvested">NA</span>
+        <span class="subText">Companies Invested</span>
+      </div>
+    </tgt-card>
+    <tgt-card withProgress=true progressColor="BLUE" noTitle="true">
+      <div class="cardContent">
+        <span *ngIf="investor.currentInvestments" class="value">{{investor?.currentInvestments | currencyTransform}}
+        </span>
+        <span *ngIf="!investor.currentInvestments">NA</span>
+        <span class="subText">Current Investments</span>
+      </div>
+    </tgt-card>
+    <tgt-card withProgress=true progressColor="VIOLET" noTitle="true">
+      <div class="cardContent">
+        <span class="value">{{(investor?.investorType.includes('_') ? investor?.investorType.replace("_"," ") : investor?.investorType) || '-'}}</span>
+        <span class="subText">Investor Type</span>
+      </div>
+    </tgt-card>
+  </div>
+  <div class="aboutInvestor">
+    <mat-accordion class="example-headers-align" multi>
+      <div [@.disabled]="disableAnimation">
+      <mat-expansion-panel #educationPanel  [expanded]="false" hideToggle="true">
+        <mat-expansion-panel-header  >
+          <mat-icon *ngIf="!educationPanel.expanded"  svgIcon="tgt_accordion_closed"></mat-icon>
+          <mat-icon *ngIf="educationPanel.expanded" svgIcon="tgt_accordion_opened"></mat-icon>
+          <mat-panel-title >
+            Education
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description (click)="$event.stopPropagation();">
+          <div class="panelDescription">
+            <div class="panelDescription">
+              <span *ngIf="!investor?.academicDetails.length" class="noData">No Education</span>
+              <div *ngIf="investor?.academicDetails.length">
+                <div *ngFor="let education of investor.academicDetails" class="accordionDetails">
+                  <div class="educationClass">
+                    <button mat-icon-button>
+                      <mat-icon svgIcon="tgt_university"></mat-icon>
+                    </button>
+                    <div class="primaryDescription">
+                      <div class="liTitle">{{education?.college}}</div>
+                      <div class="liSubTitle">{{education?.degree}} in {{education?.branch}} </div>
+                      <div class="liSubTitle">{{education?.startYear}} - {{education?.endYear}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="false" #workExpPanel hideToggle="true">
+        <mat-expansion-panel-header>
+          <span *ngIf="investor?.totalExperience" class="totalExperienceClass">{{investor?.totalExperience}} years</span>
+          <mat-icon *ngIf="!workExpPanel.expanded"  svgIcon="tgt_accordion_closed"></mat-icon>
+          <mat-icon *ngIf="workExpPanel.expanded" svgIcon="tgt_accordion_opened"></mat-icon>
+          <mat-panel-title>
+            Work Experience
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <div class="panelDescription">
+            <span *ngIf="!investor?.professionalHistories.length" class="noData">No Experience</span>
+            <div *ngIf="investor?.professionalHistories.length">
+              <div *ngFor="let experience of investor.professionalHistories" class="accordionDetails">
+                <div class="companyClass">
+                  <button mat-icon-button>
+                    <mat-icon svgIcon="tgt_company"></mat-icon>
+                  </button>
+                  <div class="primaryDescription">
+                    <div class="liTitle">{{experience?.title}}</div>
+                    <div class="liSubTitle">{{experience?.company}} </div>
+                    <div class="liSubTitle">{{experience?.startYear}} - {{experience?.endYear}}</div>
+                  </div>
+                  <div>{{getExperience(experience) > 0 ? (getExperience(experience)+' years') : ''}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="false" #sectorsPanel hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-icon *ngIf="!sectorsPanel.expanded"  svgIcon="tgt_accordion_closed"></mat-icon>
+          <mat-icon *ngIf="sectorsPanel.expanded" svgIcon="tgt_accordion_opened"></mat-icon>
+          <mat-panel-title>
+            Sectors
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <div class="sectorDescription">
+            <span *ngIf="!investor?.sectors.length" class="noData">No Sectors</span>
+              <mat-chip-list #chipList class="multiSelectChip drawerMatChip" *ngIf="investor?.sectors.length">
+                <div *ngFor="let option of investor.sectors">
+                  <mat-chip>{{option.name}}</mat-chip>
+                </div>
+              </mat-chip-list>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel>
+      </div>
+    </mat-accordion>
+  </div>
+  <div class="actions">
+
+    <app-connect-link [requestStatus]="investor?.requestStatus" [requestSentByMe]="investor?.requestSentByMe"
+      showConnectLinkAsButton="true" (onConnect)="connect()" (onWithdraw)="withdraw()" (onAccept)="accept()">
+    </app-connect-link>
+  </div>
+
+</div>

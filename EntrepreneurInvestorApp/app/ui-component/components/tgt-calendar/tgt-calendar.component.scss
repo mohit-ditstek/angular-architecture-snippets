@@ -1,0 +1,115 @@
+@import "src/assets/scss/mixins/layouts.scss";
+@import "src/assets/scss/mixins/typography.scss";
+.cal-day-number {
+    float: left;
+    margin-left: 15px;
+    color: var(--tgt-dark-grey) !important;
+}
+.eventCol{
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: var(--grey-contrast-color);
+    width: 98%;
+    @include bodyTextSmall;
+    color: var(--tgt-grey);
+}
+.taskTitle {
+    border-left: 4px solid var(--tgt-orange-color);    
+    margin: 4px 2px;
+    ::ng-deep .moreEventsOrTasksClass{
+      font-weight: var(--font-weight-bold);
+    }
+}
+.eventTitle {
+    border-left: 4px solid var(--tgt-teal);
+    margin: 0px 2px;
+    ::ng-deep .moreEventsOrTasksClass{
+      font-weight: var(--font-weight-bold);
+    }
+}
+/* popup */
+
+.calendarPopUp {
+    min-width: 240px;
+    padding: 8px 15px 15px;
+    .cpCaption {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      label{
+        @include pageTitleSecondary;
+      }
+      .mat-icon {
+        width: 16px;
+        margin-top: -8px;
+        color:var(--tgt-grey);
+      }
+    }
+    .cpUserInfoWrapper {
+      display: flex;
+      align-items: center;
+      padding: 15px 10px;
+      border-bottom: 1px solid var(--tgt-grey);
+      margin-bottom: 20px;
+      span{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 15px;
+      }
+      .cpUserInfo{
+        h5{
+          margin: 0;
+          @include sectionTitle;
+          color:var(--darkest-grey);
+        }
+        p{
+          margin: 0;
+          @include sectionTitle;
+          color:var(--tgt-grey);
+        //   font-size: 15px;
+        }
+      }
+    }
+    .cpDetails{
+      p{
+        @include bodyText;
+        color: var(--tgt-dark-grey);
+        span{
+          color: var(--tgt-grey);
+        }
+      }
+    }
+    .cpActionBtn{
+      text-align: right;
+      @include bodyText;
+      a{
+        color:var(--tgt-blue) !important;
+        margin-left: 15px;
+      }
+    }
+  
+  }
+  ::ng-deep{
+    .cal-month-view {
+        margin-bottom: 30px;
+        .cal-cell-top {
+          min-height: 45px;
+        }
+    }
+    .cal-header {
+      border-radius: 10px 10px 0 0;
+      overflow: hidden;
+      .cal-cell {
+        padding: 16px 10px !important;
+        background-color: #f2f2f2;
+        border-right: 1px solid #e1e1e1;
+        font-weight: normal;
+        &.cal-weekend{
+          border-right: none;
+        }
+      }
+    }
+  }
+  

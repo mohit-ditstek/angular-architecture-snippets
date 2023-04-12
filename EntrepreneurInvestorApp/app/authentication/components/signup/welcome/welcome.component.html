@@ -1,0 +1,13 @@
+
+    <div class="welcomeInnerWrap">
+      
+      <img src="assets/images/check-image.png" width="81" alt="image" />
+      <h1>Congratulations!!</h1>
+      <h2>Welcome to <img src="assets/images/logo.png" alt="Logo" title="Logo" /></h2>
+      <p><button mat-button color="primary" (click)="onClick('dashboard')">View Dashboard</button></p>
+      <p class="welcomeActions"  *ngIf="data.userType == 'entrepreneur'">
+        <button mat-raised-button color="primary" (click)="onClick('company')">Create a company</button>
+        <button mat-raised-button color="primary" (click)="onClick('idea')">Create a idea</button>
+      </p>
+    </div>
+ 
