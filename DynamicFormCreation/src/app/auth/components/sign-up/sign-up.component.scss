@@ -1,0 +1,47 @@
+.authPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2; // Set your desired background color
+}
+
+.innerPage {
+    width: 80%;
+    max-width: 1200px; // Adjust based on your preference
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lft {
+    flex: 1;
+    // Add styling for the left section if needed
+}
+
+.rgt {
+    flex: 2;
+    padding: 20px;
+    background-color: white; // Set your desired background color
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); // Add shadow for depth
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+h5 {
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+a {
+    color: #007bff; // Set your desired link color
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}

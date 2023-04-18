@@ -1,0 +1,14 @@
+<div class="authPage">
+    <div class="innerPage">
+        <div class="lft">
+            <!-- Add content for the left section if needed -->
+        </div>
+        <div class="rgt">
+            <h1>Form</h1>
+            <app-dynamic-form [config]="config" #form="dynamicForm" (submitted)="signUp()"></app-dynamic-form>
+            <!-- <h5>
+                Already have an Account? <a routerLink="/">Login</a>
+            </h5> -->
+        </div>
+    </div>
+</div>

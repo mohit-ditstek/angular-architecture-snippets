@@ -1,0 +1,20 @@
+button {
+    // Base styles
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    // Default background and text color
+    background-color: #007bff; // blue
+    color: #ffffff; // white
+    // Hover styles
+    &:hover {
+        background-color: #0056b3; // darker blue on hover
+    }
+    // Disabled styles
+    &:disabled {
+        background-color: #6c757d; // grey for disabled state
+        cursor: not-allowed;
+    }
+}

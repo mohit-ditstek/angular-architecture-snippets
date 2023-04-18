@@ -1,0 +1,17 @@
+mat-form-field {
+    width: 100%;
+    position: relative;
+    input {
+        width: 100%;
+        padding: 8px 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+    i {
+        position: absolute;
+        right: 10px;
+        top: 4px;
+        opacity: 0.6;
+        font-size: 14px;
+    }
+}

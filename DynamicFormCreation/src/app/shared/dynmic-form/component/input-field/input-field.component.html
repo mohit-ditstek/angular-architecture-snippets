@@ -1,0 +1,11 @@
+<mat-form-field *ngIf="config.name != 'searchFilter'" [formGroup]="group" [class]="config.fieldType === 'password' ? 'withIcon':'' ">
+    <input matInput [id]="config.name" [class]="config.class" [type]="(hide) ? 'text' : config.fieldType!" [formControlName]="config.name" [placeholder]="config.placeholder!" />
+    <i *ngIf="config.fieldType === 'password'" (click)="toggleVisibility()" [class]="hide ? 'fa fa-eye' : 'fa fa-eye-slash'" aria-hidden="true"></i>
+    <span *ngIf="config.fieldType === 'email' && group.controls?.email?.invalid && group.controls.email.touched">Ex: abc@mail.com</span>
+</mat-form-field>
+
+<mat-form-field *ngIf="config.name == 'searchFilter'" class="withIcon">
+    <input matInput [id]="config.name" [(ngModel)]="config.value" [class]="config.class" [type]="config.fieldType!" [placeholder]="config.placeholder!" />
+    <mat-hint *ngIf="config.fieldType === 'password'">{{config.hint}}</mat-hint>
+    <mat-icon>search</mat-icon>
+</mat-form-field>
