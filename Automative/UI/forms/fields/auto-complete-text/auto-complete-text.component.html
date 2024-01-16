@@ -1,0 +1,65 @@
+<div class="formGroup">
+  <form #form="ngForm" class="search-form">
+    <mat-form-field appearance="outline">
+      <mat-label>{{ label }}</mat-label>
+      <input
+        matInput
+        #input
+        #controlName="ngModel"
+        [tabindex]="tabindex"
+        [name]="name"
+        [type]="type"
+        [placeholder]="placeholder"
+        [required]="required"
+        [matAutocomplete]="auto"
+        [(ngModel)]="value"
+        (keydown)="preventSpace($event)"
+        (input)="resetSearch()"
+        [ngModelOptions]="{ standalone: true }"
+        (focus)="onFocus()"
+        [pattern]="pattern"
+        [maxlength]="maxlength"
+        [readonly]="readonly"
+        [disabled]="disabled"
+        [autoFocus]="autoFocus"
+        trimValue
+        titleCase
+      />
+
+      <mat-autocomplete #auto="matAutocomplete" class="searchCustom" [class]="optionPositionClass" (optionSelected)="onAutoCompleteSelect($event)">
+        <mat-option *ngFor="let autoComplete of autoComplete" [value]="autoComplete">
+          <div class="searchDropdown">
+            <div class="searchId">
+              <span
+                class="dealId"
+                [innerHTML]="
+                  autoComplete.importId ? autoComplete.importId : (autoComplete.id | idPrefix: autoComplete.type : true )
+                "
+              ></span>
+              <i class="material-icons import-icon" [matTooltip]="'common.imported' | translate" *ngIf="autoComplete.importId">import_export</i>
+            </div>
+            <div class="searchName">
+              <span class="dealName" [matTooltip]="autoComplete.name" [innerHTML]="autoComplete.name | highlight: myControl.value"></span>
+            </div>
+            <div class="searchUnit">
+              <span> {{ autoComplete.lastUpdatedDateTimeUtc | dateUtc }}</span>
+            </div>
+          </div>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-error *ngIf="(submitted || controlName.touched) && controlName.invalid">
+      <span *ngIf="controlName.hasError('required')">{{ 'common.validations.required' | translate }}</span>
+      <span *ngIf="controlName.hasError('pattern')">{{ (patternMessageKey ? patternMessageKey : 'common.validations.invalidInput') | translate }}</span>
+    </mat-error>
+    <div class="entity">
+      <span *ngIf="maxlength && !controlName.invalid && controlName.value?.length === maxlength">
+        {{ 'common.validations.maxlength.message' | translate: { value: maxlength } }}</span
+      >
+      <span *ngIf="showNote && (controlName.valid || (!controlName.touched && !submitted)) && controlName.value?.length !== maxlength">
+        {{ showNote }}
+      </span>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,149 @@
+.common-padding {
+    padding: 15px;
+    margin: 0 0 30px 0;
+}
+
+.loader-wrapper {
+    padding: 45px 0 0 0;
+
+    &.remove-padding {
+        padding: 15px 0 0 0;
+    }
+}
+
+.card {
+    margin: 0 0 30px 0;
+
+    .header {
+        display: flex;
+        align-items: center;
+
+        .details {
+            width: 100%;
+            display: flex;
+
+            .left-wrapper {
+                width: 50%;
+            }
+
+            .right-wrapper {
+                width: 50%;
+                display: flex;
+                gap: 20px;
+                align-items: center;
+                justify-content: right;
+            }
+
+            span {
+                display: block;
+                background: #d9d9d9;
+                border-radius: 4px;
+                overflow: hidden;
+                position: relative;
+
+                &::before {
+                    animation-delay: 0.2s;
+                }
+
+                &.name {
+                    height: 12px;
+                    width: 35%;
+                    margin: 0 0 1px 0;
+                }
+
+                &.filter {
+                    height: 26px;
+                    width: 20%;
+                    margin: 0 0 1px 0;
+                }
+
+                &.action-button {
+                    height: 26px;
+                    width: 20%;
+                    margin: 0 0 1px 0;
+                }
+
+                &.about {
+                    height: 10px;
+                    width: 65%;
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}
+
+.details span::before,
+.description .line::before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background-image: linear-gradient(to right, #d9d9d9 0%, rgba(0, 0, 0, 0.07) 20%, #d9d9d9 40%, #d9d9d9 100%);
+    background-size: 1000px 104px;
+}
+
+.skelton-tabs {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.skelton-inner-tabs {
+    height: 30px;
+    border-radius: 3px;
+    overflow: hidden;
+    width: 15%;
+}
+
+.main-menu-container-skeleton>.sub-menu-skeleton {
+    width: 100%;
+
+    .row-box {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin: 10px 0px;
+        padding: 10px;
+        background: #f7f7f7;
+        justify-content: space-around;
+
+        .inner-box {
+            height: 25px;
+            border-radius: 3px;
+            overflow: hidden;
+            width: calc(20% - 30px);
+        }
+    }
+}
+
+
+@keyframes placeHolderShimmer {
+    0% {
+        background-position: -500px 0
+    }
+
+    100% {
+        background-position: 500px 0
+    }
+}
+
+.animated-background {
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background-image: linear-gradient(to right, #d9d9d9 0%, rgba(0, 0, 0, 0.07) 20%, #d9d9d9 40%, #d9d9d9 100%);
+    background-size: 1000px 104px;
+    height: 500px;
+    position: relative;
+}

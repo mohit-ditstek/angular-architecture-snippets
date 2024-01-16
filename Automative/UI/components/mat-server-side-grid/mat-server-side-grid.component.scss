@@ -1,0 +1,125 @@
+@import 'styles/mixins/media-queries';
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+.active-row-table .mat-mdc-row  {
+  cursor: pointer;
+  &:hover {
+    background-color: #f7f7f7;
+  }
+}
+
+.no-data {
+  text-align: center;
+  padding: 30px;
+  font-size: var(--app-font-size-xl);
+  line-height: 160%;
+  letter-spacing: 0.05px;
+  color: var(--grey-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep.ps-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.mat-column-action {
+  align-items: center;
+  text-align: center !important;
+  flex: 1 0 15%;
+  width: 15%;
+}
+
+.search-results {
+  height: calc(100vh - 252px);
+  &.remit {
+    height: calc(100vh - 300px);
+    @include for-lg-desktop{
+      height: calc(100vh - 340px);   
+    }
+    @include for-tablet{
+      height: calc(100vh - 400px);   
+    }
+  }
+  @include for-landscape-tablet{
+    &.deals {
+      height: calc(100vh - 360px);
+    } 
+    &.multi-row{
+      height: calc(100vh - 296px);  
+    }  
+  }
+}
+
+.title {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-70%);
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  width: 100%;
+
+  small {
+    color: #eaeaea;
+  }
+}
+
+.loadMore {
+  text-align: center;
+  width: 100%;
+  padding: 20px 0;
+  position: absolute;
+  bottom: 0;
+  background: rgba(255, 255, 255, 1);
+  ::ng-deep.mat-mdc-progress-spinner  {
+    margin: 0 auto;
+    width: 30px !important;
+    height: 30px !important;
+    svg {
+      circle {
+        stroke: #9ea1b8;
+      }
+    }
+  }
+}
+
+table {
+  table-layout: fixed;
+}
+
+th,
+td {
+  &::before {
+    right: 0 !important;
+  }
+}
+
+.ellipsis span {
+  overflow: hidden;
+  width: auto;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &::before {
+    right: 0 !important;
+  }
+}
+.mat-column-lastUpdatedUtc,
+.mat-column-modifyDateTimeUtc,
+.mat-column-createdDateTimeUtc,
+.mat-column-createDateTimeUtc,
+.mat-column-lastModifiedDateTimeUtc {
+  white-space: pre-wrap !important;
+}
+.mat-mdc-row{
+  &.hidden {
+    display: none;
+  }
+}

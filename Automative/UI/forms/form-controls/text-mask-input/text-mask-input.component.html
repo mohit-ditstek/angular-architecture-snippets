@@ -1,0 +1,53 @@
+<div class="formGroup">
+  <mat-form-field appearance="outline" [ngClass]="{ 'disabled-control': disableControl }">
+    <mat-label>{{ label }}</mat-label>
+    <input
+      matInput
+      #controlName="ngModel"
+      #focusInput
+      ngModel
+      type="text"
+      [tabindex]="tabindex"
+      [placeholder]="placeholder"
+      [mask]="mask"
+      [required]="required"
+      [readonly]="readonly"
+      [name]="name"
+      [prefix]="prefix"
+      [suffix]="suffix"
+      [thousandSeparator]="thousandSeparator"
+      [separatorLimit]="separatorLimit"
+      [(ngModel)]="value"
+      [disabled]="disableControl"
+      [maxlength]="maxlength"
+      [ngClass]="className"
+      [validation]="validation"
+      [hiddenInput]="hiddenInput"
+      [customMax]="maxValue"
+      [customMin]="minValue"
+      [minlength] ="minlength"
+      autocomplete="off"
+      [allowNegativeNumbers]="allowNegativeNumbers"
+      [dropSpecialCharacters]="!maskedValue"
+    />
+  </mat-form-field> 
+  
+  <mat-error *ngIf="(submitted || controlName.touched) && controlName.invalid">
+
+    <span *ngIf="controlName.hasError('required')">{{ 'common.validations.required' | translate }}</span>
+    <span *ngIf="controlName.hasError('mask')"
+      >{{ 'common.validations.invalidFormat' | translate }} ({{ 'common.validations.example' | translate }} {{ maskFormat }})
+    </span>
+    <span *ngIf="!controlName.hasError('required') && controlName.hasError('customMax')">{{ 'common.validations.maxField' | translate }} {{ maxValue }}</span>
+    <span *ngIf="!controlName.hasError('required') && controlName.hasError('customMin')">{{ 'common.validations.minValueError' | translate }} {{ minValue }}</span>
+    <span *ngIf="!controlName.hasError('required') && controlName.hasError('minlength')">{{ 'common.validations.minLengthError' | translate }}  {{ minlength }}</span>
+ 
+  </mat-error> 
+    
+  <mat-error> </mat-error>
+  <div class="entity">
+    <span *ngIf="showNote && (controlName.valid || (!controlName.touched && !submitted))">
+      {{ showNote }}
+    </span>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<!-- Data Widgets e.g. Leads, Deals etc -->
+<ng-container *ngIf="widget.data$">
+  <ng-container
+    *ngIf="widget.data$ | async as vm"
+    [ngTemplateOutlet]="widgetTemplate"
+    [ngTemplateOutletContext]="{ loaded: vm.loaded, data: vm.data }"
+  ></ng-container>
+</ng-container>
+
+<!-- Non Data Widgets e.g. Payment calculator etc -->
+<ng-container *ngIf="!widget.data$" [ngTemplateOutlet]="widgetTemplate" [ngTemplateOutletContext]="{ loaded: true }"></ng-container>
+
+<ng-template #widgetTemplate let-loaded="loaded" let-data="data">
+  <ng-container *ngIf="loaded; else loader">
+    <div class="tiles-card commonCard" (click)="widget.featureUrl && navigateListingPage()">
+      <div class="tiles-wrapper">
+        <div class="tiles-header">
+          <div class="tiles-icon">
+            <span class="material-icons">{{ widget.icon }} </span>
+          </div>
+          <div class="arrow-icon" [ngClass]="widget.iconColor" *ngIf="widget.featureUrl">
+            <a> <span class="material-icons-outlined"> arrow_forward</span></a>
+          </div>
+        </div>
+        <div class="tiles-content">
+          <div class="tiles-title">{{ widget.title | translate : { value: orgType | orgType } }}</div>
+          <div class="tiles-desc">{{ widget.description | translate : { value: orgType | orgType } }}</div>
+        </div>
+      </div>
+      <div class="tiles-footer">
+        <div class="tiles-inner-wrapper" *ngIf="data">
+          <div class="tiles-caption" *ngIf="!isAdmin">
+            <span *ngIf="filterType !== CalendarType.Custom; else captionCustom"> {{ widget.caption | translate }} {{ filterType | calenderTypes | translate }}</span>
+            <ng-template #captionCustom>
+              <span>{{ filterType | calenderTypes | translate }} {{ widget.caption | translate }}</span>
+            </ng-template>
+          </div>
+          <div class="tiles-caption" *ngIf="isAdmin">
+            <span> {{ widget.caption | translate }}</span>
+          </div>
+
+          <div class="tiles-value">
+            <span class="count link" (click)="$event.stopPropagation();widget.featureUrl && navigate()">{{ data.count }}</span>
+            <span class="growth" [ngClass]="data.percent > 0 ? 'green-color' : 'red-color'" *ngIf="data.percent && data.percent !== 0">
+              {{ data.percent | absolute | percent }} <span class="arrow-icon material-icons">{{ data.percent > 0 ? 'arrow_drop_up' : 'arrow_drop_up' }}</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="tiles-footer-wrapper">
+          <div class="link-container">
+            <ng-container *ngIf="widget.primaryAction" [ngTemplateOutlet]="action" [ngTemplateOutletContext]="{ data: widget.primaryAction }"> </ng-container>
+          </div>
+          <div class="link-container">
+            <ng-container *ngIf="widget.secondaryAction" [ngTemplateOutlet]="action" [ngTemplateOutletContext]="{ data: widget.secondaryAction }"> </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #action let-data="data" let-isSecondary="isSecondary">
+  <ng-container *permissionIf="data?.requiredPermission">
+    <ng-container *ngIf="!data.isImport || (data.isImport && isDmsEnabled)">
+      <div class="footer-icon" [class.reverse]="data.reverse" (click)="$event.stopPropagation()" [routerLink]="data.url" *ngIf="data.url">
+        <span class="material-icons"> {{ data.icon }} </span>{{ data.text | translate }}
+      </div>
+
+      <div class="footer-icon" [class.reverse]="data.reverse" (click)="$event.stopPropagation(); data.callback()" *ngIf="data.callback">
+        <span class="material-icons"> {{ data.icon }} </span>{{ data.text | translate }}
+      </div>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #loader>
+  <app-widget-loader></app-widget-loader>
+</ng-template>

@@ -1,0 +1,105 @@
+@import 'styles/mixins/media-queries';
+
+:host {
+  margin: 0 0 16px 0;
+  display: block;
+  &:last-child {
+    margin: 0;
+  }
+
+  .app-card {
+    background: #ffffff;
+    box-shadow: 0px 2px 5px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    border: 1px solid var(--app-default-color-2);
+    .app-card-header {
+      position: relative;
+      padding: 16px;
+      display: flex;
+      border-bottom: 1px solid var(--app-default-color-2);
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+  
+      .left-wrapper {
+        display: contents;
+        flex: 0 0 auto;
+  
+        .app-card-header-title {
+          font-size: var(--app-font-size-xxl);
+          line-height: 160%;
+          letter-spacing: 0.15px;
+          color: var(--app-black-color);
+          font-family: var(--app-font-primary-medium);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: inline-block;
+          width: 100%;
+  
+          @include for-tablet {
+            font-size: var(--app-font-size-xl);
+            line-height: 23px;
+          }
+  
+          .sub-title {
+            font-size: var(--app-font-size-xs);
+            color: #9ea1b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+          }
+        }
+  
+        .app-card-header-sub-title {
+          font-size: var(--app-font-size-xl);
+          letter-spacing: 0.15px;
+          color: var(--app-black-color);
+          display: flex;
+          align-items: center;
+          gap: 5px;
+  
+          .sub-title {
+            font-size: var(--app-font-size-regular);
+            color: rgba(0, 0, 0, 0.87);
+            letter-spacing: 1px;
+            font-family: var(--app-font-primary-bold);
+          }
+        }
+      }
+  
+      .right-wrapper {
+        align-items: center;
+        gap: 15px;
+        display: flex;
+        white-space: nowrap;
+      }
+  
+      &:empty {
+        display: none;
+      }
+    }
+  
+    .app-card-body {
+      padding: 30px;
+  
+      &.p-none {
+        padding: 0;
+      }
+  
+      &:empty {
+        display: none;
+      }
+    }
+  
+    .app-card-footer {
+      padding: 16px;
+      display: flex;
+      justify-content: flex-end;
+  
+      &:empty {
+        display: none;
+      }
+    }
+  }
+}
+

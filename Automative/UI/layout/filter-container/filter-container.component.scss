@@ -1,0 +1,9 @@
+@import 'styles/mixins/media-queries';
+
+.filter-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  gap: 10px;
+}

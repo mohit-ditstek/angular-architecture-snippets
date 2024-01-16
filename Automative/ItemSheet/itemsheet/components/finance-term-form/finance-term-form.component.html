@@ -1,0 +1,71 @@
+<app-header-content></app-header-content>
+<div class="tabsInfo">
+  <div class="tabsInnerInfo">
+    <form #form="ngForm">
+      <div class="commonTabContent">
+        <div class="customerBody">
+          <div class="common-field">
+            <div class="l-field-container">
+              <span class="l-field-label">{{ 'deal.worksheet.financeTerms.selectPaymentFrequency' | translate }}:</span>
+              <span class="l-field-value">
+                <div class="accordion-header-dropdown d-block w-100 common-dropdown">
+                  <app-config-items-dropdown
+                    [label]="'deal.worksheet.financeTerms.selectPaymentFrequency' | translate"
+                    name="termFrequency"
+                    [type]="TermFrequencyConfigItemType"
+                    [bindName]="true"
+                    [tabindex]="0"
+                    [placeholder]="'deal.worksheet.financeTerms.selectPaymentFrequency' | translate"
+                    [(ngModel)]="financeTerm.termFrequency"
+                    [isNumericTypeValue]="true"
+                    [required]="isFinanceDealType"
+                    [disableControl]="disabled"
+                  >
+                  </app-config-items-dropdown>
+                </div>
+              </span>
+            </div>
+            <app-terms
+              #termsComponent
+              [terms]="financeTerm.terms"
+              [hasRatedGapProducts]="financeTerm.hasRatedGapProduct"
+              [disabled]="disabled"
+              [isFinanceDealType]="isFinanceDealType"
+              (autoSaveDisable)="disableAutoSave($event)"
+              (updatedTerms)="updatedTerms($event)"
+            ></app-terms>
+            <div class="l-field-container">
+              <span class="l-field-label"> {{ 'deal.worksheet.financeTerms.firstPayment' | translate }}: </span>
+              <span class="l-field-value">
+                <div class="accordion-header-dropdown w-100 common-dropdown">
+                  <app-number
+                    [label]="'deal.worksheet.financeTerms.firstPayment' | translate"
+                    name="daysToFirstPayment"
+                    [maxlength]="3"
+                    [(ngModel)]="financeTerm.daysToFirstPayment"
+                    [rightAlign]="true"
+                    [required]="isFinanceDealType"
+                    [disabled]="disabled"
+                  >
+                  </app-number>
+                </div>
+              </span>
+            </div>
+            <div class="l-field-container">
+              <span class="l-field-label">{{ 'deal.worksheet.financeTerms.firstpmtdate' | translate }}:</span>
+              <span class="l-field-value">{{ firstPaymentDate | date : 'MM/dd/yyyy' }}</span>
+            </div>
+            <div class="l-field-container">
+              <span class="l-field-label">{{ 'deal.worksheet.financeTerms.lastpmtdate' | translate }}:</span>
+              <span class="l-field-value">{{ lastPaymentDate | date : 'MM/dd/yyyy' }}</span>
+            </div>
+            <div class="l-field-container" *ngIf="isFinanceReservedAmountEnabled && financeReserveAmount">
+              <span class="l-field-label">{{ 'deal.worksheet.tabs.financeReserveMethod' | translate }}:</span>
+              <span class="l-field-value">{{ financeReserveAmount | amount }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="formGroup">
+  <mat-form-field appearance="outline">
+    <mat-label>{{ label }}</mat-label>
+    <input
+      matInput
+      #controlName="ngModel"
+      type="text"
+      [tabindex]="tabindex"
+      [patterns]="pattern"
+      [placeholder]="placeholder"
+      [mask]="maskedFormat"
+      [required]="required"
+      [name]="name"
+      [(ngModel)]="value"
+      [disabled]="disabled"
+      [maxlength]="maxlength"
+      [minlength]="minlength"
+      [hiddenInput]="hiddenInput"
+      [dropSpecialCharacters]="false"
+      (focusout)="focusOut()"
+      (focusin)="focusIn()"
+      (ngModelChange)="handleChange($event)"
+      [validation]="false"
+      autocomplete="off"
+    />
+  </mat-form-field>
+  <mat-error *ngIf="(submitted || controlName.touched) && controlName.invalid">
+    <span *ngIf="controlName.hasError('required')">{{ 'common.validations.required' | translate }}</span>
+  </mat-error>
+  <div class="entity">
+    <span *ngIf="maxlength && !controlName.invalid && controlName.value?.length === maxlength">
+      {{ 'common.validations.maxlength.message' | translate : { value: maxlength } }}</span
+    >
+    <span *ngIf="showNote && (controlName.valid || (!controlName.touched && !submitted)) && controlName.value?.length !== maxlength">
+      {{ showNote }}
+    </span>
+    <span *ngIf="!controlName.hasError('required') && controlName.hasError('minlength')"
+    >{{ 'common.validations.minLengthError' | translate }} {{ minlength }}</span
+  >
+  </div>
+</div>

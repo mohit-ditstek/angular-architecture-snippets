@@ -1,0 +1,44 @@
+@import 'styles/mixins/media-queries';
+
+.filter {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--app-default-color-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  position: relative;
+  z-index: 999;
+  width: 100%;
+  &.row-wrap {
+    &.check {
+      @include for-landscape-tablet {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+    @include for-tablet {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  .refresh-icon {
+    background: transparent;
+    color: #262c61;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    min-width: auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    .icon {
+      font-size: 18px;
+    }
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <div class="saveWrapper">
+    <button *ngIf="vm.isSaved" mat-raised-button [color]="color" class="buttonOutline">
+      <span *ngIf="vm.saving" class="material-icons loading">autorenew</span>
+      <span *ngIf="!vm.saving" class="material-icons">cloud_done</span>
+      {{ (vm.saving ? 'common.saving' : 'common.saved') | translate }}
+    </button>
+
+    <app-raised-button
+      *ngIf="!vm.isSaved"
+      [color]="color"
+      class="buttonOutline"
+      (click)="save()"
+      buttonIcon="save"
+      [buttonText]="'common.save' | translate"
+      [disableControl]="!isFormDirty"
+    ></app-raised-button>
+  </div>
+</ng-container>

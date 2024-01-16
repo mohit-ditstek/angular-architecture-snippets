@@ -1,0 +1,3 @@
+<button [disabled]="disableControl" [ngClass]="{ disabled: disableControl }">
+  <mat-icon class="icon" [ngClass]="class" [matTooltip]="!disableControl ? tooltipText : ''">{{ buttonIcon }}</mat-icon>
+</button>

@@ -1,0 +1,126 @@
+@import '../../styles/deal-worksheet.scss';
+
+.product-cell {
+  padding: 7px 0;
+  .manual-icon {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    position: relative;
+    top: -4px;
+  }
+  span {
+    display: inline-block;
+  }
+  .action-performed {
+    display: block;
+    white-space: normal;
+    span {
+      font-size: 13px;
+      line-height: 143%;
+      letter-spacing: 0.15px;
+      &.action-by {
+        margin: 0 5px 0 0;
+        .mat-icon {
+          position: relative;
+          top: 4px;
+        }
+        &.declined {
+          color: #f44336;
+          .mat-icon {
+            color: #f44336;
+          }
+        }
+        &.accepted {
+          color: #389e0d;
+          .mat-icon {
+            color: #389e0d;
+          }
+        }
+      }
+      &.action-date {
+        color: rgba(0, 0, 0, 0.87);
+        margin: 0 8px 0 0;
+      }
+      &.action-time {
+        color: rgba(0, 0, 0, 0.6);
+      }
+    }
+  }
+  .show-surcharges {
+    display: block;
+    .mat-mdc-button {
+      line-height: normal;
+      font-size: var(--app-font-size-xs);
+      padding: 0;
+      color: var(--app-primary);
+      font-family: var(--app-font-primary-semibold);
+      font-style: italic;
+      height:auto;
+    }
+  }
+}
+::ng-deep .surcharges-menu {
+  padding: 16px 16px 20px 16px !important;
+  position: relative;
+  margin: 8px 0 0 0;
+  overflow: inherit;
+  .close-icon {
+    cursor: pointer;
+    width: 25px;
+    position: absolute;
+    right:0px;
+    top:0px;
+    color: #9ea1b8;
+    padding: 0;
+    border: 1px solid #e2e3f4;
+    border-radius: 50%;
+    height: 25px;
+    background-color: #f9f9f9;
+    span {
+      font-size:16px;
+    }
+  }
+  .surcharges-inner {
+    .surcharge-name {
+      font-size: var(--app-font-size-xs);
+      padding: 0 0 0 15px;
+      position: relative;
+      margin: 0 0 7px 0;
+      &:last-child{
+       margin:0;
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        background: #262c61;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
+.manual-wrapper {
+  display: flex;
+  align-items: center;
+}
+.ellipsis {
+  max-width: 275px;
+}
+
+.tax-dropdown {
+  width: calc(100% - 115px);
+}
+.tax-amount {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-end;
+  .mat-stroked-button {
+    padding: 0 8px;
+  }
+}

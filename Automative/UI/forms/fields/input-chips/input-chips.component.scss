@@ -1,0 +1,20 @@
+.mat-mdc-chip {
+  background-color: transparent !important;
+  border-radius: 30px !important;
+  border: 1px solid #e2e3f4;
+  font-family: var(--app-font-primary-medium) !important;
+  padding: 6px 3px;
+  margin: 4px 5px 4px 0px !important;
+  ::ng-deep .mdc-evolution-chip__cell {
+    .mdc-evolution-chip__action {
+      .mat-mdc-chip-action-label {
+        color: var(--app-primary) !important;
+      }
+    }
+    .mat-mdc-chip-trailing-icon{
+        .mat-icon{
+            color: var(--app-primary) !important; 
+        }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <div class="commonTabContent">
+    <app-other-payment-form
+      #formComponent
+      [details]="vm.details | clone"
+      [disabled]="isDisabled"
+      [address]="primaryCustomerAddress$ | async"
+      [hasCustomerAddress]="hasCustomerAddress$ | async"
+      [taxableAmount$]="salesOtherTaxableAmount$"
+      [taxAmount$]="salesOtherTaxAmount$"
+      [isContractGenerated]="isContractGenerated$ | async"
+      (calculateWorksheetDetails)="calculateWorksheetDetails()"
+      (valuesChanged)="valueChanged($event)"
+      (saveDetails)="autoSave()"
+      (resetUnInstalledParts)="reset()"
+    ></app-other-payment-form>
+    
+    <ng-container *ngIf="vm.tradeIns?.length > 0">
+      <app-trade-ins
+        #formComponent
+        *ngFor="let item of vm.tradeIns; trackBy: tradeInsTrackBy; index as index"
+        [tradeIn]="item"
+        [indexNumber]="index"
+        (valuesChanged)="tradeInsValuesChanged($event)"
+        [dealOverview]="dealOverview$ | async"
+        [netTradeIn]="vm.tradeIns[index].netTradeIn"
+      >
+      </app-trade-ins>
+    </ng-container>
+  </div>
+</ng-container>

@@ -1,0 +1,41 @@
+:host {
+  position: relative;
+}
+
+.formGroup {
+  ::ng-deep.multiSelectionWidth {
+    position: relative;
+    left: 32px;
+    width: 100%;
+    min-width: calc(100% + 35px) !important;
+    top: 68px;
+  }
+
+  .mat-select-arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid;
+    margin: 8px 0px;
+  }
+  ::ng-deep .mat-form-field-subscript-wrapper {
+    overflow: inherit;
+    margin: 0;
+    padding: 0px !important;
+  }
+}
+.select-all {
+  padding: 0 0 0 5px;
+  mat-checkbox {
+    width: 100%;
+    ::ng-deep {
+      label {
+        display: inherit;
+        width: 100%;
+        padding-left:0;
+        color:var(--app-primary);
+      }
+    }
+  }
+}

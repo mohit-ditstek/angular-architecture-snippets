@@ -1,0 +1,26 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <div class="commonTabContent">
+    <app-unit
+      *ngIf="vm.activeUnit"
+      #unitComponent
+      [purchaseUnit]="vm.activeUnit | clone"
+      [activeTaxProfileOptions]="vm.activeTaxProfileOptions"
+      [disabled]="isDisabled"
+      [isCommonUseTaxes]="vm.isCommonUseTaxes"
+      [address]="primaryCustomerAddress$ | async"
+      [totalTaxableAmount$]="totalTaxableAmount$"
+      [totalTaxAmount$]="totalTaxAmount$"
+      [unitTaxAmount$]="unitTaxAmount$"
+      [unitTaxableAmount$]="unitTaxableAmount$"
+      [index]="vm.index"
+      [isContractGenerated]="isContractGenerated$ | async"
+      [hasCustomerAddress]="hasCustomerAddress$ | async"
+      (purchaseUnitChanged)="valuesChanged($event)"
+      (calculateWorksheetDetails)="calculateWorksheetDetails()"
+      (resetUnit)="resetUnit($event)"
+      (taxProfileChanged)="taxProfileChanged($event,vm.activeUnit.id)"
+
+    >
+    </app-unit>
+  </div>
+</ng-container>

@@ -1,0 +1,29 @@
+<div class="formGroup">
+  <mat-form-field appearance="outline" [ngClass]="{ 'disabled-control': disableControl }">
+    <mat-label>{{ label }}</mat-label>
+    <input
+      matInput
+      #input
+      abcUrlValidator
+      abcUrl
+      #controlName="ngModel"
+      [(ngModel)]="value"
+      [name]="name"
+      [placeholder]="placeholder"
+      [required]="required"
+      [readonly]="readonly"
+      [disabled]="disableControl"
+      [maxlength]="maxlength"
+      autocomplete="off"
+    />
+  </mat-form-field>
+  <mat-error *ngIf="(submitted || controlName.touched) && controlName.invalid">
+    <span *ngIf="controlName.hasError('required')">{{ 'common.validations.required' | translate }}</span>
+    <span *ngIf="controlName.hasError('urlValidator')">{{ 'common.validations.invalidUrl' | translate }}</span>
+  </mat-error>
+  <div class="entity">
+    <span *ngIf="maxlength && !controlName.invalid && controlName.value?.length === maxlength">
+      {{ 'common.validations.maxlength.message' | translate : { value: maxlength } }}</span
+    >
+  </div>
+</div>

@@ -1,0 +1,37 @@
+@import 'styles/mixins/media-queries';
+
+.mat-mdc-checkbox {
+  &.mat-checkbox-disabled {
+    &.mat-mdc-checkbox-checked {
+      pointer-events: none;
+      ::ng-deep.mdc-form-field {
+        .mdc-checkbox {
+          .mdc-checkbox__background {
+            background-color: #b0b0b0 !important;
+            border-color: #b0b0b0 !important;
+          }
+        }
+        .label {
+          color: #00000061;
+          padding: 0;
+        }
+      }
+    }
+    ::ng-deep.mdc-form-field {
+      .mdc-checkbox {
+        pointer-events: none;
+        .mdc-checkbox__background {
+          border-color: #b0b0b0 !important;
+        }
+      }
+      .label {
+        color: #00000061;
+        padding: 0;
+      }
+    }
+  }
+}
+
+.disabled {
+  cursor: not-allowed !important;
+}

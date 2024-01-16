@@ -1,0 +1,14 @@
+<div class="signatureWrapper">
+  <div class="signature-container" #container>
+    <canvas #canvas></canvas>
+  </div>
+  <div class="clearButton">
+    <mat-error *ngIf="required && submitted && !base64Data">
+      <span>{{ 'common.validations.required' | translate }}</span>
+    </mat-error>
+    <div class="withoutOutline" (click)="clear()">
+      <img [src]="'/assets/core/icons/delete-icon.svg'" width="20" alt="image"/>
+      <span>Clear</span>
+    </div>
+  </div>
+</div>

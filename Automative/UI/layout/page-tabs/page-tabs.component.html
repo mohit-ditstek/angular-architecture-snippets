@@ -1,0 +1,28 @@
+<div class="page" *ngIf="loaded; else loader">
+  <div class="sub-header">
+    <mat-card>
+      <mat-card-title-group [class.cardTabletView]="cardTabletView">
+        <mat-card-title class="flex">
+          <div class="back-icon" [matTooltip]="'common.back' | translate" (click)="handleBack()" *ngIf="showBack">
+            <span class="material-icons">arrow_back</span>
+          </div>
+          <div class="heading" matTooltip="{{ heading }}">{{ heading }}</div>
+          <div class="sub-heading" *ngIf="entityIdLabel">{{ entityIdLabel }}</div>
+        </mat-card-title>
+        <div class="button">
+          <ng-content select="[action]"></ng-content>
+        </div>
+      </mat-card-title-group>
+    </mat-card>
+  </div>
+  <div class="gradient-nav" *ngIf="showTabs">
+    <ng-content select="[tabs]"></ng-content>
+  </div>
+  <ng-content select="[message]"></ng-content>
+  <div [ngClass]="bodyClass" select="[body]" [class.commonCard]="cardContainer">
+    <ng-content></ng-content>
+  </div>
+</div>
+<ng-template #loader>
+  <app-tabs-skelton-loader></app-tabs-skelton-loader>
+</ng-template>

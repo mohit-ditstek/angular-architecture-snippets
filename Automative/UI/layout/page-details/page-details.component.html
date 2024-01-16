@@ -1,0 +1,21 @@
+<div class="page details">
+  <div class="page-header">
+    <div class="left-wrapper">
+      <div class="back-icon" [matTooltip]="'common.back' | translate" (click)="handleBack()" *ngIf="showBack">
+        <span class="material-icons">arrow_back</span>
+      </div>
+      <div class="title" *ngIf="heading">
+        {{ heading }}
+      </div>
+      <div class="sub-title" *ngIf="subHeading">
+        {{ subHeading }}
+      </div>
+    </div>
+    <div class="right-wrapper">
+      <ng-content select="[actions]"></ng-content>
+    </div>
+  </div>
+  <div class="page-body">
+    <ng-content select="[body]"></ng-content>
+  </div>
+</div>

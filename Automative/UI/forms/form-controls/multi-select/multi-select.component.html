@@ -1,0 +1,55 @@
+<div class="formGroup">
+  <mat-form-field appearance="outline" [ngClass]="{ 'disabled-control': disableControl }">
+    <mat-label removeAriaOwns>{{ label }}</mat-label>
+    <mat-select
+      #select
+      multiple
+      [name]="name"
+      [(ngModel)]="value"
+      #controlName="ngModel"
+      [placeholder]="placeholder"
+      [panelClass]="panelClass"
+      [required]="required"
+      [disabled]="disableControl"
+      disableOptionCentering
+      (selectionChange)="selectionChange($event)">
+      <mat-select-trigger>
+        <label *ngIf="value?.length === 1; else allSelectedCase">
+          {{firstOption?.text}}
+        </label>
+
+        <ng-template #allSelectedCase>
+          <label *ngIf="value?.length === options?.length; else othercases">{{ 'common.all' | translate }}</label>
+        </ng-template> 
+
+        <ng-template #othercases>
+          <label *ngIf="value?.length> 1">{{ 'common.multiple' | translate }}</label>
+        </ng-template> 
+
+      </mat-select-trigger>
+
+      <div class="select-container">
+        <div class="select-all" *ngIf="showAllSelectOption &&
+          options?.length> 0">
+          <label for="checkbox_{{name}}">
+            <mat-checkbox id="checkbox_{{name}}"
+              (change)="toggleAllSelection($event)" [checked]="options?.length
+              === value?.length"
+              color="primary">{{'common.all' | translate}}</mat-checkbox>
+          </label>
+        </div>
+
+        <mat-option *ngFor="let option of options" [value]="option.value"
+          [disabled]="disableControl" [tooltipText]="option.text" conditionalTooltip
+          tooltipPosition="right">
+          {{ option.text }}
+        </mat-option>
+      </div>
+    </mat-select>
+  </mat-form-field>
+  <mat-error *ngIf="(submitted || controlName.touched) &&
+    controlName.invalid">
+    <span *ngIf="controlName.hasError('required')">
+      {{'common.validations.required' | translate }}</span>
+  </mat-error>
+</div>

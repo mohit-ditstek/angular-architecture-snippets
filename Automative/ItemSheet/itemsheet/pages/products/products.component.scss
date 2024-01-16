@@ -1,0 +1,17 @@
+@import '../../styles/deal-worksheet.scss';
+@import 'styles/mixins/media-queries';
+
+.protection-product-part {
+    position: relative;
+    height: calc(100% - 78px);
+    .tabsInfo {
+        height: calc(100% - 80px);
+        .notFoundMessage {
+            padding: 23px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}

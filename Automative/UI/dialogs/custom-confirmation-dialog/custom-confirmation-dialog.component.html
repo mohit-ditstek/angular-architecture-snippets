@@ -1,0 +1,23 @@
+<app-base-dialog [title]="data.title | translate: data.titleReplacementObj || {}" (dialogClose)="close()">
+  <ng-container body *ngIf="data.note || data.text">
+    <div class="inner-content">
+      <ng-container body *ngIf="data.note">
+        <p class="dialogText">{{ data.note | translate: data.noteReplacementObj || {} }}</p>
+      </ng-container>
+      <ng-container body *ngIf="data.text">
+        <p class="dialogText" [class.padding-top-none]="data.note">{{ data.text | translate: data.textReplacementObj ||
+          {}
+          }}</p>
+      </ng-container>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="data" footer>
+    <button type="button" mat-stroked-button color="primary" class="buttonOutline border-primary" (click)="close()">
+      {{ data.button.primaryButton | translate }}
+    </button>
+    <button *ngIf="!data.button.secondaryButtonHide" mat-raised-button color="primary" type="button"
+      class="buttonOutline" (keyup.enter)="close(true)" (click)="close(true)">
+      {{ data.button.secondaryButton | translate }}
+    </button>
+  </ng-container>
+</app-base-dialog>

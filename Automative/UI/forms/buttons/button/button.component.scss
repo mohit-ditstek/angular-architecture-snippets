@@ -1,0 +1,17 @@
+.reset {
+    font-family: var(--app-font-primary-medium);
+    font-size: var(--app-font-size-xl);
+    cursor: pointer;
+}
+.has-submenu {
+    background: transparent;
+    border: none;
+    color: var(--app-white-color)!important;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    span {
+      font-size: 16px;
+      padding-right: 5px;
+    } 
+}

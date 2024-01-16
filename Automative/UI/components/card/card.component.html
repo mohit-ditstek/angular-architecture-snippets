@@ -1,0 +1,19 @@
+<div class="app-card commonCard">
+  <div class="app-card-header" *ngIf="showHeader">
+    <div class="left-wrapper">
+      <div class="app-card-header-title">
+        {{ heading | translate }}
+      </div>
+    </div>
+    <div class="right-wrapper">
+      <ng-content select="[actions]"></ng-content>
+    </div>
+  </div>
+  <div class="app-card-body" [ngClass]="bodyClass" [class.p-none]="paddingNone">
+    <ng-content select="[body]"></ng-content>
+  </div>
+
+  <div class="app-card-footer">
+    <ng-content select="[footer]"></ng-content>
+  </div>
+</div>

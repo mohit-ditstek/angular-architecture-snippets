@@ -1,0 +1,32 @@
+<div class="formGroup">
+  <mat-form-field class="chip-list" appearance="outline" [ngClass]="{ 'disabled-control': disabled }">
+    <mat-label *ngIf="label">{{ label }}</mat-label>
+    <mat-chip-grid #chipGrid>
+      <ng-container *ngFor="let data of value">
+        <mat-chip-row
+          (removed)="remove(data)"
+          [editable]="!disabled"
+          [disabled]="disabled"
+          (edited)="edit(data, $event)"
+          [aria-description]="'press enter to edit ' + data"
+        >
+          {{ data }}
+          <button matChipRemove [attr.aria-label]="'remove' + data">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </ng-container>
+
+      <input
+        #focusInput
+        [name]="name"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        [matChipInputFor]="chipGrid"
+        [matChipInputAddOnBlur]="blur"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-chip-grid>
+  </mat-form-field>
+</div>

@@ -1,0 +1,45 @@
+<form #form="ngForm">
+  <div class="common-field">
+    <div class="l-field-container" *ngFor="let term of terms; trackBy: trackBy; let i = index">
+      <span class="l-field-label">{{ 'deal.worksheet.financeTerms.termInterestRate' | translate }} (#{{ i + 1 }}):</span>
+      <span class="l-field-value">
+        <app-bool-radio
+          name="termInterestRadio_{{ i }}"
+          [(ngModel)]="term.isSelected"
+          [showSingleRadio]="true"
+          (selection)="toggleRadio(i,true)"
+          [disableControl]="disabled"
+        ></app-bool-radio>
+ 
+        <div class="accordion-header-dropdown w-100 common-dropdown">
+          <app-numeric
+            [label]="'deal.worksheet.financeTerms.payments' | translate"
+            name="term_{{ i }}"
+            [minValue]="1"
+            [maxlength]="3"
+            [(ngModel)]="term.term"
+            [required]="isFinanceDealType && term.isSelected"
+            [disableControl]="disabled"
+            (ngModelChange)="toggleRadio(i)"
+          >
+          </app-numeric>
+        </div>
+        <div class="accordion-header-dropdown w-100 common-dropdown">
+          <app-amount
+            [label]="'deal.worksheet.financeTerms.rate' | translate"
+            name="interestRate_{{ i }}"
+            [rightAlign]="true"
+            [separatorLimit]="99.99"
+            [showSuffix]="true"
+            [allowZero]="true"
+            [required]="term.term > 0"
+            [(ngModel)]="term.interestRate"
+            [disableControl]="disabled"
+          >
+          </app-amount>
+        </div>
+      </span>
+    </div>
+  </div>
+</form>
+ 

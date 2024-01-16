@@ -1,0 +1,20 @@
+<app-base-dialog [title]="data.title | translate: data.titleReplacementObj || {}" (dialogClose)="close()">
+
+  <ng-container body *ngIf="data.text || data.instructions?.length > 0">
+    <p class="dialogText">{{ data.text | translate: data.textReplacementObj || {} }}</p>
+    <ul class="instructions" *ngIf="data.instructions?.length > 0">
+      <li *ngFor="let instructionKey of data.instructions" [innerHTML]="instructionKey | translate"></li>
+    </ul>
+  </ng-container>
+
+  <ng-container *ngIf="data" footer>
+    <button mat-raised-button color="primary" class="buttonOutline" (keyup.enter)="close()" (click)="close()">
+      {{ data.button.secondaryButton | translate }}
+    </button>
+
+    <button type="button" mat-stroked-button color="warn" class="buttonOutline border-warn" (keyup.enter)="close(true)"
+      (click)="close(true)">
+      {{ data.button.primaryButton | translate }}
+    </button>
+  </ng-container>
+</app-base-dialog>

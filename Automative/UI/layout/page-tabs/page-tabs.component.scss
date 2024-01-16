@@ -1,0 +1,74 @@
+@import 'styles/mixins/media-queries';
+.sub-header {
+  .mat-mdc-card {
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    position: relative;
+    z-index: 9;
+    .mat-mdc-card-title-group {
+      align-items: center;
+      padding: 16px 0;
+      min-height: 68px;
+      .mat-mdc-card-title {
+        font-family: var(--app-font-primary-medium);
+        font-size: var(--app-font-size-xxl);
+        line-height: 160%;
+        letter-spacing: 0.15px;
+        color: var(--app-white-color);
+        margin: 0;
+        &.flex {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          .back-icon {
+            display: flex;
+            cursor: pointer;
+            color: var(--app-white-color);
+            align-items: center;
+          }
+        }
+        .heading {
+          @include for-before-tablet {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            max-width: calc(100% - 200px);
+          }
+        }
+        .sub-heading {
+          font-size: var(--app-font-size-xl);
+          line-height: 150%;
+          letter-spacing: 0.15px;
+          font-family: var(--app-font-primary-regular);
+          color: rgba(255, 255, 255, 0.6);
+          @include for-tablet {
+            font-size: var(--app-font-size-regular);
+          }
+        }
+        @include for-tablet {
+          font-size: var(--app-font-size-xl);
+          &.flex {
+            gap: 7px;
+          }
+        }
+      }
+      .button {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+      @include for-landscape-tablet {
+        &.cardTabletView {
+          flex-direction: column;
+          align-items: flex-start;
+          .button {
+            width: 100%;
+            margin: 12px 0 0 0px;
+          }
+        }
+      }
+    }
+  }
+}

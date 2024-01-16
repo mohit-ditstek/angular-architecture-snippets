@@ -1,0 +1,140 @@
+<form #form="ngForm" (ngSubmit)="(form.valid)">
+  <div class="customCheckbox" [ngClass]="{ addressCheckbox: notSameAsAbove }" *ngIf="checkboxVisible">
+    <app-checkbox
+      name="sameAsAbove"
+      [tabindex]="bulidPrefix(1)"
+      [(ngModel)]="notSameAsAbove"
+      (onChanged)="onNotSameAsAboveCheckboxChanged($event)"
+      [label]="'fields.SameAsCurrentAddress' | translate"
+      [disabled]="disabled"
+    ></app-checkbox>
+  </div>
+
+  <ng-container *ngIf="!checkboxVisible || (checkboxVisible && notSameAsAbove)">
+    <div fxLayout="row wrap" fxLayoutGap="30px grid" fxLayoutAlign="start center">
+      <div
+        [fxFlex]="addressFieldWidth"
+        [fxFlex.lg]="addressFieldWidth"
+        [fxFlex.md]="(isExpandedOnTablet ? 100 : 50) + '%'"
+        [fxFlex.sm]="(isExpandedOnTablet ? 100 : 50) + '%'"
+        fxFlex.xs="100%"
+      >
+        <app-business-address-input
+          [tabindex]="bulidPrefix(2)"
+          [autoFocus]="autoFocus"
+          [label]="'fields.Address' | translate"
+          name="address"
+          [(ngModel)]="addressForm.address"
+          [value]="addressForm.address"
+          [placeholder]="'fields.Address' | translate"
+          [maxlength]="100"
+          [required]="required"
+          [submitted]="false"
+          [disabled]="disabled"
+          [valueLength]="addressForm?.address?.length"
+          (googleAddressData)="googleAddressData($event)"
+          (input)="onValueChange()"
+        >
+        </app-business-address-input>
+      </div>
+      <div
+        [fxFlex]="unitFieldWidth"
+        [fxFlex.lg]="unitFieldWidth"
+        [fxFlex.md]="(isExpandedOnTablet ? 100 : 50) + '%'"
+        [fxFlex.sm]="(isExpandedOnTablet ? 100 : 50) + '%'"
+        fxFlex.xs="100%"
+      >
+        <app-address-field-control
+          [tabindex]="bulidPrefix(3)"
+          name="unitNo"
+          [(ngModel)]="addressForm.unitNo"
+          [label]="label"
+          [maxlength]="25"
+          [autoFocus]="focusUnitField"
+          [placeholder]="placeholder"
+          [submitted]="false"
+          [disabled]="disabled"
+        ></app-address-field-control>
+      </div>
+      <div
+        [fxFlex]="fxFlexPercent"
+        [fxFlex.lg]="fxFlexPercent"
+        [fxFlex.md]="(isExpandedOnTablet ? 100 : 50) + '%'"
+        [fxFlex.sm]="(isExpandedOnTablet ? 100 : 50) + '%'"
+        fxFlex.xs="100%"
+      >
+        <app-address-field-control
+          name="city"
+          [tabindex]="bulidPrefix(4)"
+          [(ngModel)]="addressForm.city"
+          [label]="'fields.City' | translate"
+          [placeholder]="'fields.City' | translate"
+          [maxlength]="50"
+          [submitted]="false"
+          [required]="required"
+          [disabled]="disabled"
+        ></app-address-field-control>
+      </div>
+      <div
+        [fxFlex]="fxFlexPercent"
+        [fxFlex.lg]="fxFlexPercent"
+        [fxFlex.md]="(isExpandedOnTablet ? 100 : 50) + '%'"
+        [fxFlex.sm]="(isExpandedOnTablet ? 100 : 50) + '%'"
+        fxFlex.xs="100%"
+      >
+        <app-address-field-control
+          name="county"
+          [tabindex]="bulidPrefix(5)"
+          [(ngModel)]="addressForm.county"
+          [label]="'fields.County' | translate"
+          [placeholder]="'fields.County' | translate"
+          [maxlength]="50"
+          [submitted]="false"
+          [required]="isCountyRequired"
+          [disabled]="disabled"
+        ></app-address-field-control>
+      </div>
+
+      <div
+        [fxFlex]="fxFlexPercent"
+        [fxFlex.lg]="fxFlexPercent"
+        [fxFlex.md]="(isExpandedOnTablet ? 100 : 50) + '%'"
+        [fxFlex.sm]="(isExpandedOnTablet ? 100 : 50) + '%'"
+        fxFlex.xs="100%"
+      >
+        <app-config-items-dropdown
+          [tabindex]="bulidPrefix(6)"
+          name="state"
+          [type]="type"
+          [(ngModel)]="addressForm.state"
+          [label]="'fields.State' | translate"
+          [placeholder]="'fields.State' | translate"
+          [submitted]="false"
+          [required]="required"
+          [showDropdownOption]="true"
+          [disableControl]="disabled"
+        ></app-config-items-dropdown>
+      </div>
+
+      <div
+        [fxFlex]="fxFlexPercent"
+        [fxFlex.lg]="fxFlexPercent"
+        [fxFlex.md]="(isExpandedOnTablet ? 100 : 50) + '%'"
+        [fxFlex.sm]="(isExpandedOnTablet ? 100 : 50) + '%'"
+        fxFlex.xs="100%"
+      >
+        <app-zip-code
+          name="zipCode"
+          [tabindex]="bulidPrefix(7)"
+          [(ngModel)]="addressForm.zipCode"
+          [label]="'fields.ZipCode' | translate"
+          [placeholder]="'fields.ZipCode' | translate"
+          [required]="required"
+          [submitted]="false"
+          [maskedValue]="true"
+          [disabled]="disabled"
+        ></app-zip-code>
+      </div>
+    </div>
+  </ng-container>
+</form>
