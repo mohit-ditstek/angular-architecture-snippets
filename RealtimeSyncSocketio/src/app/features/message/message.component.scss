@@ -1,0 +1,110 @@
+.container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+}
+
+.sidenav {
+      width: 200px;
+}
+
+mat-card-header {
+      border-bottom: 1px solid #ddd;
+      padding: 16px;
+}
+
+.selected {
+      background-color: #3f51b5de;
+
+      .mb-1 {
+            color: white;
+      }
+}
+
+.mat-mdc-card-content {
+      display: block;
+      padding: 0px 0px;
+}
+
+.conversation {
+      height: calc(100vh - 170px);
+      overflow-y: auto;
+}
+
+.message {
+      display: flex;
+      flex-direction: column;
+      margin: 8px 0;
+}
+
+.message-container {
+      display: flex;
+      justify-content: flex-start;
+      padding: 0 10px;
+}
+
+.message-card {
+      max-width: 80%;
+      border-radius: 16px;
+      padding: 10px 15px;
+      background-color: #e0e0e0;
+      color: #333;
+      word-wrap: break-word;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 10px;
+      font-size: 14px;
+      line-height: 1.4;
+}
+
+.message.sent .message-card {
+      background-color: #007bff;
+      color: #fff;
+      align-self: flex-end;
+      border-radius: 16px 16px 0 16px;
+}
+
+.message.received .message-card {
+      background-color: #f1f1f1;
+      color: #333;
+      align-self: flex-start;
+      border-radius: 16px 16px 16px 0;
+}
+
+mat-card-actions {
+      border-top: 1px solid #ddd;
+}
+
+.reply-form {
+      display: flex;
+      align-items: center;
+      padding: 4px;
+      background-color: #fff;
+}
+
+mat-form-field {
+      flex: 1;
+}
+
+.action-icons {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+}
+
+.reply-form mat-form-field {
+      flex: 1;
+}
+
+mat-icon {
+      cursor: pointer;
+      font-size: 24px;
+      margin-left: 8px;
+}
+
+.mdc-card__actions {
+      display: inline-block;
+}
+
+.class {
+      display: flex;
+}

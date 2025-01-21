@@ -1,0 +1,79 @@
+<mat-sidenav-container class="container">
+      <mat-sidenav 
+            class="sidenav"
+            mode="side" 
+            opened >
+            <mat-nav-list>
+                  <mat-list-item 
+                        [ngClass]="{'selected': selectedUser === user}"
+                        *ngFor="let user of users"                               
+                        (click)="onSelectUser(user)">
+                        <div class="d-flex w-100 align-items-center justify-content-between">
+                              <strong class="mb-1">
+                                    {{ user?.name }}
+                              </strong>
+                        </div>                        
+                  </mat-list-item>
+            </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+            <mat-card>
+                  <mat-card-header>
+                        <mat-card-title>
+                              {{ selectedUser?.name }}
+                        </mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content>
+                        <div class="conversation">
+                              <div class="message" 
+                                    *ngFor="let message of messages">
+                                    <div class="message-container">
+                                          <mat-card 
+                                                class="message-card" 
+                                                color="primary" 
+                                                (click)="onSelectMessage(message)">
+                                                      {{ message.message }}
+                                          </mat-card>
+                                          <div class="action-icons" 
+                                                *ngIf="selectedMessage === message">
+                                                <mat-icon 
+                                                      color="primary" 
+                                                      (click)="onEditMessage()">
+                                                            edit
+                                                      </mat-icon>
+                                                <mat-icon 
+                                                      color="warn" 
+                                                      (click)="onDeleteMessage()">
+                                                            delete
+                                                </mat-icon>
+                                          </div>
+                                    </div>
+                              </div>
+                        </div>
+                  </mat-card-content>
+                  <mat-card-actions>
+                        <form 
+                              class="reply-form"
+                              [formGroup]="form" 
+                              (ngSubmit)="onSubmit()">
+                              <mat-form-field>
+                                    <mat-label>
+                                          Write a message
+                                    </mat-label>
+                                    <div class="class">
+                                          <input 
+                                                matInput 
+                                                formControlName="message" 
+                                                required />
+                                          <mat-icon 
+                                                color="primary" 
+                                                (click)="onSubmit()">
+                                                      send
+                                          </mat-icon>
+                                    </div>
+                              </mat-form-field>
+                        </form>
+                  </mat-card-actions>
+            </mat-card>
+      </mat-sidenav-content>
+</mat-sidenav-container>
