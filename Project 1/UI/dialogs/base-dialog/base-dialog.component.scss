@@ -1,0 +1,113 @@
+.modal-content {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  outline: 0;
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 60px 16px 16px;
+    border-bottom: 1px solid #e9ecef;
+    border-radius: 4px 4px 0px 0px;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    .modal-title {
+      margin-bottom: 0;
+      font-size: var(--app-font-size-xl);
+      font-family: var(--app-font-primary-medium);
+      line-height: 24px;
+      color: var(--black-color);
+      ::ng-deep a {
+        color: var(--app-primary);
+        font-family: var(--app-font-primary-regular);
+      }
+    }
+    .close {
+      cursor: pointer;
+      font-family: var(--app-font-primary-medium);
+      color: #9ea1b8;
+      text-shadow: 0 1px 0 #fff;
+      padding: 1rem;
+      background-color: transparent;
+      border: 0;
+      appearance: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      &:focus-visible {
+        outline: none !important;
+      }
+    }
+  }
+  .modal-body {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    &:empty {
+      display: none;
+    }
+    ::ng-deep {
+      p {
+        font-size: var(--app-font-size-regular);
+        line-height: 150%;
+        letter-spacing: 0.15px;
+        color: rgba(0, 0, 0, 0.87);
+        margin: 0;
+      }
+    }
+  }
+  .modal-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    padding: 1rem;
+    border-top: 1px solid #e9ecef;
+    gap: 15px;
+    ::ng-deep {
+      p {
+        margin: 0;
+        &.bold {
+          font-family: var(--app-font-primary-medium);
+        }
+      }
+      .footer-buttons {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+    }
+    &:empty {
+      display: none;
+    }
+  }
+  &.space-between {
+    .modal-footer {
+      justify-content: space-between;
+    }
+  }
+}
+
+.cdk-global-scrollblock {
+  position: static !important;
+  width: initial !important;
+  overflow-y: inherit !important;
+}

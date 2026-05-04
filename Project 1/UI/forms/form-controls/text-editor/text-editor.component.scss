@@ -1,0 +1,51 @@
+:host ::ng-deep {
+    .ck-editor {
+        .ck-dropdown__panel {
+            .ck-list {
+                .ck-list__item {
+                    .ck-button_with-text {
+                        font-size: 12px;
+                        height: 25px;
+                    }
+                }
+            }
+        }
+
+        .ck-editor__editable_inline {
+            height: 65px;
+            padding: 15px;
+
+            p {
+                margin: 0px !important;
+            }
+        }
+        .ck-content{
+            p{
+                .mention{
+                    background:transparent;
+                    color: #262c61;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+.flag-icon {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    position: absolute;
+    top: 6px;
+    left: 260px;
+    border-left: 1px solid #ccced1;
+    padding-left: 6px;
+
+    &.active {
+        background: #f0f7ff;
+
+        span {
+            color: #2977ff;
+        }
+    }
+}

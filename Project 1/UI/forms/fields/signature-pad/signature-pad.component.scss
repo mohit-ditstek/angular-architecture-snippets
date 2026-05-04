@@ -1,0 +1,51 @@
+@import 'styles/mixins/media-queries';
+
+.signatureWrapper {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 15px;
+
+  .clearButton {
+    position: relative;
+    padding-top: 20px;
+    .mat-mdc-form-field-error {
+      position: absolute;
+      top: 0;
+      color: var(--error);
+      font-size: 10px;
+      bottom: -20px;
+      left: 6px;
+    }
+    .withoutOutline {
+      cursor: pointer;
+      max-width: 160px;
+      margin: 0 auto;
+      float: right;
+      text-transform: uppercase;
+      color: var(--app-primary);
+      img {
+        vertical-align: middle;
+      }
+    }
+  }
+  .signature-container {
+    border: 2px solid #e2e3f4;
+    background-color: #f9f9fd;
+    border-radius: 4px;
+    min-height: 200px;
+    position: relative;
+    canvas {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.primary {
+  border-color: #262c61;
+  text-transform: uppercase;
+}

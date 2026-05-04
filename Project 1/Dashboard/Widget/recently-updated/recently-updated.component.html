@@ -1,0 +1,9 @@
+<ng-container *ngIf="widgetConfigs.length > 0">
+  <div class="heading-wrapper">
+    <div class="heading">{{ 'dashboard.listingTitles.recentlyUpdated' | translate }}</div>
+  </div>
+
+  <div class="recently-updated-wrapper">
+    <app-recently-updated-widget [widget]="data" *ngFor="let data of widgetConfigs"></app-recently-updated-widget>
+  </div>
+</ng-container>

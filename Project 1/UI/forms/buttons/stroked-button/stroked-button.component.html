@@ -1,0 +1,5 @@
+<button [disabled]="disableControl" mat-stroked-button  [color]="color" [matTooltip]="tooltipText" [ngClass]="class" type="button" class="buttonOutline">
+    <span class="material-icons" *ngIf="buttonIcon && !iconAlignmentRight"> {{buttonIcon}} </span> 
+    {{buttonText}}
+    <span class="material-icons" *ngIf="buttonIcon && iconAlignmentRight"> {{buttonIcon}} </span> 
+</button>

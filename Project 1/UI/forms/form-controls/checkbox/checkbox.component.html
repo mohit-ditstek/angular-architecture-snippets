@@ -1,0 +1,16 @@
+<div class="formGroup" [ngClass]="customClass" [class.disabled]="disabled || disableControl">
+    <mat-checkbox color="primary" #controlName="ngModel" [name]="name" [(ngModel)]="value" [checked]="checked" [tabIndex]="tabindex" [required]="required" [disabled]="disabled || disableControl" (change)="onChange($event)" [class.mat-checkbox-disabled]="disabled || disableControl">
+        <ng-container *ngIf="!hideLabel">
+            <span class="label" *ngIf="showTooltip" [matTooltip]="label">{{ label }}</span>
+            <span class="label" *ngIf="!showTooltip">{{ label }}</span>
+        </ng-container>
+    </mat-checkbox>
+    <mat-error *ngIf="(submitted || controlName.touched) && controlName.invalid">
+        <span *ngIf="controlName.hasError('required')">{{ 'common.validations.required' | translate }}</span>
+    </mat-error>
+    <div class="checkboxEntity" *ngIf="showNote">
+        <span>
+      {{ showNote }}
+    </span>
+    </div>
+</div>

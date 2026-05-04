@@ -1,0 +1,59 @@
+::ng-deep.mat-mdc-autocomplete-panel {
+  .mat-mdc-option {
+    .mdc-list-item__primary-text {
+      width: 100%;
+    }
+  }
+}
+.searchDropdown {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  .searchId {
+    display: flex;
+    gap:10px;
+    min-width: 100px;
+    .dealId {
+      font-size: var(--app-font-size-regular);
+      line-height: 20px;
+      color: rgba(0, 0, 0, 0.87);
+    }
+    .import-icon{
+     font-size:16px;
+    }
+  }
+  .searchName {
+    display: flex;
+    gap:10px;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    white-space: nowrap;
+    .dealName {
+      font-size: var(--app-font-size-regular);
+      line-height: 20px;
+      color: rgba(0, 0, 0, 0.87);
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+  .searchUnit {
+    width: calc(100% - 55px);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    span {
+      font-size: var(--app-font-size-regular);
+      line-height: 20px;
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+}
+.noResult {
+  color: rgba(0, 0, 0, 0.87);
+  font-size: var(--app-font-size-regular);
+  text-align: center;
+}

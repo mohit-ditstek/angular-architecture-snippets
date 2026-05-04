@@ -1,0 +1,24 @@
+<div class="sub-header">
+  <mat-card>
+    <mat-card-title-group>
+      <mat-card-title>
+        {{ 'dashboard.title' | translate }}
+        <div class="subtitle">{{ orgName }}</div>
+      </mat-card-title>
+      <app-quick-links-filter *ngIf="!isAdmin" (filter)="filterChanged($event)"></app-quick-links-filter>
+    </mat-card-title-group>
+  </mat-card>
+</div>
+
+<div class="quick-links-widgets margin-spacer">
+  <app-quick-link-widget
+    [widget]="config"
+    [filterType]="filter.calendarType"
+    [isDmsEnabled]="isDmsEnabled$ | async"
+    (redirect)="redirect($event)"
+    (redirectPage)="redirectPage($event)"
+    *ngFor="let config of widgetConfigs"
+    [isAdmin]="isAdmin"
+    [orgType]="orgType"
+  ></app-quick-link-widget>
+</div>

@@ -1,0 +1,19 @@
+<div class="page">
+  <div class="sub-header">
+    <mat-card>
+      <mat-card-title-group>
+        <mat-card-title class="flex">
+          <ng-content select="[button]"></ng-content>
+          {{ title }}
+        </mat-card-title>
+        <div class="button">
+          <ng-content select="[header]"></ng-content>
+        </div>
+      </mat-card-title-group>
+    </mat-card>
+  </div>
+  <ng-content select="[tabs]"></ng-content>
+  <div select="[body]" class="content" [ngClass]="bodyClass">
+    <ng-content></ng-content>
+  </div>
+</div>

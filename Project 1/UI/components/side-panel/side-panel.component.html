@@ -1,0 +1,11 @@
+<div  class="side-panel" [class.show]="isSidePanelOpened">
+  <ng-container>
+    <div class="side-panel-header">
+      {{ text | translate }}
+      <ng-content select="[header]"></ng-content>
+    </div>
+    <div class="side-panel-body">
+      <ng-content select="[body]"></ng-content>
+    </div>
+  </ng-container>
+</div>

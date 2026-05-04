@@ -1,0 +1,29 @@
+<div class="loader-wrapper" [ngClass]="{ 'remove-padding': padding }">
+  <div class="commonCard common-padding">
+    <div class="card">
+      <div class="load-wrapper">
+        <div class="header">
+          <div class="details">
+            <span class="name"></span>
+            <span class="about"></span>
+            <span class="about"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="skelton-tabs">
+      <div class="skelton-inner-tabs" *ngFor="let item of items(5)">
+        <div class="animated-background"></div>
+      </div>
+    </div>
+  </div>
+  <div class="commonCard common-padding card-height">
+    <div class="main-menu-container-skeleton">
+      <div class="sub-menu-skeleton">
+        <div class="inner-box" *ngFor="let item of items(3)">
+          <div class="animated-background"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

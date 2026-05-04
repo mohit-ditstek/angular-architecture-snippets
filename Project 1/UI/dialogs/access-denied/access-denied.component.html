@@ -1,0 +1,5 @@
+<app-base-dialog [title]="'common.accessDenied' | translate" (dialogClose)="close()">
+    <ng-container body *ngIf="data.text">
+        <p class="dialogText" [innerHtml]="data.text"></p>
+    </ng-container>
+</app-base-dialog>

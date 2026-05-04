@@ -1,0 +1,46 @@
+@import 'styles/mixins/media-queries';
+
+:host {
+    width: 100%;
+}
+.small {
+  width: 100%;
+  min-width: 135px;
+  max-width: 135px;
+  @include for-landscape-tablet {
+    width: var(--tablet-width);
+    min-width: var(--tablet-width);
+    max-width: var(--tablet-width);
+  }
+}
+
+.regular {
+  min-width: 240px;
+  width: 100%;
+  max-width: 100%;
+}
+.medium {
+  width: 100%;
+  min-width: 175px;
+  max-width: 175px;
+  @include for-tablet {
+    width: var(--tablet-width);
+    min-width: var(--tablet-width);
+    max-width: var(--tablet-width);
+  }
+}
+.x-medium {
+  width: 100%;
+  min-width: 175px;
+  max-width: 175px;
+  @include for-landscape-tablet {
+    width: var(--tablet-width);
+    min-width: var(--tablet-width);
+    max-width: var(--tablet-width);
+  }
+}
+.large {
+  width: 100%;
+  min-width: 270px;
+  max-width: 270px;
+}

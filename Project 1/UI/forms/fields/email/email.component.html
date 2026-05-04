@@ -1,0 +1,31 @@
+<div class="formGroup">
+  <mat-form-field appearance="outline" [ngClass]="{ 'disabled-control': disabled }">
+    <mat-label>{{ label }}</mat-label>
+    <input
+      matInput
+      #controlName="ngModel"
+      [tabindex]="tabindex"
+      type="text"
+      [name]="name"
+      [placeholder]="placeholder"
+      [maxlength]="maxlength"
+      [(ngModel)]="value"
+      [required]="required"
+      [readonly]="readonly"
+      [disabled]="disabled"
+      [autoFocus]="autoFocus"
+      autocomplete="off"
+      trimValue
+      abcLowercase
+    />
+  </mat-form-field>
+  <mat-error *ngIf="(submitted || controlName.touched) && controlName.invalid">
+    <span *ngIf="controlName.hasError('required')">{{ 'common.validations.required' | translate }}</span>
+    <span *ngIf="controlName.hasError('pattern')">{{ 'common.validations.invalidInput' | translate }}</span>
+  </mat-error>
+  <div class="entity">
+    <span *ngIf="maxlength && !controlName.invalid && controlName.value?.length === maxlength">
+      {{ 'common.validations.maxlength.message' | translate : { value: maxlength } }}</span
+    >
+  </div>
+</div>

@@ -1,0 +1,10 @@
+@import 'styles/mixins/media-queries';
+
+.quick-links-widgets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(260px - 8px), 1fr));
+  grid-template-rows: auto;
+  grid-gap: 8px;
+  transform: translateZ(0);
+  transition: all 0.4s;  
+}

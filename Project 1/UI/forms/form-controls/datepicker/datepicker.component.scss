@@ -1,0 +1,10 @@
+::ng-deep.mat-calendar-body-disabled {
+    .mat-calendar-body-cell-content {
+        cursor: not-allowed;
+    }
+
+}
+
+:host {
+    width: 100%;
+}

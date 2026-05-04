@@ -1,0 +1,63 @@
+@import 'styles/mixins/media-queries';
+
+.action-buttons-part {
+  display: flex;
+  gap: 10px;
+  .buttonOutline {
+    .add-icon {
+      align-items: center;
+      display: inline-flex;
+    }
+    .disabledMenuTrigger {
+      pointer-events: none;
+    }
+  }
+  .reset-button {
+    &.pad-0 {
+      padding: 0;
+      border: 0px !important;
+    }
+    ::ng-deep.mdc-button__label{
+      span {
+        font-size:30px;
+      }
+    }
+  }
+  ::ng-deep.presentationDropdownButton {
+    padding-right: 0;
+    overflow: hidden;
+    .mdc-button__label {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      .caret {
+        display: flex;
+        height: 37px;
+        width: 25px;
+        align-items: center;
+        justify-content: center;
+        margin: 0 0 0 15px;
+        &.opened {
+          span {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+
+    &.mat-active {
+      .caret {
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+  .togggle-button {
+    padding-top: 5px;
+    padding-left: 16px;
+    @include for-tablet {
+      position: absolute;
+      right:9px;
+      top: 9px;
+    }
+  }
+}

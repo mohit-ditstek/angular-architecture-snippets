@@ -1,0 +1,88 @@
+<div class="commonTabContent protection-product-part">
+  <div class="customerHeader">
+    <app-header-content></app-header-content>
+    <div class="individual protection">
+      <app-protection-products-buttons
+        #productButtons
+        [isCustomerLocked]="dealOverview?.isCustomerLocked"
+        [isPresentationCompleted]="isPresentationCompleted"
+        [noProtectionProducts]="noProtectionProducts"
+        (openRatingDialog)="openDialog($event)"
+        (openContractDialog)="openGenerateContractValidationDialog()"
+        (openDealerProductDialog)="openProductDialog()"
+        [disableActions]="isDealLocked"
+        [isBlocked]="isBlocked"
+        [isLocked]="isLocked"
+        (resetAllProducts)="resetProducts()"
+        [showDealerCostToggle]="showDealerCostToggle"
+        [dealerCostToggle]="dealerCostToggle$ | async"
+        (showDealerCost)="toggleDealerCost($event)"
+      ></app-protection-products-buttons>
+  </div>
+    </div>
+  <div class="tabsInfo">
+    <div class="unitproduct-part">
+      <ng-container *ngFor="let unitProtectProduct of unitsProducts; trackBy: trackBy; let index = index">
+        <app-mat-accordion [title]="unitProtectProduct?.label" [simpleMode]="false" *ngIf="unitProtectProduct.products?.length > 0">
+          <div class="tabsInfo" body>
+            <div class="tabsInnerInfo">
+              <app-protection-product-grid
+                *ngIf="!loading"
+                #protectionProductsGrid
+                [worksheetDetails]="worksheetDetails"
+                [products]="unitProtectProduct.products"
+                [isWorksheetTabLocked]="isWorksheetTabLocked"
+                [hasCustomerAddress]="hasCustomerAddress$ | async"
+                [address]="primaryCustomerAddress$ | async"
+                [showDealerCost]="dealerCostToggle$ | async"
+                [isBlocked]="isBlocked"
+                [disableActions]="isDealLocked"
+                [taxableAmount$]="protectionProductTaxableAmount$"
+                [taxAmount$]="protectionProductTaxAmount$"
+                [isContractGenerated]="isContractGenerated$ | async"
+                (changeProducts)="updateProtectionProducts($event, index)"
+                (openProductDialog)="openProductDialog($event, unitProtectProduct.id)"
+                (calculateWorksheetDetails)="calculateWorksheetDetails()"
+                (resetProtectionProducts)="resetProtectionProducts()"
+                (setActiveProductId)="setActiveProductId($event)"
+                (deleteProduct)="deleteProduct($event)"
+              >
+              </app-protection-product-grid>
+            </div>
+          </div>
+        </app-mat-accordion>
+      </ng-container>
+    </div>
+    <div *ngIf="financeProducts.length > 0">
+      <app-mat-accordion [title]="'deal.worksheet.protectionProducts.financeProtection' | translate" [isExpanded]="true" [simpleMode]="false">
+        <div class="tabsInfo" body>
+          <div class="tabsInnerInfo">
+            <app-protection-product-grid
+              *ngIf="!loading"
+              #protectionProductsGrid
+              [worksheetDetails]="worksheetDetails"
+              [products]="financeProducts"
+              [showDealerCost]="dealerCostToggle$ | async"
+              [hasCustomerAddress]="hasCustomerAddress$ | async"
+              [address]="primaryCustomerAddress$ | async"
+              [disableActions]="isDealLocked"
+              [isWorksheetTabLocked]="isWorksheetTabLocked"
+              [taxableAmount$]="protectionProductTaxableAmount$"
+              [taxAmount$]="protectionProductTaxAmount$"
+              (changeProducts)="updateProtectionProducts($event)"
+              (openProductDialog)="openProductDialog($event)"
+              (calculateWorksheetDetails)="calculateWorksheetDetails()"
+              (resetProtectionProducts)="resetProtectionProducts()"
+              (setActiveProductId)="setActiveProductId($event)"
+              (deleteProduct)="deleteProduct($event)"
+            >
+            </app-protection-product-grid>
+          </div>
+        </div>
+      </app-mat-accordion>
+    </div>
+    <div *ngIf="noProtectionProducts" class="notFoundMessage">
+      {{ 'deal.worksheet.protectionProducts.productNotFound' | translate }}
+    </div>
+  </div>
+</div>

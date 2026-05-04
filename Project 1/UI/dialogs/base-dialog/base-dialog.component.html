@@ -1,0 +1,16 @@
+<div class="modal-content" [ngClass]="contentClass">
+  <div class="modal-header" *ngIf="!hideHeader">
+    <div class="modal-title" [innerHTML]="title"></div>
+    
+    <ng-content select="[header]"></ng-content>
+    <button type="button" class="close" data-dismiss="modal" tabindex="-1" aria-label="Close" *ngIf="closeIcon" (click)="closeDialog()">
+      <span class="material-icons">close</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ng-content select="[body]"></ng-content>
+  </div>
+  <div class="modal-footer">
+    <ng-content select="[footer]"></ng-content>
+  </div>
+</div>

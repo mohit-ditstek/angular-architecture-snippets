@@ -1,0 +1,28 @@
+@import 'styles/mixins/media-queries';
+
+.watermark {
+  width: 100%;
+  position: absolute;
+  font-family: var(--app-font-primary-regular);
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.5;
+  .watermark-text {
+    font-size: 9em;
+    color: #9ea1b829;
+    text-transform: uppercase;
+    position: fixed;
+    left: 50%;
+    top: 65%;
+    line-height: normal;
+    transform: translate(-50%, -50%) rotate(331deg);
+    user-select: none;
+    &.watermark-quote {
+      font-size: 12em;
+      top: 50%;
+      @include for-tablet {
+        font-size: 8em;
+      }
+    }
+  }
+}

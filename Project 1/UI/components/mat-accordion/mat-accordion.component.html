@@ -1,0 +1,16 @@
+<div [ngClass]="simpleMode ? 'simple' : bordered ? 'formatted bordered' : 'formatted'">
+  <mat-accordion>
+    <mat-expansion-panel [hideToggle]="true" [expanded]="isExpanded" [ngClass]="accordionClass">
+      <mat-expansion-panel-header [ngClass]="{ upperBorder: upperBorder }" tabindex="-1" #panelH (click)="panelH._toggle()">
+        <mat-panel-title>
+          {{ title }}
+         <div class="mat-indicator" (click)="toggleAccordionPanel()"></div>
+        </mat-panel-title>
+        <ng-content select="[header]"></ng-content>
+        <ng-content select="[button]"></ng-content>
+      </mat-expansion-panel-header>
+
+      <ng-content select="[body]"></ng-content>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

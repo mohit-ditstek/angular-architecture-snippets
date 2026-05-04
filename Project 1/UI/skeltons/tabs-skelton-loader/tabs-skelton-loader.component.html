@@ -1,0 +1,31 @@
+<div class="loader-wrapper">
+  <div class="margin-spacer">
+    <div class="wrapper">
+      <div class="card">
+        <div class="details">
+          <span class="name"><div class="animated-background"></div></span>
+          <span class="about"><div class="animated-background"></div></span>
+        </div>
+      </div>
+      <div class="skelton-tabs">
+        <div class="skelton-inner-tabs" *ngFor="let item of items(1)">
+          <div class="animated-background"></div>
+        </div>
+      </div>
+    </div>
+    <div class="skelton-tabs flex-start">
+      <div class="skelton-inner-tabs remove-border" *ngFor="let item of items(6)">
+        <div class="animated-background"></div>
+      </div>
+    </div>
+  </div>
+  <div class="commonCard common-padding card-height">
+    <div class="main-menu-container-skeleton">
+      <div class="sub-menu-skeleton">
+        <div class="inner-box" *ngFor="let item of items(3)">
+          <div class="animated-background"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

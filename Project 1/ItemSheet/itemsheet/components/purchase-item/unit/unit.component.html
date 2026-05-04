@@ -1,0 +1,187 @@
+<app-header-content>
+  <ng-container header>
+    <div class="accordion-header-dropdown reduce-width">
+      <app-dropdown
+        name="taxProfile"
+        [label]="'deal.header.taxProfile' | translate"
+        [placeholder]="'deal.header.taxProfile' | translate"
+        [(ngModel)]="purchaseUnit.taxProfileId"
+        [options]="activeTaxProfileOptions"
+        [disableControl]="disabled"
+        [hideEllipsis]="true"
+        [ngModelOptions]="{ standalone: true }"
+        (selectedValue)="changeTaxProfile($event)"
+      >
+      </app-dropdown>
+    </div>
+  </ng-container>
+</app-header-content>
+<form #form="ngForm">
+  <div class="tabsInfo">
+    <div class="tabsInnerInfo">
+      <div class="common-field">
+        <div class="l-field-container">
+          <span class="l-field-label">{{ 'deal.worksheet.tabs.purchasePrice' | translate }}</span>
+          <span class="l-field-value">
+            <div class="accordion-header-dropdown common-dropdown">
+              <div [ngClass]="!unitForm.sellingPrice ? 'accordion-header-dropdown' : ''">
+                <app-amount
+                  name="purchasePrice"
+                  [label]="'deal.worksheet.tabs.purchasePrice' | translate"
+                  [(ngModel)]="unitForm.sellingPrice"
+                  [rightAlign]="true"
+                  [required]="!disabled"
+                  [autoFocus]="true"
+                  [disableControl]="disabled"
+                  [separatorLimit]="9999999.99"
+                >
+                </app-amount>
+              </div>
+            </div>
+          </span>
+        </div>
+        <div class="l-field-container">
+          <span class="l-field-label">{{ 'deal.worksheet.tabs.discount' | translate }}</span>
+          <span class="l-field-value">
+            <div class="accordion-header-dropdown common-dropdown">
+              <app-amount name="discount" [(ngModel)]="unitForm.discount" [rightAlign]="true" [disableControl]="disabled"> </app-amount>
+            </div>
+          </span>
+        </div>
+
+        <div class="l-field-container">
+          <span class="l-field-label">{{ 'deal.worksheet.purchaseUnits.freight' | translate }}</span>
+          <span class="l-field-value">
+            <div class="accordion-header-dropdown common-dropdown">
+              <app-amount name="freight" [(ngModel)]="unitForm.freight" [rightAlign]="true" [disableControl]="disabled"> </app-amount>
+            </div>
+          </span>
+        </div>
+
+        <div class="l-field-container">
+          <span class="l-field-label">{{ 'deal.worksheet.purchaseUnits.dealerPrep' | translate }}</span>
+          <span class="l-field-value">
+            <div class="accordion-header-dropdown common-dropdown">
+              <app-amount name="dealerPrep" [(ngModel)]="unitForm.dealerPrep" [rightAlign]="true" [disableControl]="disabled"> </app-amount>
+            </div>
+          </span>
+        </div>
+
+        <div class="l-field-container">
+          <span class="l-field-label">{{ 'deal.worksheet.otherPayments.rebates' | translate }}</span>
+          <span class="l-field-value">
+            <div class="accordion-header-dropdown common-dropdown">
+              <app-amount name="rebates" [(ngModel)]="unitForm.totalRebates" [rightAlign]="true" [disableControl]="disabled"> </app-amount>
+            </div>
+          </span>
+        </div>
+
+        <div class="l-field-container">
+          <span class="l-field-label">{{ 'deal.worksheet.otherPayments.installedPartsAccessories' | translate }}:</span>
+          <span class="l-field-value">
+            <div class="accordion-header-dropdown common-dropdown">
+              <app-override-controller
+                name="accessories"
+                [(ngModel)]="unitForm.totalInstalledPartsAccessories"
+                [rightAlign]="true"
+                [allowNegativeNumbers]="true"
+                [disableControl]="disabled"
+                [disabled]="!unitForm.overrideTotalInstalledPartsAccessories"
+                [isOverridden]="unitForm.overrideTotalInstalledPartsAccessories"
+                (toggleOverridden)="toggleOverrideAccessories($event)"
+              ></app-override-controller>
+            </div>
+          </span>
+        </div>
+
+        <div class="l-field-container">
+          <span class="l-field-label">{{ 'deal.worksheet.otherPayments.labor' | translate }}:</span>
+          <span class="l-field-value">
+            <div class="accordion-header-dropdown common-dropdown">
+              <app-override-controller
+                name="labor"
+                [(ngModel)]="unitForm.totalLabor"
+                [rightAlign]="true"
+                [disableControl]="disabled"
+                [disabled]="!unitForm.overrideTotalLabor"
+                [isOverridden]="unitForm.overrideTotalLabor"
+                (toggleOverridden)="toggleOverrideLabor($event)"
+              ></app-override-controller>
+            </div>
+          </span>
+        </div>
+
+        <div class="l-field-container">
+          <span class="l-field-label">{{ 'deal.worksheet.otherPayments.additionalFees' | translate }}:</span>
+          <span class="l-field-value">
+            <button
+              type="button"
+              color="primary"
+              mat-stroked-button
+              class="buttonOutline border-primary more-height"
+              (click)="openItemizeDialog()"
+              [disabled]="unitForm.fees?.length === 0 || unitForm.isFeesOverridden"
+            >
+              {{ 'deal.worksheet.otherPayments.itemize' | translate }}
+            </button>
+            <div class="accordion-header-dropdown common-dropdown">
+              <app-override-controller
+                name="totalFees"
+                [(ngModel)]="unitForm.totalFees"
+                [rightAlign]="true"
+                [disableControl]="disabled"
+                [disabled]="!unitForm.isFeesOverridden"
+                [isOverridden]="unitForm.isFeesOverridden"
+                (toggleOverridden)="toggleOverrideFees($event)"
+              ></app-override-controller>
+            </div>
+          </span>
+        </div>
+        <div class="l-field-container">
+          <span class="l-field-label">{{ 'deal.worksheet.otherPayments.vehicleTax' | translate }}:</span>
+          <span class="l-field-value">
+            <span
+              *ngIf="isCustomerAddress"
+              class="address-warning material-icons"
+              [class.disabled]="isContractGenerated && isTaxes"
+              (click)="gotoCustomerAddressTab()"
+              [matTooltip]="'common.missingCustomerAddress' | translate"
+            >
+              <mat-icon>warning</mat-icon>
+            </span>
+            <button
+              type="button"
+              color="primary"
+              mat-stroked-button
+              class="buttonOutline border-primary more-height"
+              (click)="openModifyTaxDialog()"
+              [disabled]="isDisable"
+            >
+              {{ 'deal.worksheet.tax.modify' | translate }}
+            </button>
+            <div class="accordion-header-dropdown common-dropdown">
+              <app-override-controller
+                name="vehicleTax"
+                [amount]="purchaseUnit.vehicleTax"
+                [(ngModel)]="unitForm.vehicleTax"
+                [rightAlign]="true"
+                [disableControl]="disabled"
+                [disabled]="!unitForm.isVehicleTaxOverridden"
+                [isOverridden]="unitForm.isVehicleTaxOverridden"
+                (toggleOverridden)="toggleOverrideVehicleTax($event)"
+              ></app-override-controller>
+            </div>
+          </span>
+        </div>
+        <div class="l-field-container">
+          <span class="l-field-label bold">
+            {{ 'deal.worksheet.purchaseUnits.unitTotal' | translate }}
+          </span>
+          <span class="l-field-value text-right bold">
+            {{ purchaseUnit.totalPrice | amount }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

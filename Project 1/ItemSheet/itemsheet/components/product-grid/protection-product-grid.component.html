@@ -1,0 +1,127 @@
+<form #form="ngForm">
+  <app-mat-grid
+    [loaded]="true"
+    [sortColumn]="defaultSortColumn"
+    [sortDirection]="defaultSortDirection"
+    [data$]="products | observable"
+    [columns]="activeColumns"
+    [sumOfColumHandler]="sumOfColumHandler"
+    [sumOfColumnNames]="sumOfColumnNames"
+    [rowEventEnabled]="true"
+    (triggerRowEvent)="openProductDetailsDialog($event)"
+  >
+    <ng-template #productDetails let-data let-index="index" let-column="column">
+      <div class="product-cell" [ngClass]="{ manual: !data.isRated }">
+        <div class="manual-icon" [matTooltip]="'deal.worksheet.protectionProducts.manualProduct' | translate" *ngIf="!data.isRated">
+          <img src="assets/core/icons/manual-product.svg" width="15" alt="image" />
+        </div>
+
+        <span [matTooltip]="data.productName" class="ellipsis">{{ data.productName }}</span>
+
+        <label class="action-performed" *ngIf="isPresentationCompleted">
+          <span class="action-by" [class.accepted]="data.isSelected" [class.declined]="!data.isSelected">
+            <mat-icon class="icon">{{ data.isSelected ? 'check' : 'warning' }}</mat-icon>
+            {{ 'deal.worksheet.protectionProducts.' + (data.isSelected ? 'acceptedBy' : 'declinedBy') | translate }} {{ worksheetDetails.primaryCustomerName }}
+          </span>
+          <span class="action-date">{{ worksheetDetails.presentedDateTimeUtc | dateUtc: 'MM/dd/yyyy' }}</span>
+          <span class="action-time">{{ worksheetDetails.presentedDateTimeUtc | dateUtc: 'hh:mm a' }}</span>
+        </label>
+
+        <div class="show-surcharges" (click)="$event?.stopPropagation()">
+          <button
+            #surchargesMenuTrigger="matMenuTrigger"
+            mat-button
+            [matMenuTriggerFor]="menu"
+            *ngIf="data.surcharges?.length > 0 && data.surcharges[0].code !== noSurchargeApplyId"
+          >
+            <span>{{ 'deal.worksheet.protectionProducts.appliedSurcharges' | translate }}</span>
+          </button>
+          <mat-menu #menu="matMenu" xPosition="after" class="surcharges-menu">
+            <div class="menu-content">
+              <button type="button" class="close-icon" (click)="closeMenu()">
+                <span class="material-icons">close</span>
+              </button>
+              <div class="surcharges-inner">
+                <div class="surcharge-name" *ngFor="let surcharge of data.surcharges">
+                  {{ surcharge.name }}
+                </div>
+              </div>
+            </div>
+          </mat-menu>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #productToggle let-data let-index="index" let-column="column">
+      <div class="manual-wrapper" (click)="$event?.stopPropagation()">
+        <app-checkbox
+          class="checkbox"
+          [matTooltip]="
+            'deal.worksheet.protectionProducts.' +
+              (isPresentationCompleted ? 'checkboxTooltip' : isBlocked ? 'blockMessage' : data.disable ? 'duplicateProductCoverage' : 'defaultCheckboxTooltip')
+              | translate
+          "
+          name="selected_{{ data.id }}_{{ index }}"
+          id="selected_{{ data.id }}_{{ index }}"
+          [ngModel]="data.isSelected"
+          matTooltipPosition="below"
+          [disableControl]="disableActions || isBlocked || isPresentationCompleted || data.disable"
+          [showTooltip]="false"
+          (onChanged)="toggle(data, $event)"
+        >
+        </app-checkbox>
+      </div>
+    </ng-template>
+    <ng-template #totalTaxAmountField let-data let-index="index" let-column="column">
+      <div class="tax-amount" *ngIf="data.tax.isTaxable">
+        <span
+          *ngIf="isWarningMessage(data.tax)"
+          class="address-warning material-icons"
+          [class.disabled]="isContractGenerated && isTaxes"
+          (click)="gotoCustomerAddressTab(data)"
+          [matTooltip]="'common.missingCustomerAddress' | translate"
+        >
+          <mat-icon>warning</mat-icon>
+        </span>
+        <button
+          type="button"
+          color="primary"
+          mat-stroked-button
+          [disabled]="isContractGenerated && isTaxes(data.tax) || data.tax.isAmountOverridden"
+          class="buttonOutline border-primary more-height"
+          (click)="openModifyTaxDialog($event, data)"
+        >
+          {{ 'deal.worksheet.tax.modify' | translate }}
+        </button>
+
+        <div class="tax-dropdown common-dropdown" (click)="$event?.stopPropagation()">
+          <app-override-controller
+            id="overrideTaxAmount_{{ data.id }}_{{ index }}"
+            name="totalTaxAmount_{{ data.id }}_{{ index }}"
+            [rightAlign]="true"
+            [separatorLimit]="999999.99"
+            [label]="'deal.worksheet.protectionProducts.totalTaxAmount' | translate"
+            [isOverridden]="data.tax.isAmountOverridden"
+            [(ngModel)]="data.tax.totalAmount"
+            (ngModelChange)="totalTaxAmountChange(data, $event)"
+            [disableControl]="disableActions || isPresentationCompleted || data.isContractGenerated || isBlocked"
+            (toggleOverridden)="toggleTaxAmountOverridden(data, $event)"
+          ></app-override-controller>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #actionColumn let-data let-index="index" let-column="column">
+      <div class="actions" (click)="$event?.stopPropagation()">
+        <button [ngClass]="{ disabled: disableActions || isPresentationCompleted || isBlocked }">
+          <mat-icon
+            class="icon actionIcon"
+            [ngClass]="{ disable: disableActions || isPresentationCompleted || isBlocked }"
+            matTooltip="{{ 'common.deleteAction' | translate }}"
+            (click)="delete($event, data)"
+          >
+            delete
+          </mat-icon>
+        </button>
+      </div>
+    </ng-template>
+  </app-mat-grid>
+</form>

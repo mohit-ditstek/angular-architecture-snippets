@@ -1,0 +1,87 @@
+<app-header-content></app-header-content>
+<form #form="ngForm">
+  <div class="tabsInfo">
+    <div class="tabsInnerInfo">
+      <div class="common-field">
+        <div class="l-field-container">
+          <span class="l-field-label">{{ 'deal.worksheet.otherPayments.downPaymentDeposit' | translate }}</span>
+          <span class="l-field-value">
+            <button
+            type="button"
+            color="primary"
+            mat-stroked-button
+            class="buttonOutline border-primary more-height"
+            (click)="openDepositDialog()"
+            >
+            {{ 'deal.worksheet.tax.itemize' | translate }}
+          </button>
+            <div class="accordion-header-dropdown common-dropdown">
+              <app-override-controller
+                  name="totalDownPayment"
+                  [amount]="details.totalDownPayment"
+                  [(ngModel)]="paymentForm.totalDownPayment"
+                  [rightAlign]="true"
+                  [disableControl]="disabled" 
+                  [isOverridden]="paymentForm.isTotalCashDownOverridden"
+                  (toggleOverridden)="toggleTotalDownPayment($event)"
+                >
+              </app-override-controller>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-mat-accordion [title]="'deal.worksheet.otherPayments.accessoriesAndSalesTax' | translate" [isExpanded]="true" [simpleMode]="false">
+    <div class="tabsInfo" body>
+      <div class="tabsInnerInfo">
+        <div class="common-field">
+          <div class="l-field-container">
+            <span class="l-field-label">{{ 'deal.worksheet.otherPayments.accessories' | translate }}</span>
+            <span class="l-field-value">
+              <div class="accordion-header-dropdown common-dropdown">
+                <app-override-controller
+                  name="accessories"
+                  [(ngModel)]="paymentForm.totalNonInstalledPartsAccessoriesLabor"
+                  [rightAlign]="true"
+                  [disableControl]="disabled"
+                  [isOverridden]="paymentForm.overrideTotalNonInstalledPartsAccessoriesLabor"
+                  (toggleOverridden)="toggleAccessoryAmountField($event)"
+                ></app-override-controller>
+              </div>
+            </span>
+          </div>
+          <div class="l-field-container">
+            <span class="l-field-label">{{ 'deal.worksheet.otherPayments.taxes' | translate }}</span>
+            <span class="l-field-value">
+              <span *ngIf="isWarningMessage" class="address-warning material-icons" [class.disabled]="isContractGenerated && isTaxes" (click)="performAction()" [matTooltip]="warningMessages | translate"> 
+                <mat-icon>warning</mat-icon> 
+              </span>
+              <button
+                type="button"
+                color="primary"
+                mat-stroked-button
+                class="buttonOutline border-primary more-height"
+                [disabled]="isDisable"
+                (click)="openModifyTaxDialog()"
+                >
+                {{ 'deal.worksheet.tax.modify' | translate }}
+              </button>
+              <div class="accordion-header-dropdown common-dropdown">
+                <app-override-controller
+                  name="taxes"
+                  [amount]="details.salesOtherTax"
+                  [(ngModel)]="paymentForm.salesOtherTax"
+                  [rightAlign]="true"
+                  [disableControl]="disabled"
+                  [isOverridden]="paymentForm.isSalesOtherTaxOverridden"
+                  (toggleOverridden)="toggleSalesTax($event)"
+                ></app-override-controller>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-mat-accordion>
+</form>

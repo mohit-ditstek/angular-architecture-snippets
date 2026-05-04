@@ -1,0 +1,22 @@
+<app-base-dialog [title]="'common.unsavedChanges' | translate" (dialogClose)="close()" [contentClass]="'space-between'">
+    <ng-container body>
+      <p class="dialogText">
+        {{ (!formIsDirty ? 'common.confirmations.invalidTab' : 'common.confirmations.unsavedChanges') | translate }}
+      </p>
+    </ng-container>
+    <ng-container footer>
+      <p class="bold">
+          {{ 'common.confirmations.missingFieldFootNote' | translate }}
+      </p>
+      <div class="footer-buttons">
+        <button mat-raised-button color="primary" class="buttonOutline" (keyup.enter)="onNoResponse()"
+          (click)="onNoResponse()">
+          {{ 'common.no' | translate }}
+        </button>
+        <button mat-stroked-button class="border-warn buttonOutline" color="warn" (keyup.enter)="onYesResponse()"
+          (click)="onYesResponse()">
+          {{ 'common.yes' | translate }}
+        </button>
+      </div>
+    </ng-container>
+  </app-base-dialog>

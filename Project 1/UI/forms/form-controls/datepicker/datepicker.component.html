@@ -1,0 +1,49 @@
+<div class="formGroup">
+  <mat-form-field appearance="outline" [ngClass]="{ 'disabled-control': disabled }">
+    <mat-label>{{ label }}</mat-label>
+    <input
+      matInput
+      #controlName="ngModel"
+      type="text"
+      [tabindex]="tabindex"
+      [placeholder]="placeholder"
+      [mask]="maskedFormat"
+      [readonly]="readonly"
+      [required]="required"
+      dateValidator
+      [name]="name"
+      [(ngModel)]="inputValue"
+      [attr.minDate]="minDate"
+      [attr.maxDate]="maxDate"
+      [disabled]="disabled"
+      [dropSpecialCharacters]="!maskedValue"
+      [leadZeroDateTime]="true"
+      [hiddenInput]="hiddenInput"
+      (focusout)="focusOut()"
+      (focusin)="focusIn($event)"
+      (ngModelChange)="inputUpdate.next($event)"
+      autocomplete="off"
+    />
+
+    <input tabindex="-1" type="hidden" [value]="value" [min]="min" [max]="max" [disabled]="disabled" [matDatepicker]="picker" (dateChange)="dateChange($event)" />
+    <mat-datepicker-toggle tabindex="-1" matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker (opened)="focusIn($event, false)" (closed)="focusOut()"></mat-datepicker>
+  </mat-form-field>
+  
+  <mat-error *ngIf="(submitted || controlName.touched) && controlName.invalid">
+    <span *ngIf="controlName.hasError('required')">{{ 'common.validations.required' | translate }}</span>
+    <span *ngIf="controlName.hasError('mask')">
+      {{ 'common.validations.invalidFormat' | translate }} ({{ 'common.validations.example' | translate }} {{ maskFormat }})
+    </span>
+
+    <ng-container *ngIf="!controlName.hasError('mask')">
+      <span *ngIf="controlName.hasError('dateValidator')">{{ 'common.validations.invalidDate' | translate }}</span>
+      <span *ngIf="controlName.hasError('minDateValidator')">{{
+        (minErrorMessage ? minErrorMessage : 'common.validations.minDateValidator') | translate: { date: min | date: 'MM/dd/yyyy' }
+      }}</span>
+      <span *ngIf="controlName.hasError('maxDateValidator')">{{
+        (maxErrorMessage ? maxErrorMessage : 'common.validations.maxDateValidator') | translate: { date: max | date: 'MM/dd/yyyy' }
+      }}</span>
+    </ng-container>
+  </mat-error>
+</div>

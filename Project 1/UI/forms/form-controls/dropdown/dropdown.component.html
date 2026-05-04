@@ -1,0 +1,43 @@
+<div class="formGroup" *ngIf="!simpleSelect" [ngClass]="class">
+  <mat-form-field appearance="outline" [ngClass]="{ 'disabled-control': disableControl }">
+    <mat-label removeAriaOwns>{{ label }}</mat-label>
+
+    <mat-select
+      #selectInput
+      [name]="name"
+      [tabindex]="tabindex"
+      [(ngModel)]="value"
+      #controlName="ngModel"
+      [placeholder]="placeholder"
+      (selectionChange)="selectionChange($event)"
+      [required]="required"
+      [disabled]="disableControl"
+      panelClass="dropdownPanelClass"
+      [class.hide-ellipsis]="hideEllipsis"
+      [autoFocus]="autoFocus"
+      disableOptionCentering
+    >
+      <mat-option *ngIf="showDefaultOption" [ngValue]="null">{{ label }}</mat-option>
+      <mat-option
+        *ngFor="let option of options"
+        [tooltipText]="option.text"
+        conditionalTooltip
+        [tooltipPosition]="tooltipPosition"
+        [disabled]="option.isDisabled"
+        [value]="option.value"
+        >{{ option.text }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-error *ngIf="(submitted || controlName.touched) && controlName.invalid">
+    <span *ngIf="controlName.hasError('required')">{{ 'common.validations.required' | translate }}</span>
+  </mat-error>
+</div>
+
+<div class="form-group" *ngIf="simpleSelect">
+  <label>{{ label }}</label>
+  <select [name]="name" [disabled]="disableControl" [(ngModel)]="value" #controlName="ngModel" class="form-control" (change)="selectionChange($event.target)">
+    <option disabled [ngValue]="null">{{ placeholder }}</option>
+    <option [disabled]="option.isDisabled" *ngFor="let option of options" [value]="option.value">{{ option.text }}</option>
+  </select>
+</div>

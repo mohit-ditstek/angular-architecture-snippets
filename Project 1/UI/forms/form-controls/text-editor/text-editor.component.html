@@ -1,0 +1,20 @@
+<div class="formGroup">
+  <ckeditor
+    #controlName="ngModel"
+    [(ngModel)]="value"
+    [config]="config"
+    [editor]="editor"
+    [required]="required"
+    [maxlength]="maxLength"
+    [disabled]="disableControl"
+    (change)="contentChanged()"
+    (ready)="onEditorReady($event)"
+    ngDefaultControl
+  ></ckeditor>
+  <button [disabled]="disableControl" type="button" class="flag-icon" [class.active]="isFlagged" (click)="toggleFlag()"><span class="material-icons">flag</span></button>
+
+  <mat-error *ngIf="(submitted || controlName.touched) && controlName.invalid">
+    <span *ngIf="controlName.hasError('required')">{{ 'common.validations.required' | translate }}</span>
+    <span *ngIf="controlName.hasError('maxlength')">{{ 'common.validations.maxField' | translate }} {{ maxLength }}</span>
+  </mat-error>
+</div>

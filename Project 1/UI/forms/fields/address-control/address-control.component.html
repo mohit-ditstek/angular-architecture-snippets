@@ -1,0 +1,40 @@
+<div class="formGroup">
+    <mat-form-field appearance="outline" [ngClass]="{ 'disabled-control': disabled }">
+      <mat-label>{{ label }}</mat-label>
+      <input
+        matInput
+        #focusInput
+        #controlName="ngModel"
+        [tabindex]="tabindex"
+        [type]="type"
+        [name]="name"
+        [placeholder]="placeholder"
+        [maxlength]="maxlength"
+        [(ngModel)]="value"
+        [required]="required"
+        [readonly]="readonly"
+        [disabled]="disabled"
+        autocomplete="off"
+        trimValue
+        titleCase
+        [autoFocus]="autoFocus"
+      />
+      <button *ngIf="showIcon" matSuffix mat-icon-button>
+        <div class="mat-select-arrow"></div>
+      </button>
+    </mat-form-field>
+    <mat-error *ngIf="(submitted || controlName.touched) && controlName.invalid">
+      <span *ngIf="controlName.hasError('required')">{{ 'common.validations.required' | translate }}</span>
+      <span *ngIf="controlName.hasError('pattern')">{{
+        (patternMessageKey ? patternMessageKey : 'common.validations.invalidInput') | translate
+      }}</span>
+    </mat-error>
+    <div class="entity">
+      <span *ngIf="maxlength && !controlName.invalid && controlName.value?.length === maxlength">
+        {{ 'common.validations.maxlength.message' | translate: { value: maxlength } }}</span
+      >
+      <span *ngIf="showNote && (controlName.valid || (!controlName.touched && !submitted)) && controlName.value?.length !== maxlength">
+        {{ showNote }}
+      </span>
+    </div>
+  </div>

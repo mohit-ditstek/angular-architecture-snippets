@@ -1,0 +1,17 @@
+@import 'styles/mixins/media-queries';
+
+:host {
+    width: 100%;
+}
+.hide-ellipsis {
+    max-width: initial !important;
+}
+
+.typeDropdown {
+    min-width: 180px;
+    max-width: 200px;
+    @include for-tablet {
+        min-width: 175px
+    }
+}
+.form-control{cursor: pointer;}

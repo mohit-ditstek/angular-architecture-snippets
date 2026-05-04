@@ -1,0 +1,15 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <app-finance-term-form
+    *ngIf="vm.loaded"
+    #financeTermFormComponent
+    [financeTerm]="vm.finaceTermDetails | clone"
+    [firstPaymentDate]="vm.firstPaymentDate"
+    [financeReserveAmount]="vm.financeReserveAmount"
+    (autoSaveDisable)="disableAutoSave($event)"
+    [lastPaymentDate]="vm.lastPaymentDate"
+    [isFinanceReservedAmountEnabled]="isFinanceReservedAmountEnabled"
+    (dealTypeChanged)="dealTypeChanged($event)"
+    [disabled]="(disabled$ | async)"
+    (valuesChanged)="valueChanged($event)"
+  ></app-finance-term-form>
+</ng-container>

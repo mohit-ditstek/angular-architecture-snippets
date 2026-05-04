@@ -1,0 +1,35 @@
+button {
+  border: 0;
+  padding: 0;
+  width: auto;
+  max-width: 35px;
+  background: transparent;
+  .delete-Icon-With-Border {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--app-link-red-color);
+    font-size: var(--app-font-size-xl);
+    margin-left: 0px;
+    cursor: pointer;
+    border: 1px solid;
+    border-radius: 4px;
+    width: 25px;
+    height: 25px;
+  }
+  .icon {
+    cursor: pointer;
+  }
+  .address-warning {
+    color: var(--warning);
+  }
+  &.disabled {
+    opacity: 0.6;
+    background: transparent;
+    border-bottom: transparent;
+    .mat-icon {
+      color: #00000026 !important;
+      cursor: not-allowed;
+    }
+  }
+}

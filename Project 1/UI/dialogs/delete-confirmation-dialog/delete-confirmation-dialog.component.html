@@ -1,0 +1,17 @@
+<app-base-dialog [title]="data.title | translate: (data.titleReplacementObj || {})" (dialogClose)="close()">
+
+  <ng-container body *ngIf="data.text">
+    <p class="dialogText" >{{data.text | translate: (data.textReplacementObj || {}) }}</p>
+  </ng-container>
+
+  <ng-container *ngIf="data" footer>
+    <button mat-raised-button class="buttonOutline"  color="primary" (keyup.enter)="close()" (click)="close()">
+      {{data.button.secondaryButton | translate}}
+    </button>
+
+    <button mat-stroked-button class="border-warn buttonOutline" color="warn" (keyup.enter)="close(true)" (click)="close(true)">
+      <span *ngIf="data.button.primaryButtonIcon" class="material-icons">{{data.button.primaryButtonIcon}}</span>
+      {{data.button.primaryButton | translate}}
+    </button>
+  </ng-container>
+</app-base-dialog>

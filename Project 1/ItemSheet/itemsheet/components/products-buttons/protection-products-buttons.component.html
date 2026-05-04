@@ -1,0 +1,92 @@
+<div class="action-buttons-part">
+  <button
+    *ngIf="noProtectionProducts || (!menuEnabled && !isPresentationCompleted && !isBlocked)"
+    type="button"
+    mat-raised-button
+    [disabled]="disableActions"
+    class="buttonOutline"
+    color="primary"
+    (click)="openDialog()"
+  >
+    {{ 'deal.worksheet.purchaseUnits.rateProducts' | translate }}
+  </button>
+
+  <ng-container *ngIf="!noProtectionProducts">
+    <button
+      *ngIf="menuEnabled || (!menuEnabled && isPresentationCompleted)"
+      class="buttonOutline"
+      [class.presentationDropdownButton]="!isCustomerLocked"
+      mat-raised-button
+      color="primary"
+      (click)="performAction()"
+      [disabled]="isLocked"
+    >
+      {{
+        (isBlocked && !isPresentationCompleted
+          ? 'deal.worksheet.purchaseUnits.rateProducts'
+          : isPresentationCompleted
+          ? 'contract.generateContract'
+          : 'deal.worksheet.purchaseUnits.presentProducts'
+        ) | translate
+      }}
+
+      <div
+        class="caret"
+        [ngClass]="menuTrigger.menuOpen ? 'opened' : isLocked ? 'disabledMenuTrigger' : ''"
+        [matMenuTriggerFor]="menu"
+        #menuTrigger="matMenuTrigger"
+        (click)="$event.stopPropagation()"
+        *ngIf="!isCustomerLocked"
+      >
+        <span class="material-icons"> arrow_drop_down </span>
+      </div>
+    </button>
+  </ng-container>
+
+  <mat-menu xPosition="before" #menu="matMenu" class="newDealDropdown presentationDropdown">
+    <button mat-menu-item (click)="openDialog()">
+      <span>{{ 'deal.worksheet.purchaseUnits.rateProducts' | translate }}</span>
+    </button>
+    <button *ngIf="menuEnabled" mat-menu-item [class.disabled]="isBlocked" [disabled]="isBlocked" (click)="openDialog(true)">
+      <span>{{ 'deal.worksheet.purchaseUnits.presentProducts' | translate }}</span>
+    </button>
+    <button
+      mat-menu-item
+      [class.disabled]="!isPresentationCompleted || isLocked"
+      [disabled]="!isPresentationCompleted || isLocked"
+      (click)="openGenerateContractValidationDialog()"
+    >
+      <span>{{ 'contract.generateContract' | translate }}</span>
+    </button>
+  </mat-menu>
+  <button
+    type="button"
+    mat-stroked-button
+    class="buttonOutline border-primary"
+    color="primary"
+    [disabled]="isAddProductDisabled || disableActions"
+    (click)="openProductDialog()"
+  >
+    <span class="material-icons"> add </span> {{ 'deal.worksheet.protectionProducts.addProduct' | translate }}
+  </button>
+  <button
+    mat-button
+    color="accent"
+    class="reset-button buttonOutline pad-0"
+    [matTooltip]="'deal.worksheet.protectionProducts.resetProduct' | translate"
+    [disabled]="isRefreshProductDisabled || isLocked"
+    mat-button
+    (click)="resetProducts()"
+  >
+    <span class="material-icons"> refresh </span>{{ 'deal.worksheet.protectionProducts.reset' | translate }}
+  </button>
+  <div class="togggle-button" [matTooltip]="'deal.worksheet.protectionProducts.showDealerCost' | translate" *ngIf="showDealerCostToggle">
+    <app-toggle
+      #toggleControl
+      name="dealerCostToggle"
+      [checked]="dealerCostToggle"
+      [disableControl]="noProtectionProducts"
+      (toggle)="toggleDealerCost($event)"
+    ></app-toggle>
+  </div>
+</div>

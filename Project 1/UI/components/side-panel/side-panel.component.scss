@@ -1,0 +1,61 @@
+.side-panel {
+    width: 415px;
+    right: -415px;
+    position: fixed;
+    height: 100%;
+    background: var(--app-white-color);
+    transition: 0.5s;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    top:48px;
+    &.show {
+        right: 0;
+    }
+
+    .side-panel-header {
+        padding: 16px 20px 16px 16px;
+        border-bottom: 1px solid #e2e3f4;
+        font-size: var(--app-font-size-xxl);
+        line-height: 30px;
+        letter-spacing: 0.15px;
+        font-family: var(--app-font-primary-semibold);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        justify-content: space-between;
+        position: relative;
+
+        .close {
+            cursor: pointer;
+            font-family: var(--app-font-primary-medium);
+            color: #9ea1b8;
+            text-shadow: 0 1px 0 #fff;
+            padding: 1rem;
+            background-color: transparent;
+            border: 0;
+            -webkit-appearance: none;
+            appearance: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .select-dropdown {
+            select {
+                padding: 6px 12px;
+                border: 1px solid #e2e3f4;
+                border-radius: 4px;
+                font-size: 16px;
+
+                option {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    .side-panel-body {
+        padding: 16px;
+        height: calc(100% - 111px);
+        overflow: auto;
+    }
+}

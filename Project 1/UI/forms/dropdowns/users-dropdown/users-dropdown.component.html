@@ -1,0 +1,17 @@
+<app-dropdown
+    [options]="options"
+    [name]="name"
+    [(ngModel)]="value"
+    #controlName="ngModel"
+    [disableControl]="disabledControl"
+    [placeholder]="placeholder"
+    [label]="label"
+    [required]="required"
+    [submitted]="submitted"
+    [hideLabel]="hideLabel"
+    (selectedValue)="selectionChange($event)"
+    [simpleSelect]="simpleSelect"
+    [showDefaultOption]="showDefaultOption"
+    panelClass="dropdownPanelClass"
+>         
+</app-dropdown>

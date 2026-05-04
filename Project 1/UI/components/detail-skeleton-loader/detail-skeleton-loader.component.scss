@@ -1,0 +1,116 @@
+.common-padding {
+    padding: 15px;
+    margin: 0 0 30px 0;
+    &.card-height{
+        min-height:350px;
+        padding:35px 15px;
+      }
+}
+.loader-wrapper{
+ padding:45px 0 0 0;
+ &.remove-padding{
+    padding:15px 0 0 0;
+ }
+}
+.card {
+    margin: 0 0 30px 0;
+    .header {
+        display: flex;
+        align-items: center;
+        .details {
+            width: 100%;
+            span {
+                display: block;
+                background: #d9d9d9;
+                border-radius: 10px;
+                overflow: hidden;
+                position: relative;
+                &::before {
+                    animation-delay: 0.2s;
+                }
+                &.name {
+                    height: 12px;
+                    width: 40%;
+                    margin: 0 0 1px 0;
+                }
+                &.about {
+                    height: 10px;
+                    width: 65%;
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}
+
+.details span::before,
+.description .line::before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background-image: linear-gradient(to right, #d9d9d9 0%, rgba(0, 0, 0, 0.07) 20%, #d9d9d9 40%, #d9d9d9 100%);
+    background-size: 1000px 104px;
+}
+
+.skelton-tabs {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap:15px;
+}
+
+.skelton-inner-tabs {
+    height: 30px;
+    border-radius: 3px;
+    overflow: hidden;
+    width: 15%;
+}
+
+.main-menu-container-skeleton>.sub-menu-skeleton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.main-menu-container-skeleton>.sub-menu-skeleton>.inner-box {
+    height:35px;
+    border-radius: 3px;
+    overflow: hidden;
+    width:80%;
+    &:nth-child(2){
+      width:60%;
+    }
+    &:last-child{
+      width:45%;
+    }
+}
+
+@keyframes placeHolderShimmer {
+    0% {
+        background-position: -500px 0
+    }
+
+    100% {
+        background-position: 500px 0
+    }
+}
+
+.animated-background {
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background-image: linear-gradient(to right, #d9d9d9 0%, rgba(0, 0, 0, 0.07) 20%, #d9d9d9 40%, #d9d9d9 100%);
+    background-size: 1000px 104px;
+    height: 500px;
+    position: relative;
+}

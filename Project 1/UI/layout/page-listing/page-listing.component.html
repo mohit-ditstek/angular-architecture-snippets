@@ -1,0 +1,23 @@
+<div class="page">
+  <div class="sub-header">
+    <mat-card>
+      <mat-card-title-group>
+        <mat-card-title class="flex">
+          {{ title }}
+        </mat-card-title>
+        <div class="button">
+          <ng-content select="[header]"></ng-content>
+        </div>
+      </mat-card-title-group>
+    </mat-card>
+  </div>
+  <div class="commonCard">
+    <div class="filter" [ngClass]="{ 'row-wrap': wrapFilters, check: isLandscape }" *ngIf="showFilters">
+      <button mat-raised-button class="refresh-icon" color="primary" matTooltip="Refresh" (click)="refreshList()" *ngIf="showRefresh">
+        <span class="material-icons icon">cached</span> Refresh
+      </button>
+      <ng-content select="[filters]"></ng-content>
+    </div>
+    <ng-content select="[body]"></ng-content>
+  </div>
+</div>

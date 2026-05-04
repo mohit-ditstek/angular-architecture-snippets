@@ -1,0 +1,160 @@
+<app-text-input
+  *ngIf="text"
+  #focusInput
+  [name]="name"
+  [maxlength]="maxlength"
+  [(ngModel)]="value"
+  [required]="required"
+  [pattern]="pattern"
+  [patternMessageKey]="patternMessageKey"
+  [label]="label"
+  [placeholder]="placeholder"
+  [disabled]="disableControl"
+  (keyup)="onChanged(focusInput.value)"
+>
+</app-text-input>
+
+<app-email
+  *ngIf="email"
+  #focusInput
+  [name]="name"
+  [maxlength]="maxlength"
+  [(ngModel)]="value"
+  [required]="required"
+  [label]="label"
+  [placeholder]="placeholder"
+  [disabled]="disableControl"
+  (keyup)="onChanged(focusInput.value)"
+>
+</app-email>
+
+<div class="formGroup" *ngIf="textArea">
+  <app-textarea
+    #textArea
+    #focusInput
+    [rows]="rows"
+    [placeholder]="placeholder"
+    [name]="name"
+    [required]="required"
+    [label]="label"
+    [placeholder]="placeholder"
+    [name]="name"
+    [required]="required"
+    [maxlength]="maxlength"
+    [(ngModel)]="value"
+    (keyup)="onChanged(textArea.value)"
+    [disableControl]="disableControl"
+  ></app-textarea>
+</div>
+
+<!-- numeric -->
+<app-numeric
+  *ngIf="numericDecimal || numericWhole"
+  [name]="name"
+  [required]="required"
+  [label]="label"
+  [placeholder]="placeholder"
+  [minValue]="minValue"
+  [maxValue]="maxValue"
+  [withDecimalValue]="numericDecimal"
+  [maxlength]="numericDecimal ? 9 : 7"
+  [submitted]="submitted"
+  [(ngModel)]="value"
+  (valueChanges)="onChanged($event)"
+  [disableControl]="disableControl"
+></app-numeric>
+
+<!-- dropdown -->
+<app-dropdown
+  *ngIf="dropdown"
+  [name]="name"
+  [label]="label"
+  [placeholder]="placeholder"
+  [required]="required"
+  [options]="fieldOptions"
+  [showDefaultOption]="!required"
+  [submitted]="submitted"
+  [(ngModel)]="value"
+  (selectedValue)="onChanged($event)"
+  [disableControl]="disableControl"
+>
+</app-dropdown>
+
+<!-- checkbox -->
+<app-checkbox
+  *ngIf="checkbox"
+  [name]="name"
+  [checked]="value"
+  [label]="label"
+  [hideLabel]="showCheckBoxLabel"
+  [required]="required"
+  (onChanged)="onChanged($event)"
+  [disabled]="disableControl"
+></app-checkbox>
+<!-- radio -->
+<app-radio
+  *ngIf="radio"
+  [name]="name"
+  [(ngModel)]="value"
+  [options]="options"
+  [label]="label"
+  [required]="required"
+  (selection)="onChanged($event)"
+  [disableControl]="disableControl"
+></app-radio>
+
+<!-- multiselect DropDown -->
+<app-multi-select
+  *ngIf="dropDownMulti"
+  [name]="name"
+  [(ngModel)]="value"
+  [options]="options"
+  [label]="label"
+  [required]="required"
+  [placeholder]="placeholder"
+  [withWidth]="true"
+  (selection)="onChanged($event)"
+  [disableControl]="disableControl"
+></app-multi-select>
+
+<!-- URL -->
+<app-website
+  *ngIf="url"
+  #url
+  [name]="name"
+  [label]="label"
+  [placeholder]="placeholder"
+  [maxlength]="maxValue"
+  [(ngModel)]="value"
+  [required]="required"
+  (keyup)="onChanged(url.value)"
+  [disableControl]="disableControl"
+  (focusout)="onChanged(url.value)"
+></app-website>
+
+<!-- JSON -->
+<app-json
+  *ngIf="json"
+  #json
+  [name]="name"
+  [label]="label"
+  [placeholder]="placeholder"
+  rows="8"
+  [required]="required"
+  [(ngModel)]="value"
+  (keyup)="onChanged(json.value)"
+  [disableControl]="disableControl"
+></app-json>
+
+<!-- file upload -->
+<app-file-upload
+  *ngIf="file"
+  [currentImage]="value"
+  [accept]="accept"
+  [name]="name"
+  [allowedTypes]="allowedTypes"
+  [maxFileSize]="maxValue"
+  [buttonName]="'common.uploadLogo' | translate"
+  (uploadFile)="onChanged($event)"
+  [disableControl]="disableControl"
+></app-file-upload>
