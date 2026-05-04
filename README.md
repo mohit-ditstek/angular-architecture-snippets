@@ -376,7 +376,3 @@ Each folder follows consistent patterns:
 
 ---
 
-## 📞 Questions?
-
-Refer to specific files for detailed examples and explanation comments within each code snippet.
-
